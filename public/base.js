@@ -37,7 +37,16 @@ var map = {
       console.log(geoJson);
 
       self.precinctLayer = new L.geoJson(geoJson, {
-        'style': function(d) { return self.stylePrecinct(d, self); }
+        'style': function(d) { return self.stylePrecinct(d, self); },
+        'onEachFeature': function(d, layer) {
+          layer.on({
+            click: function(d) {
+              console.log(layer);
+              console.log(d);
+              console.log(layer.feature.properties);
+            }
+          })
+        }
       });
 
       self.map.addLayer(self.precinctLayer);
