@@ -1,6 +1,6 @@
-.precincts path {
-  stroke: #333;
-  stroke-width: 1;
-  fill: none;
+#map-target {
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
 }
 
