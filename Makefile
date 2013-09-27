@@ -1,5 +1,6 @@
 GENERATED_FILES = \
-	public/precincts-hennepin.json
+	public/precincts-hennepin.json \
+	public/results.json
 
 all: $(GENERATED_FILES)
 

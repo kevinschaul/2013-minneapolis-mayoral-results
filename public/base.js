@@ -1,13 +1,12 @@
 var map = {
-  width: 500,
-  height: 500,
-
   colorScheme: ['#1b9e77', '#d95f02', '#7570b3', '#e7298a', '#66a61e', '#e6ab02', '#a6761d', '#666666'],
 
   init: function() {
     var self = this;
 
-    self.map = L.map('map-target')
+    self.map = L.map('map-target', {
+      scrollWheelZoom: false
+    })
     self.map.setView([44.985, -93.241], 10);
     self.addTonerLayer();
     self.addPrecinctLayer();
@@ -31,6 +30,7 @@ var map = {
   addPrecinctLayer: function() {
     var self = this;
 
+    // TODO remove d3 dependency
     d3.json('precincts-hennepin.json', function(error, data) {
       console.log(data);
       var geoJson = topojson.feature(data, data.objects.hennepin).features;
