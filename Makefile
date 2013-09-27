@@ -19,7 +19,7 @@ build/vtd2012general.shp: build/vtd2012general.zip
 
 build/hennepin.json: build/vtd2012general.shp
 	rm -f $@
-	ogr2ogr -t_srs 'EPSG:4326' -where 'COUNTYCODE = 27' -f GeoJSON $@ $<
+	ogr2ogr -t_srs 'EPSG:4326' -where 'PCTNAME like "MINNEAPOLIS%"' -f GeoJSON $@ $<
 
 build/hennepin-topo.json: build/hennepin.json
 	topojson -o $@ -q 1e2 -p pctcode=PCTCODE $<
