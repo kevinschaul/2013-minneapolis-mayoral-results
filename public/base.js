@@ -7,7 +7,7 @@ var map = {
     self.map = L.map('map-target', {
       scrollWheelZoom: false
     })
-    self.map.setView([44.985, -93.241], 10);
+    self.map.setView([44.97, -93.265], 12);
     self.addTonerLayer();
     self.addPrecinctLayer();
   },
