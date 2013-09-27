@@ -9,6 +9,15 @@ var map = {
   init: function() {
     var self = this;
 
+    self.initTable();
+    self.initMap();
+    self.getData();
+    self.initAddressLookup();
+  },
+
+  initMap: function() {
+    var self = this;
+
     self.map = L.map('map-target', {
       minZoom: 11,
       maxZoom: 16,
@@ -18,8 +27,6 @@ var map = {
     self.map.setMaxBounds(self.map.getBounds());
     self.addTonerLayer();
     self.addPrecinctLayer();
-
-    self.initAddressLookup();
   },
 
   addTonerLayer: function() {
@@ -37,7 +44,7 @@ var map = {
     self.map.addLayer(self.tonerLayer);
   },
 
-  addPrecinctLayer: function() {
+  getData: function() {
     var self = this;
 
     // TODO remove d3 dependency
@@ -46,21 +53,41 @@ var map = {
       var geoJson = topojson.feature(data, data.objects.hennepin).features;
       console.log(geoJson);
 
-      self.precinctLayer = new L.geoJson(geoJson, {
-        'style': function(d) { return self.stylePrecinct(d, self); },
-        'onEachFeature': function(d, layer) {
-          layer.on({
-            click: function(d) {
-              console.log(layer);
-              console.log(d);
-              console.log(layer.feature.properties);
-            }
-          })
-        }
+      _.each(geoJson, function(d) {
+        self.precinctLookup[d.properties.id] = {
+          'precinctId': d.properties.id,
+          'pctcode': d.properties.pctcode
+        };
       });
 
-      self.map.addLayer(self.precinctLayer);
+      self.tableTemplate = _.template($('script#table-template').html());
+      self.$resultsTarget = $('#results-target');
+
+      self.$resultsTarget.append(self.tableTemplate({
+        precincts: self.precinctLookup
+      }));
+
+      self.addPrecinctLayer(geoJson);
     });
+  },
+
+  addPrecinctLayer: function(geoJson) {
+    var self = this;
+
+   self.precinctLayer = new L.geoJson(geoJson, {
+      'style': function(d) { return self.stylePrecinct(d, self); },
+      'onEachFeature': function(d, layer) {
+        layer.on({
+          click: function(d) {
+            console.log(layer);
+            console.log(d);
+            console.log(layer.feature.properties);
+          }
+        })
+      }
+    });
+
+    self.map.addLayer(self.precinctLayer);
   },
 
   stylePrecinct: function(d, self) {
@@ -75,6 +102,12 @@ var map = {
       weight: 0.5,
       color: '#fff'
     };
+  },
+
+  initTable: function() {
+    var self  = this;
+
+    // TODO
   },
 
   initAddressLookup: function() {

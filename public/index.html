@@ -63,172 +63,6 @@
           </div>
         </div>
 
-        <div class="wrapper precinct-id-270531420" data-id="270531420">
-          <div class="header">
-            <span class="precinct">Precinct 1</span>
-            <span class="reporting">85% reporting</span>
-          </div>
-          <div class="candidates">
-            <div class="candidate candidate-0">
-              <div class="color"></div>
-              <span class="name">Captain Jack Sparrow</span>
-              <span class="percent">35%</span>
-            </div>
-            <div class="candidate candidate-1">
-              <div class="color"></div>
-              <span class="name">Mark Andrew</span>
-              <span class="percent">28%</span>
-            </div>
-            <div class="candidate candidate-2">
-              <div class="color"></div>
-              <span class="name">Jackie Cherryhomes</span>
-              <span class="percent">13%</span>
-            </div>
-            <div class="candidate candidate-3">
-              <div class="color"></div>
-              <span class="name">Bob Fine</span>
-              <span class="percent">12%</span>
-            </div>
-            <div class="candidate candidate-4">
-              <div class="color"></div>
-              <span class="name">Don Samuels</span>
-              <span class="percent">3%</span>
-            </div>
-            <div class="show-all">Show all</div>
-            <div class="candidate candidate-5 hide">
-              <span class="name">Dan Cohen</span>
-              <span class="percent">3%</span>
-            </div>
-            <div class="candidate candidate-6 hide">
-              <span class="name">Cam Winton</span>
-              <span class="percent">2%</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="header">
-          <span class="precinct">Precinct 2</span>
-          <span class="reporting">85% reporting</span>
-        </div>
-        <div class="candidates">
-          <div class="candidate candidate-0">
-            <div class="color"></div>
-            <span class="name">Captain Jack Sparrow</span>
-            <span class="percent">35%</span>
-          </div>
-          <div class="candidate candidate-1">
-            <div class="color"></div>
-            <span class="name">Mark Andrew</span>
-            <span class="percent">28%</span>
-          </div>
-          <div class="candidate candidate-2">
-            <div class="color"></div>
-            <span class="name">Jackie Cherryhomes</span>
-            <span class="percent">13%</span>
-          </div>
-          <div class="candidate candidate-3">
-            <div class="color"></div>
-            <span class="name">Bob Fine</span>
-            <span class="percent">12%</span>
-          </div>
-          <div class="candidate candidate-4">
-            <div class="color"></div>
-            <span class="name">Don Samuels</span>
-            <span class="percent">3%</span>
-          </div>
-          <div class="show-all">Show all</div>
-          <div class="candidate candidate-5 hide">
-            <span class="name">Dan Cohen</span>
-            <span class="percent">3%</span>
-          </div>
-          <div class="candidate candidate-6 hide">
-            <span class="name">Cam Winton</span>
-            <span class="percent">2%</span>
-          </div>
-        </div>
-
-        <div class="header">
-          <span class="precinct">Precinct 3</span>
-          <span class="reporting">85% reporting</span>
-        </div>
-        <div class="candidates">
-          <div class="candidate candidate-0">
-            <div class="color"></div>
-            <span class="name">Captain Jack Sparrow</span>
-            <span class="percent">35%</span>
-          </div>
-          <div class="candidate candidate-1">
-            <div class="color"></div>
-            <span class="name">Mark Andrew</span>
-            <span class="percent">28%</span>
-          </div>
-          <div class="candidate candidate-2">
-            <div class="color"></div>
-            <span class="name">Jackie Cherryhomes</span>
-            <span class="percent">13%</span>
-          </div>
-          <div class="candidate candidate-3">
-            <div class="color"></div>
-            <span class="name">Bob Fine</span>
-            <span class="percent">12%</span>
-          </div>
-          <div class="candidate candidate-4">
-            <div class="color"></div>
-            <span class="name">Don Samuels</span>
-            <span class="percent">3%</span>
-          </div>
-          <div class="show-all">Show all</div>
-          <div class="candidate candidate-5 hide">
-            <span class="name">Dan Cohen</span>
-            <span class="percent">3%</span>
-          </div>
-          <div class="candidate candidate-6 hide">
-            <span class="name">Cam Winton</span>
-            <span class="percent">2%</span>
-          </div>
-        </div>
-
-        <div class="header">
-          <span class="precinct">Precinct 4</span>
-          <span class="reporting">85% reporting</span>
-        </div>
-        <div class="candidates">
-          <div class="candidate candidate-0">
-            <div class="color"></div>
-            <span class="name">Captain Jack Sparrow</span>
-            <span class="percent">35%</span>
-          </div>
-          <div class="candidate candidate-1">
-            <div class="color"></div>
-            <span class="name">Mark Andrew</span>
-            <span class="percent">28%</span>
-          </div>
-          <div class="candidate candidate-2">
-            <div class="color"></div>
-            <span class="name">Jackie Cherryhomes</span>
-            <span class="percent">13%</span>
-          </div>
-          <div class="candidate candidate-3">
-            <div class="color"></div>
-            <span class="name">Bob Fine</span>
-            <span class="percent">12%</span>
-          </div>
-          <div class="candidate candidate-4">
-            <div class="color"></div>
-            <span class="name">Don Samuels</span>
-            <span class="percent">3%</span>
-          </div>
-          <div class="show-all">Show all</div>
-          <div class="candidate candidate-5 hide">
-            <span class="name">Dan Cohen</span>
-            <span class="percent">3%</span>
-          </div>
-          <div class="candidate candidate-6 hide">
-            <span class="name">Cam Winton</span>
-            <span class="percent">2%</span>
-          </div>
-        </div>
-
       </div>
     </div>
     <div class="col col2">
@@ -238,6 +72,53 @@
   </div>
 
 </div>
+
+<script type="text/template" id="table-template">
+<% _.each(precincts, function(d) { %>
+  <div class="wrapper precinct-id-<%= d.precinctId %>" data-id="<%= d.precinctId %>">
+    <div class="header">
+      <span class="precinct">Precinct <%= d.precinctId %></span>
+      <span class="reporting">85% reporting</span>
+    </div>
+    <div class="candidates">
+      <div class="candidate candidate-0">
+        <div class="color"></div>
+        <span class="name">Captain Jack Sparrow</span>
+        <span class="percent">35%</span>
+      </div>
+      <div class="candidate candidate-1">
+        <div class="color"></div>
+        <span class="name">Mark Andrew</span>
+        <span class="percent">28%</span>
+      </div>
+      <div class="candidate candidate-2">
+        <div class="color"></div>
+        <span class="name">Jackie Cherryhomes</span>
+        <span class="percent">13%</span>
+      </div>
+      <div class="candidate candidate-3">
+        <div class="color"></div>
+        <span class="name">Bob Fine</span>
+        <span class="percent">12%</span>
+      </div>
+      <div class="candidate candidate-4">
+        <div class="color"></div>
+        <span class="name">Don Samuels</span>
+        <span class="percent">3%</span>
+      </div>
+      <div class="show-all">Show all</div>
+      <div class="candidate candidate-5 hide">
+        <span class="name">Dan Cohen</span>
+        <span class="percent">3%</span>
+      </div>
+      <div class="candidate candidate-6 hide">
+        <span class="name">Cam Winton</span>
+        <span class="percent">2%</span>
+      </div>
+    </div>
+  </div>
+<% }); %>
+</script>
 
 <script src="lib/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="lib/d3.v3.min.js" type="text/javascript" charset="utf-8"></script>
