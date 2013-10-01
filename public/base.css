@@ -20,8 +20,7 @@
 .results-header, .results-footer {
   width: 100%;
   background-color: #333;
-  font-weight: bold;
-  color: #fff;
+  color: #ccc;
   line-height: 40px;
 }
 .results-header a, .results-footer a {
@@ -35,8 +34,8 @@
 }
 .results-header .button {
   background-color: #2E8B0D;
+  color: #fff;
   padding: 2px 4px;
-  font-weight: normal;
   font-size: 0.9em;
   margin: 8px 0;
   padding: 7px 4px;
@@ -123,7 +122,6 @@
   margin-right: 10px;
   float: right;
   color: #777;
-  font-weight: normal;
   font-size: 0.7em;
 }
 .results-footer .sources a {

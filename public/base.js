@@ -1,6 +1,7 @@
 var map = {
   $addressInput: $('input#address'),
   $addressButton: $('#address-button'),
+  $feedback: $('#feedback'),
 
   colorScheme: ['#1b9e77', '#d95f02', '#7570b3', '#e7298a', '#66a61e', '#e6ab02', '#a6761d', '#666666'],
 
@@ -113,6 +114,10 @@ var map = {
   initAddressLookup: function() {
     var self = this;
 
+    self.$addressInput.keydown(function() {
+      self.clearGeocodeError();
+    });
+
     self.$addressButton.click(function() {
       self.searchAddress(self.$addressInput.val());
     });
@@ -127,9 +132,27 @@ var map = {
     url += '&location=' + address;
     url += '&callback=?';
     $.getJSON(url, function(data) {
-      var lat = data.results[0].locations[0].latLng.lat;
-      var lng = data.results[0].locations[0].latLng.lng;
-      self.searchPrecinct(lat, lng);
+      console.log(data);
+
+      // Ensure result was sent
+      if (data
+          && data.results
+          && data.results.length > 0
+          && data.results[0].locations
+          && data.results[0].locations.length > 0) {
+        var location = data.results[0].locations[0];
+        // Ensure location was in Minneapolis, MN
+        if (location.adminArea3 === "MN"
+            && location.adminArea5 === "Minneapolis") {
+          var lat = location.latLng.lat;
+          var lng = location.latLng.lng;
+          self.searchPrecinct(lat, lng);
+        } else {
+          self.displayGeocodeError("That location appears to be outside of Minneapolis.");
+        }
+      } else {
+        self.displayGeocodeError("We are having trouble locating your precinct.");
+      }
     });
   },
 
@@ -142,8 +165,17 @@ var map = {
     url += '&contains=' + lat + ',' + lng;
     url += '&callback=?'
     $.getJSON(url, function(data) {
-      var precinctId = data.objects[0].external_id;
-      self.activatePrecinct(precinctId);
+      console.log(data);
+
+      if (data
+          && data.objects
+          && data.objects.length > 0
+          && data.objects[0].external_id) {
+        var precinctId = data.objects[0].external_id;
+        self.activatePrecinct(precinctId);
+      } else {
+        self.displayGeocodeError("We are having trouble locating your precinct.");
+      }
     });
   },
 
@@ -160,6 +192,20 @@ var map = {
     var self = this;
 
     $('.wrapper.active').removeClass('active');
+  },
+
+  clearGeocodeError: function() {
+    var self = this;
+
+    self.$feedback.text('');
+  },
+
+  displayGeocodeError: function(error) {
+    var self = this;
+
+    // TODO
+    console.log(error);
+    self.$feedback.text(error);
   }
 }
 
