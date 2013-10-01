@@ -129,10 +129,16 @@ var map = {
 
     console.log(address);
 
+    // http://stackoverflow.com/questions/309953/how-do-i-catch-jquery-getjson-or-ajax-with-datatype-set-to-jsonp-error-w
+    var errorTimeout = setTimeout(function() {
+      self.displayGeocodeError("We are having trouble locating your precinct.");
+    }, 2000);
+
     var url = 'http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd%7Cluub2h0tng%2Crx%3Do5-9utggu&inFormat=kvp&outFormat=json';
     url += '&location=' + address;
     url += '&callback=?';
     $.getJSON(url, function(data) {
+      clearTimeout(errorTimeout);
       console.log(data);
 
       // Ensure result was sent
@@ -142,7 +148,7 @@ var map = {
           && data.results[0].locations
           && data.results[0].locations.length > 0) {
         var location = data.results[0].locations[0];
-        // Ensure location was in Minneapolis, MN
+        // Ensure location is in Minneapolis, MN
         if (location.adminArea3 === "MN"
             && location.adminArea5 === "Minneapolis") {
           var lat = location.latLng.lat;
@@ -162,10 +168,16 @@ var map = {
 
     console.log(lat, lng);
 
+    // http://stackoverflow.com/questions/309953/how-do-i-catch-jquery-getjson-or-ajax-with-datatype-set-to-jsonp-error-w
+    var errorTimeout = setTimeout(function() {
+        self.displayGeocodeError("We are having trouble locating your precinct.");
+    }, 2000);
+
     var url = 'http://boundaries.minnpost.com/1.0/boundary/?sets=voting-precincts-2012';
     url += '&contains=' + lat + ',' + lng;
     url += '&callback=?'
     $.getJSON(url, function(data) {
+      clearTimeout(errorTimeout);
       console.log(data);
 
       if (data
@@ -188,14 +200,18 @@ var map = {
     self.deactivateAllPrecincts();
     var $precinct = $('.precinct-id-' + precinctId);
 
-    $precinct.addClass('active');
+    if ($precinct) {
+      $precinct.addClass('active');
 
-    // Find offset relative to $resultsTarget
-    var top = $precinct.position().top -  self.$resultsTarget.position().top;
+      // Find offset relative to $resultsTarget
+      var top = $precinct.position().top -  self.$resultsTarget.position().top;
 
-    self.$results.animate({
-      'scrollTop': top
-    });
+      self.$results.animate({
+        'scrollTop': top
+      });
+    } else {
+      self.displayGeocodeError("That location appears to be outside of Minneapolis.");
+    }
   },
 
   deactivateAllPrecincts: function() {
@@ -213,8 +229,6 @@ var map = {
   displayGeocodeError: function(error) {
     var self = this;
 
-    // TODO
-    console.log(error);
     self.$feedback.text(error);
   }
 }
