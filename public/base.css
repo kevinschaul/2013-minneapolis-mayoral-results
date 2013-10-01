@@ -27,22 +27,27 @@
   color: #ddd;
   text-decoration: none;
 }
+.results-header form {
+  float: left;
+}
 .results-header .input {
   line-height: 20px;
-  margin: 7px 0 7px 10px;
+  margin: 10px 0 10px 10px;
   font-size: 1.1em;
 }
 .results-header .button {
   background-color: #2E8B0D;
   color: #fff;
-  padding: 2px 4px;
   font-size: 0.9em;
-  margin: 8px 0;
   padding: 7px 4px;
   cursor: pointer;
 }
 .results-header .button:hover {
   background-color: #457534;
+}
+.results-header #feedback {
+  margin-left: 10px;
+  line-height: 50px;
 }
 
 .col {
