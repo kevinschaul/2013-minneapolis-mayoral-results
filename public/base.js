@@ -101,7 +101,7 @@ var map = {
     return {
       fillColor: self.colorScheme[values[rand]],
       fillOpacity: 0.7,
-      weight: 0.5,
+      weight: 1,
       color: '#fff'
     };
   },
