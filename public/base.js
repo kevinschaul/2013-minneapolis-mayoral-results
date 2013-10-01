@@ -82,9 +82,8 @@ var map = {
       'onEachFeature': function(d, layer) {
         layer.on({
           click: function(d) {
-            console.log(layer);
-            console.log(d);
-            console.log(layer.feature.properties);
+            var properties = layer.feature.properties;
+            self.activatePrecinct(properties.id);
           }
         })
       }
@@ -136,6 +135,8 @@ var map = {
     }, 2000);
 
     var url = 'http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd%7Cluub2h0tng%2Crx%3Do5-9utggu&inFormat=kvp&outFormat=json';
+    // TODO
+    // url += '&boundingBox=44.87290,-93.42911,45.06722,-93.10089';
     url += '&location=' + address;
     url += '&callback=?';
     $.getJSON(url, function(data) {
