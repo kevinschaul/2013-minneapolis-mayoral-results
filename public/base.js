@@ -59,7 +59,8 @@ var map = {
       _.each(geoJson, function(d) {
         self.precinctLookup[d.properties.id] = {
           'precinctId': d.properties.id,
-          'pctcode': d.properties.pctcode
+          'pctcode': d.properties.pctcode,
+          'feature': d,
         };
       });
 
@@ -212,6 +213,14 @@ var map = {
     } else {
       self.displayGeocodeError("That location appears to be outside of Minneapolis.");
     }
+
+    var feature = self.precinctLookup[precinctId].feature;
+    var bounds = d3.geo.bounds(feature);
+    var boundsForLeaflet = [
+      [bounds[0][1], bounds[0][0]],
+      [bounds[1][1], bounds[1][0]]
+    ];
+    self.map.fitBounds(boundsForLeaflet);
   },
 
   deactivateAllPrecincts: function() {
