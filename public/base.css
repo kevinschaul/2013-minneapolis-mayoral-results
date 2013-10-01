@@ -62,7 +62,16 @@
 .col1 .header {
   padding: 10px 10px 2px 10px;
 }
-.col1 .precinct {
+.col1 .header .show-on-map {
+  margin-left: 10px;
+  color: #777;
+  font-size: 0.7em;
+  cursor: pointer;
+}
+.col1 .header .show-on-map:hover {
+  color: #aaa;
+}
+.col1 .precinct-title {
   font-size: 1.2em;
   font-weight: bold;
 }

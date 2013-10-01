@@ -70,6 +70,13 @@ var map = {
         precincts: self.precinctLookup
       }));
 
+      $('.show-on-map').click(function() {
+        var $this = $(this);
+        var $precinct = $this.parents('.precinct');
+        var precinctId = $precinct.attr('data-id');
+        self.activatePrecinct(precinctId);
+      });
+
       self.addPrecinctLayer(geoJson);
     });
   },
@@ -110,6 +117,7 @@ var map = {
     var self  = this;
 
     // TODO
+
   },
 
   initAddressLookup: function() {

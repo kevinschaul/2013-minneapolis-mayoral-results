@@ -82,10 +82,10 @@
 
 <script type="text/template" id="table-template">
 <% _.each(precincts, function(d) { %>
-  <div class="wrapper precinct-id-<%= d.precinctId %>" data-id="<%= d.precinctId %>">
+  <div class="wrapper precinct precinct-id-<%= d.precinctId %>" data-id="<%= d.precinctId %>">
     <div class="header">
-      <span class="precinct">Precinct <%= d.precinctId %></span>
-      <span class="reporting">85% reporting</span>
+      <span class="precinct-title">Precinct <%= d.precinctId %></span>
+      <span class="show-on-map">Show on map &rarr;</span>
     </div>
     <div class="candidates">
       <div class="candidate candidate-0">
