@@ -53,6 +53,7 @@
 }
 .col1 {
   overflow: auto;
+  position: relative;
 }
 
 .col1 .wrapper.active {

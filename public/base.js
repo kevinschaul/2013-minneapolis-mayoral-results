@@ -2,6 +2,8 @@ var map = {
   $addressInput: $('input#address'),
   $addressButton: $('#address-button'),
   $feedback: $('#feedback'),
+  $results: $('.col.col1'),
+  $resultsTarget: $('#results-target'),
 
   colorScheme: ['#1b9e77', '#d95f02', '#7570b3', '#e7298a', '#66a61e', '#e6ab02', '#a6761d', '#666666'],
 
@@ -62,7 +64,6 @@ var map = {
       });
 
       self.tableTemplate = _.template($('script#table-template').html());
-      self.$resultsTarget = $('#results-target');
 
       self.$resultsTarget.append(self.tableTemplate({
         precincts: self.precinctLookup
@@ -185,7 +186,16 @@ var map = {
     console.log(precinctId);
 
     self.deactivateAllPrecincts();
-    $('.precinct-id-' + precinctId).addClass('active');
+    var $precinct = $('.precinct-id-' + precinctId);
+
+    $precinct.addClass('active');
+
+    // Find offset relative to $resultsTarget
+    var top = $precinct.position().top -  self.$resultsTarget.position().top;
+
+    self.$results.animate({
+      'scrollTop': top
+    });
   },
 
   deactivateAllPrecincts: function() {
