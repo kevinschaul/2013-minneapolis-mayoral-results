@@ -119,9 +119,24 @@
 .col1 .candidate .name {
   margin-left: 10px;
 }
-.col1 .candidate .percent {
+.col1 .candidate .percents, .col1 .percents-headers {
   font-weight: bold;
   float: right;
+}
+.col1 .percents-headers {
+  font-size: 0.7em;
+  font-weight: normal;
+  color: #999;
+  margin-top: -5px; // TODO hack
+}
+.col1 .candidate .percent, .col1 .percent-header {
+  width: 40px;
+  display: inline-block;
+  text-align: right;
+  margin-left: 4px;
+}
+.col1 .percent-header {
+  text-align: center;
 }
 .col1 .show-all {
   cursor: pointer;
