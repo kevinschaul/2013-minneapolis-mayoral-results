@@ -29,17 +29,22 @@
 }
 .results-header form {
   float: left;
+  margin: 4px;
 }
 .results-header .input {
-  line-height: 20px;
-  margin: 10px 0 10px 10px;
-  font-size: 1.1em;
+  font-size: 1em;
+  background-color: #fff;
+  border: none;
+  height: 30px;
+  line-height: 30px;
+
 }
 .results-header .button {
   background-color: #2E8B0D;
   color: #fff;
   font-size: 0.9em;
-  padding: 7px 4px;
+  padding: 8px 7px 7px 7px;
+  border: none;
   cursor: pointer;
 }
 .results-header .button:hover {
