@@ -22,13 +22,14 @@
   background-color: #333;
   color: #ccc;
   line-height: 40px;
+  text-align: right;
 }
 .results-header a, .results-footer a {
   color: #ddd;
   text-decoration: none;
 }
 .results-header form {
-  float: left;
+  float: right;
   margin: 4px;
 }
 .results-header .input {
@@ -56,9 +57,9 @@
 }
 
 .col {
+  float: left;
   width: 50%;
   height: 400px;
-  float: left;
   background-color: #fff;
 }
 .col1 {
@@ -147,4 +148,5 @@
 .results-footer .sources a {
   color: #aaa;
 }
+
 
