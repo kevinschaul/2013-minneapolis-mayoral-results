@@ -75,7 +75,7 @@
 }
 .col1 .header .show-on-map {
   margin-left: 10px;
-  color: #777;
+  color: #999;
   font-size: 0.7em;
   cursor: pointer;
 }
@@ -105,9 +105,9 @@
   margin-top: 4px;
   height: 16px;
   width: 16px;
-  background-color: #333;
 }
 
+.col .color { background-color: #ccc; }
 .col .candidate-0 .color { background-color: #1b9e77; }
 .col .candidate-1 .color { background-color: #d95f02; }
 .col .candidate-2 .color { background-color: #7570b3; }
@@ -138,7 +138,7 @@
 .col1 .percent-header {
   text-align: center;
 }
-.col1 .show-all {
+.col1 .show-all .show-all-label {
   cursor: pointer;
   line-height: 1.6em;
   color: #999;

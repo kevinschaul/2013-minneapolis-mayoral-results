@@ -114,6 +114,14 @@ var map = {
       var precinctId = $precinct.attr('data-id');
       self.activatePrecinct(precinctId);
     });
+
+    $('.show-all').click(function() {
+      var $this = $(this);
+      var candidates = $this.children('.hide');
+      candidates.removeClass('hide');
+      var label = $this.children('.show-all-label');
+      label.addClass('hide');
+    });
   },
 
   initAddressLookup: function() {
