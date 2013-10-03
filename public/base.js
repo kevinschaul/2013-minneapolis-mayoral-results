@@ -137,9 +137,28 @@ var map = {
     });
   },
 
+  formatAddress: function(address) {
+    var self = this;
+
+    if (address && typeof(address === "string")) {
+        // TODO
+        // Should add Minneapolis unless Minneapolis already exists
+        // Should add MN unless MN already exists
+        var pattern = /minneapolis\s*/gi;
+        var match = address.match(pattern);
+        if (!match) {
+            address = address + " Minneapolis, MN";
+        }
+        self.$addressInput.val(address);
+        return address;
+    }
+  },
+
   searchAddress: function(address) {
     var self = this;
 
+    console.log(address);
+    address = self.formatAddress(address);
     console.log(address);
 
     // http://stackoverflow.com/questions/309953/how-do-i-catch-jquery-getjson-or-ajax-with-datatype-set-to-jsonp-error-w
