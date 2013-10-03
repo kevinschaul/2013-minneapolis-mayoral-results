@@ -1,4 +1,5 @@
 var map = {
+  $addressForm: $('form#address-form'),
   $addressInput: $('input#address'),
   $addressButton: $('#address-button'),
   $feedback: $('#feedback'),
@@ -122,6 +123,10 @@ var map = {
 
   initAddressLookup: function() {
     var self = this;
+
+    self.$addressForm.submit(function() {
+      return false;
+    });
 
     self.$addressInput.keydown(function() {
       self.clearGeocodeError();
