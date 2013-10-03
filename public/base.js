@@ -50,8 +50,7 @@ var map = {
   getData: function() {
     var self = this;
 
-    // TODO remove d3 dependency
-    d3.json('precincts-hennepin.json', function(error, data) {
+    $.getJSON('precincts-hennepin.json', function(data) {
       self.data = data;
 
       self.geoJson = topojson.feature(self.data, self.data.objects.hennepin).features;
