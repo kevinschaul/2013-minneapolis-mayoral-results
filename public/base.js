@@ -13,7 +13,6 @@ var map = {
   init: function() {
     var self = this;
 
-    self.initTable();
     self.initMap();
     self.getData();
     self.initAddressLookup();
@@ -53,32 +52,12 @@ var map = {
 
     // TODO remove d3 dependency
     d3.json('precincts-hennepin.json', function(error, data) {
-      console.log(data);
-      var geoJson = topojson.feature(data, data.objects.hennepin).features;
-      console.log(geoJson);
+      self.data = data;
 
-      _.each(geoJson, function(d) {
-        self.precinctLookup[d.properties.id] = {
-          'precinctId': d.properties.id,
-          'pctcode': d.properties.pctcode,
-          'feature': d,
-        };
-      });
+      self.geoJson = topojson.feature(self.data, self.data.objects.hennepin).features;
+      self.addPrecinctLayer(self.geoJson);
 
-      self.tableTemplate = _.template($('script#table-template').html());
-
-      self.$resultsTarget.append(self.tableTemplate({
-        precincts: self.precinctLookup
-      }));
-
-      $('.show-on-map').click(function() {
-        var $this = $(this);
-        var $precinct = $this.parents('.precinct');
-        var precinctId = $precinct.attr('data-id');
-        self.activatePrecinct(precinctId);
-      });
-
-      self.addPrecinctLayer(geoJson);
+      self.initTable();
     });
   },
 
@@ -117,8 +96,26 @@ var map = {
   initTable: function() {
     var self  = this;
 
-    // TODO
+    _.each(self.geoJson, function(d) {
+      self.precinctLookup[d.properties.id] = {
+        'precinctId': d.properties.id,
+        'pctcode': d.properties.pctcode,
+        'feature': d,
+      };
+    });
 
+    self.tableTemplate = _.template($('script#table-template').html());
+
+    self.$resultsTarget.append(self.tableTemplate({
+      precincts: self.precinctLookup
+    }));
+
+    $('.show-on-map').click(function() {
+      var $this = $(this);
+      var $precinct = $this.parents('.precinct');
+      var precinctId = $precinct.attr('data-id');
+      self.activatePrecinct(precinctId);
+    });
   },
 
   initAddressLookup: function() {
@@ -141,9 +138,6 @@ var map = {
     var self = this;
 
     if (address && typeof(address === "string")) {
-        // TODO
-        // Should add Minneapolis unless Minneapolis already exists
-        // Should add MN unless MN already exists
         var pattern = /minneapolis\s*/gi;
         var match = address.match(pattern);
         if (!match) {
@@ -157,9 +151,7 @@ var map = {
   searchAddress: function(address) {
     var self = this;
 
-    console.log(address);
     address = self.formatAddress(address);
-    console.log(address);
 
     // http://stackoverflow.com/questions/309953/how-do-i-catch-jquery-getjson-or-ajax-with-datatype-set-to-jsonp-error-w
     var errorTimeout = setTimeout(function() {
