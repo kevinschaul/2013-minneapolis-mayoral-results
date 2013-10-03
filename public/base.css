@@ -51,8 +51,15 @@
 .results-header .button:hover {
   background-color: #457534;
 }
+#address-button {
+  width: 110px;
+}
+#address-button.loading, #address-button.loading:hover {
+  cursor: auto;
+  background-color: #2E8B0D;
+}
 .results-header #feedback {
-  margin-left: 10px;
+  margin: 0 10px;
   line-height: 50px;
 }
 

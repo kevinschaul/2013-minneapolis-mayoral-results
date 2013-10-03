@@ -136,7 +136,10 @@ var map = {
     });
 
     self.$addressButton.click(function() {
-      self.searchAddress(self.$addressInput.val());
+      if (!self.isWaiting) {
+        self.searchAddress(self.$addressInput.val());
+        self.indicateWaiting();
+      }
     });
   },
 
@@ -218,6 +221,7 @@ var map = {
           && data.objects[0].external_id) {
         var precinctId = data.objects[0].external_id;
         self.activatePrecinct(precinctId);
+        self.indicateWaitingFinished();
       } else {
         self.displayGeocodeError("We are having trouble locating your precinct.");
       }
@@ -227,12 +231,10 @@ var map = {
   activatePrecinct: function(precinctId) {
     var self = this;
 
-    console.log(precinctId);
-
     self.deactivateAllPrecincts();
     var $precinct = $('.precinct-id-' + precinctId);
 
-    if ($precinct) {
+    if ($precinct && $precinct.length > 0) {
       $precinct.addClass('active');
 
       // Find offset relative to $resultsTarget
@@ -241,17 +243,17 @@ var map = {
       self.$results.animate({
         'scrollTop': top
       });
+
+      var feature = self.precinctLookup[precinctId].feature;
+      var bounds = feature.bbox;
+      var boundsForLeaflet = [
+        [bounds[1], bounds[0]],
+        [bounds[3], bounds[2]]
+      ];
+      self.map.fitBounds(boundsForLeaflet);
     } else {
       self.displayGeocodeError("That location appears to be outside of Minneapolis.");
     }
-
-    var feature = self.precinctLookup[precinctId].feature;
-    var bounds = feature.bbox;
-    var boundsForLeaflet = [
-      [bounds[1], bounds[0]],
-      [bounds[3], bounds[2]]
-    ];
-    self.map.fitBounds(boundsForLeaflet);
   },
 
   deactivateAllPrecincts: function() {
@@ -270,6 +272,50 @@ var map = {
     var self = this;
 
     self.$feedback.text(error);
+    self.indicateWaitingFinished();
+  },
+
+  indicateWaitingFinished: function() {
+    var self = this;
+
+    if (self.waiting) {
+      window.clearInterval(self.waiting);
+    }
+    self.$addressButton.html('Find precinct');
+    self.$addressButton.removeClass('loading');
+    self.isWaiting = false;
+  },
+
+  indicateWaiting: function() {
+    var self = this;
+
+    var i = 0;
+
+    self.isWaiting = true;
+    self.$addressButton.addClass('loading');
+    self._indicateWaiting(i++);
+    self.waiting = window.setInterval(function() {
+      self._indicateWaiting(i++);
+    }, 250);
+  },
+
+  _indicateWaiting: function(i) {
+    var self = this;
+
+    switch (i % 4) {
+      case 0:
+        self.$addressButton.html('Loading&nbsp;&nbsp;&nbsp;&nbsp;');
+        break;
+      case 1:
+        self.$addressButton.html('Loading&nbsp;.&nbsp;&nbsp;');
+        break;
+      case 2:
+        self.$addressButton.html('Loading&nbsp;..&nbsp;');
+        break;
+      case 3:
+        self.$addressButton.html('Loading&nbsp;...');
+        break;
+    }
   }
 }
 
