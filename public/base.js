@@ -14,7 +14,8 @@ var map = {
     var self = this;
 
     self.initMap();
-    self.getData();
+    self.getPrecinctShapes();
+    self.getResults();
     self.initAddressLookup();
   },
 
@@ -47,15 +48,27 @@ var map = {
     self.map.addLayer(self.tonerLayer);
   },
 
-  getData: function() {
+  getPrecinctShapes: function() {
     var self = this;
 
     $.getJSON('precincts-hennepin.json', function(data) {
-      self.data = data;
-
       self.geoJson = data;
       self.addPrecinctLayer(self.geoJson);
 
+      _.each(self.geoJson.features, function(d) {
+        self.precinctLookup[d.properties.VTD] = {
+          'precinctId': d.properties.VTD,
+          'feature': d,
+        };
+      });
+    });
+  },
+
+  getResults: function() {
+    var self = this;
+
+    $.getJSON('test-results.json', function(data) {
+      self.results = data;
       self.initTable();
     });
   },
@@ -92,20 +105,29 @@ var map = {
     };
   },
 
+  formatPercent: function(s) {
+    return Math.round(s * 100, 2);
+  },
+
   initTable: function() {
     var self  = this;
 
-    _.each(self.geoJson.features, function(d) {
-      self.precinctLookup[d.properties.VTD] = {
-        'precinctId': d.properties.VTD,
-        'feature': d,
-      };
-    });
-
     self.tableTemplate = _.template($('script#table-template').html());
 
+    console.log(self.results);
+    _.each(self.results.precincts, function(p) {
+      _.each(p.candidates, function(c, i) {
+        p.candidates[i]['first_choice_percent'] =
+            self.formatPercent(c.first_choice / p.total_votes_first);
+        p.candidates[i]['second_choice_percent'] =
+            self.formatPercent(c.second_choice / p.total_votes_second);
+        p.candidates[i]['third_choice_percent'] =
+            self.formatPercent(c.third_choice / p.total_votes_third);
+      });
+    });
+
     self.$resultsTarget.append(self.tableTemplate({
-      precincts: self.precinctLookup
+      precincts: self.results.precincts
     }));
 
     $('.show-on-map').click(function() {

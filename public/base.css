@@ -20,13 +20,16 @@
 .results-header, .results-footer {
   width: 100%;
   background-color: #333;
-  color: #ccc;
+  color: #fff;
   line-height: 40px;
-  text-align: right;
 }
 .results-header a, .results-footer a {
   color: #ddd;
   text-decoration: none;
+}
+.results-header .title {
+  margin: 0 10px;
+  font-size: 1.2em;
 }
 .results-header form {
   float: right;
@@ -101,7 +104,7 @@
 }
 
 .col1 .candidates {
-  padding: 0 14px;
+  padding: 0 20px;
 }
 .col1 .candidate {
   line-height: 1.6em;
@@ -134,6 +137,7 @@
   font-size: 0.7em;
   font-weight: normal;
   color: #999;
+  margin-right: 10px;
   margin-top: -5px; // TODO hack
 }
 .col1 .candidate .percent, .col1 .percent-header {
