@@ -53,7 +53,7 @@ var map = {
     $.getJSON('precincts-hennepin.json', function(data) {
       self.data = data;
 
-      self.geoJson = topojson.feature(self.data, self.data.objects.hennepin).features;
+      self.geoJson = data;
       self.addPrecinctLayer(self.geoJson);
 
       self.initTable();
@@ -69,7 +69,7 @@ var map = {
         layer.on({
           click: function(d) {
             var properties = layer.feature.properties;
-            self.activatePrecinct(properties.id);
+            self.activatePrecinct(properties.VTD);
           }
         })
       }
@@ -95,10 +95,9 @@ var map = {
   initTable: function() {
     var self  = this;
 
-    _.each(self.geoJson, function(d) {
-      self.precinctLookup[d.properties.id] = {
-        'precinctId': d.properties.id,
-        'pctcode': d.properties.pctcode,
+    _.each(self.geoJson.features, function(d) {
+      self.precinctLookup[d.properties.VTD] = {
+        'precinctId': d.properties.VTD,
         'feature': d,
       };
     });

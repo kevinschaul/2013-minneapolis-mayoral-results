@@ -1,6 +1,5 @@
 GENERATED_FILES = \
-	public/precincts-hennepin.json \
-	public/results.json
+	public/precincts-hennepin.json
 
 all: $(GENERATED_FILES)
 
@@ -24,6 +23,10 @@ build/hennepin.json: build/vtd2012general.shp
 build/hennepin-topo.json: build/hennepin.json
 	topojson -o $@ -q 1e4 -p pctcode=PCTCODE,id=VTD $<
 
-public/precincts-hennepin.json: build/hennepin-topo.json
+build/hennepin-geo.json: build/hennepin.json
+	rm -f $@
+	ogr2ogr -select VTD -simplify 0.0001 -f GeoJSON $@ $<
+
+public/precincts-hennepin.json: build/hennepin-geo.json
 	cp $< $@
 
