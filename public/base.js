@@ -114,7 +114,15 @@ var map = {
 
     self.tableTemplate = _.template($('script#table-template').html());
 
-    console.log(self.results);
+    _.each(self.results.total.candidates, function(c, i) {
+      self.results.total.candidates[i]['first_choice_percent'] =
+          self.formatPercent(c.first_choice / self.results.total.total_votes_first);
+      self.results.total.candidates[i]['second_choice_percent'] =
+          self.formatPercent(c.second_choice / self.results.total.total_votes_second);
+      self.results.total.candidates[i]['third_choice_percent'] =
+          self.formatPercent(c.third_choice / self.results.total.total_votes_third);
+    });
+
     _.each(self.results.precincts, function(p) {
       _.each(p.candidates, function(c, i) {
         p.candidates[i]['first_choice_percent'] =
@@ -127,6 +135,7 @@ var map = {
     });
 
     self.$resultsTarget.append(self.tableTemplate({
+      total: self.results.total,
       precincts: self.results.precincts
     }));
 

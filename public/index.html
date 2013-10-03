@@ -24,107 +24,7 @@
       <div class="clear"></div>
     </div>
     <div class="col col1">
-      <div id="results-target">
-        <div class="wrapper">
-          <div class="header">
-            <span class="precinct">Total</span>
-            <span class="reporting">85% reporting</span>
-            <span class="percents-headers">
-              <span class="percent-header">1st choice</span>
-              <span class="percent-header">2nd choice</span>
-              <span class="percent-header">3rd choice</span>
-            </span>
-            <div class="clear"></div>
-          </div>
-          <div class="candidates">
-            <div class="candidate candidate-0">
-              <div class="color"></div>
-              <span class="name">Captain Jack Sparrow</span>
-              <span class="percents">
-                <span class="percent percent-1">35%</span>
-                <span class="percent percent-2">18%</span>
-                <span class="percent percent-3">22%</span>
-              </span>
-              <div class="clear"></div>
-            </div>
-            <div class="candidate candidate-1">
-              <div class="color"></div>
-              <span class="name">Mark Andrew</span>
-              <span class="percents">
-                <span class="percent percent-1">23%</span>
-                <span class="percent percent-2">38%</span>
-                <span class="percent percent-3">2%</span>
-              </span>
-              <div class="clear"></div>
-            </div>
-            <div class="candidate candidate-2">
-              <div class="color"></div>
-              <span class="name">Jackie Cherryhomes</span>
-              <span class="percents">
-                <span class="percent percent-1">10%</span>
-                <span class="percent percent-2">28%</span>
-                <span class="percent percent-3">27%</span>
-              </span>
-              <div class="clear"></div>
-            </div>
-            <div class="candidate candidate-3">
-              <div class="color"></div>
-              <span class="name">Bob Fine</span>
-              <span class="percents">
-                <span class="percent percent-1">9%</span>
-                <span class="percent percent-2">4%</span>
-                <span class="percent percent-3">12%</span>
-              </span>
-              <div class="clear"></div>
-            </div>
-            <div class="candidate candidate-4">
-              <div class="color"></div>
-              <span class="name">Don Samuels</span>
-              <span class="percents">
-                <span class="percent percent-1">3%</span>
-                <span class="percent percent-2">8%</span>
-                <span class="percent percent-3">14%</span>
-              </span>
-              <div class="clear"></div>
-            </div>
-            <div class="show-all">
-              <div class="show-all-label">Show all</div>
-              <div class="hide">
-                <div class="candidate candidate-5">
-                  <div class="color"></div>
-                  <span class="name">Dan Cohen</span>
-                  <span class="percents">
-                    <span class="percent percent-1">3%</span>
-                    <span class="percent percent-2">8%</span>
-                    <span class="percent percent-3">14%</span>
-                  </span>
-                  <div class="clear"></div>
-                </div>
-                <div class="candidate candidate-6">
-                  <span class="name">Cam Winton</span>
-                  <div class="color"></div>
-                  <span class="percents">
-                    <span class="percent percent-1">3%</span>
-                    <span class="percent percent-2">8%</span>
-                    <span class="percent percent-3">14%</span>
-                  </span>
-                  <div class="clear"></div>
-                </div>
-                <div class="candidate candidate-7">
-                  <div class="color"></div>
-                  <span class="name">Dan Cohen</span>
-                  <span class="percents">
-                    <span class="percent percent-1">3%</span>
-                    <span class="percent percent-2">8%</span>
-                    <span class="percent percent-3">14%</span>
-                  </span>
-                  <div class="clear"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="results-target"></div>
     </div>
     <div class="col col2">
       <div id="map-target"></div>
@@ -139,6 +39,43 @@
 </div>
 
 <script type="text/template" id="table-template">
+<div class="wrapper">
+  <div class="header">
+    <span class="precinct-title">Total</span>
+    <span class="reporting">85% reporting</span>
+    <span class="percents-headers">
+      <span class="percent-header">1st choice</span>
+      <span class="percent-header">2nd choice</span>
+      <span class="percent-header">3rd choice</span>
+    </span>
+    <div class="clear"></div>
+  </div>
+
+  <div class="candidates">
+    <% _.each(total.candidates, function(c, i) { %>
+      <% if (i === 5) { %>
+        <div class="show-all">
+          <div class="show-all-label">Show all</div>
+          <div class="hide">
+      <% } %>
+            <div class="candidate candidate-<%= c.id %>">
+              <div class="color"></div>
+              <span class="name"><%= c.first_name %> <%= c.last_name %></span>
+              <span class="percents">
+                <span class="percent percent-1"><%= c.first_choice_percent %>%</span>
+                <span class="percent percent-2"><%= c.second_choice_percent %>%</span>
+                <span class="percent percent-3"><%= c.third_choice_percent %>%</span>
+              </span>
+              <div class="clear"></div>
+            </div>
+      <% if (i === 5) { %>
+          </div>
+        </div>
+      <% } %>
+    <% }); %>
+  </div>
+</div>
+
 <% _.each(precincts, function(d) { %>
   <div class="wrapper precinct precinct-id-<%= d.id %>" data-id="<%= d.id %>">
     <div class="header">
@@ -151,6 +88,7 @@
       </span>
       <div class="clear"></div>
     </div>
+
     <div class="candidates">
       <% _.each(d.candidates, function(c, i) { %>
         <% if (i === 5) { %>

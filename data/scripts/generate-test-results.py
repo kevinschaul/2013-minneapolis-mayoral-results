@@ -124,5 +124,8 @@ for c in candidates:
         'third_choice': c['total_third_choice']
     })
 
+    results['total']['candidates'] = sorted(results['total']['candidates'], 
+            key=lambda x: -x['first_choice'])
+
 print json.dumps(results)
 
