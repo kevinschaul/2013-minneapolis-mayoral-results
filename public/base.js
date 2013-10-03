@@ -148,10 +148,9 @@ var map = {
 
     $('.show-all').click(function() {
       var $this = $(this);
-      var candidates = $this.children('.hide');
+      var candidates = $this.parent('.candidates').children('.hide');
       candidates.removeClass('hide');
-      var label = $this.children('.show-all-label');
-      label.addClass('hide');
+      $this.addClass('hide');
     });
   },
 

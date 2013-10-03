@@ -149,7 +149,7 @@
 .col1 .percent-header {
   text-align: center;
 }
-.col1 .show-all .show-all-label {
+.col1 .show-all {
   cursor: pointer;
   line-height: 1.6em;
   color: #999;

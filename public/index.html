@@ -52,26 +52,20 @@
   </div>
 
   <div class="candidates">
-    <% _.each(total.candidates, function(c, i) { %>
+    <% _.each(total.candidates, function(c, i, l) { %>
       <% if (i === 5) { %>
-        <div class="show-all">
-          <div class="show-all-label">Show all</div>
-          <div class="hide">
+        <div class="show-all">Show all</div>
       <% } %>
-            <div class="candidate candidate-<%= c.id %>">
-              <div class="color"></div>
-              <span class="name"><%= c.first_name %> <%= c.last_name %></span>
-              <span class="percents">
-                <span class="percent percent-1"><%= c.first_choice_percent %>%</span>
-                <span class="percent percent-2"><%= c.second_choice_percent %>%</span>
-                <span class="percent percent-3"><%= c.third_choice_percent %>%</span>
-              </span>
-              <div class="clear"></div>
-            </div>
-      <% if (i === 5) { %>
-          </div>
+        <div class="candidate candidate-<%= c.id %> <% if (i >= 5) { %>hide<% } %>">
+          <div class="color"></div>
+          <span class="name"><%= c.first_name %> <%= c.last_name %></span>
+          <span class="percents">
+            <span class="percent percent-1"><%= c.first_choice_percent %>%</span>
+            <span class="percent percent-2"><%= c.second_choice_percent %>%</span>
+            <span class="percent percent-3"><%= c.third_choice_percent %>%</span>
+          </span>
+          <div class="clear"></div>
         </div>
-      <% } %>
     <% }); %>
   </div>
 </div>
@@ -92,24 +86,18 @@
     <div class="candidates">
       <% _.each(d.candidates, function(c, i) { %>
         <% if (i === 5) { %>
-          <div class="show-all">
-            <div class="show-all-label">Show all</div>
-            <div class="hide">
+          <div class="show-all">Show all</div>
         <% } %>
-              <div class="candidate candidate-<%= c.id %>">
-                <div class="color"></div>
-                <span class="name"><%= c.first_name %> <%= c.last_name %></span>
-                <span class="percents">
-                  <span class="percent percent-1"><%= c.first_choice_percent %>%</span>
-                  <span class="percent percent-2"><%= c.second_choice_percent %>%</span>
-                  <span class="percent percent-3"><%= c.third_choice_percent %>%</span>
-                </span>
-                <div class="clear"></div>
-              </div>
-        <% if (i === 5) { %>
-            </div>
+          <div class="candidate candidate-<%= c.id %> <% if (i >= 5) { %>hide<% } %>">
+            <div class="color"></div>
+            <span class="name"><%= c.first_name %> <%= c.last_name %></span>
+            <span class="percents">
+              <span class="percent percent-1"><%= c.first_choice_percent %>%</span>
+              <span class="percent percent-2"><%= c.second_choice_percent %>%</span>
+              <span class="percent percent-3"><%= c.third_choice_percent %>%</span>
+            </span>
+            <div class="clear"></div>
           </div>
-        <% } %>
       <% }); %>
     </div>
   </div>
