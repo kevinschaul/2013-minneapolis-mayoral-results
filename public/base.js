@@ -238,10 +238,10 @@ var map = {
     }
 
     var feature = self.precinctLookup[precinctId].feature;
-    var bounds = d3.geo.bounds(feature);
+    var bounds = feature.bbox;
     var boundsForLeaflet = [
-      [bounds[0][1], bounds[0][0]],
-      [bounds[1][1], bounds[1][0]]
+      [bounds[1], bounds[0]],
+      [bounds[3], bounds[2]]
     ];
     self.map.fitBounds(boundsForLeaflet);
   },

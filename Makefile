@@ -25,7 +25,7 @@ build/hennepin-topo.json: build/hennepin.json
 
 build/hennepin-geo.json: build/hennepin.json
 	rm -f $@
-	ogr2ogr -select VTD -simplify 0.0001 -f GeoJSON $@ $<
+	ogr2ogr -select VTD -simplify 0.0001 -lco WRITE_BBOX=YES -f GeoJSON $@ $<
 
 public/precincts-hennepin.json: build/hennepin-geo.json
 	cp $< $@
