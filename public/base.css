@@ -150,9 +150,10 @@
   text-align: center;
 }
 .col1 .show-all {
-  cursor: pointer;
-  line-height: 1.6em;
+  margin-top: 4px;
   color: #999;
+  font-size: 0.7em;
+  cursor: pointer;
 }
 
 #map-target {
