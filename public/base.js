@@ -190,7 +190,7 @@ var map = {
     self.$addressButton.click(function() {
       if (!self.isWaiting) {
         self.searchAddress(self.$addressInput.val());
-        self.indicateWaiting();
+        self.indicateWaiting(this);
       }
     });
 
@@ -199,11 +199,10 @@ var map = {
 
       self.$locateButton.click(function() {
       if (!self.isWaiting) {
-        self.indicateWaiting();
+        self.indicateWaiting(this);
         navigator.geolocation.getCurrentPosition(
           function(position) {
             // Success
-            console.log(position);
             self.searchPrecinct(
               position.coords.latitude,
               position.coords.longitude
@@ -358,37 +357,40 @@ var map = {
     }
     self.$addressButton.html('Find precinct');
     self.$addressButton.removeClass('loading');
+    self.$locateButton.html('Locate me');
+    self.$locateButton.removeClass('loading');
     self.isWaiting = false;
   },
 
-  indicateWaiting: function() {
+  indicateWaiting: function(button) {
     var self = this;
 
     var i = 0;
 
     self.isWaiting = true;
     self.$addressButton.addClass('loading');
-    self._indicateWaiting(i++);
+    self.$locateButton.addClass('loading');
+    self._indicateWaiting(button, i++);
     self.waiting = window.setInterval(function() {
-      self._indicateWaiting(i++);
+      self._indicateWaiting(button, i++);
     }, 250);
   },
 
-  _indicateWaiting: function(i) {
+  _indicateWaiting: function(button, i) {
     var self = this;
 
     switch (i % 4) {
       case 0:
-        self.$addressButton.html('Loading&nbsp;&nbsp;&nbsp;&nbsp;');
+        $(button).html('Loading&nbsp;&nbsp;&nbsp;&nbsp;');
         break;
       case 1:
-        self.$addressButton.html('Loading&nbsp;.&nbsp;&nbsp;');
+        $(button).html('Loading&nbsp;.&nbsp;&nbsp;');
         break;
       case 2:
-        self.$addressButton.html('Loading&nbsp;..&nbsp;');
+        $(button).html('Loading&nbsp;..&nbsp;');
         break;
       case 3:
-        self.$addressButton.html('Loading&nbsp;...');
+        $(button).html('Loading&nbsp;...');
         break;
     }
   }
