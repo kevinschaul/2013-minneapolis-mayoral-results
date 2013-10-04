@@ -1,3 +1,5 @@
+var TIE_COLOR = '#999';
+
 var map = {
   $addressForm: $('form#address-form'),
   $addressInput: $('input#address'),
@@ -95,19 +97,29 @@ var map = {
     var self = self;
 
     var precinct = self.results.precincts[d.properties.VTD];
-    console.log(precinct);
 
     var max_votes = 0;
     var max_candidate_id = -1;
+    var tie = false;
     _.each(precinct.candidates, function(d) {
+      if (d.first_choice === max_votes) {
+        tie = true;
+        max_candidate_id = -1;
+      }
       if (d.first_choice > max_votes) {
+        tie = false;
         max_votes = d.first_choice;
         max_candidate_id = d.id;
       };
     });
 
+    var fillColor = TIE_COLOR;
+    if (max_candidate_id >= 0 ) {
+      fillColor = self.colorScheme[max_candidate_id];
+    }
+
     return {
-      fillColor: self.colorScheme[max_candidate_id],
+      fillColor: fillColor,
       fillOpacity: 0.7,
       weight: 1,
       color: '#fff'
