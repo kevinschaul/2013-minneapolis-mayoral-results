@@ -4,6 +4,7 @@ var map = {
   $addressForm: $('form#address-form'),
   $addressInput: $('input#address'),
   $addressButton: $('#address-button'),
+  $locateButton: $('#locate-button'),
   $feedback: $('#feedback'),
   $results: $('.col.col1'),
   $resultsTarget: $('#results-target'),
@@ -192,12 +193,33 @@ var map = {
         self.indicateWaiting();
       }
     });
+
+    if (navigator && navigator.geolocation) {
+      self.$locateButton.show();
+
+      self.$locateButton.click(function() {
+      if (!self.isWaiting) {
+        self.indicateWaiting();
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            // Success
+            console.log(position);
+            self.searchPrecinct(
+              position.coords.latitude,
+              position.coords.longitude
+            );
+          }, function() {
+            // Error
+            self.displayGeocodeError("We are having trouble locating you.");
+          });
+        }
+      });
+    }
   },
 
   formatAddress: function(address) {
     var self = this;
 
-    console.log(address);
     if (address && typeof(address === "string")) {
         var pattern = /^\d{5}$|minneapolis\s*/i;
         var match = address.match(pattern);
@@ -205,7 +227,6 @@ var map = {
             address = address + " Minneapolis, MN";
         }
 
-    console.log(address);
         self.$addressInput.val(address);
         return address;
     }
