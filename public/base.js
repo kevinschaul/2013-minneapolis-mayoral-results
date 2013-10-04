@@ -13,8 +13,6 @@ var map = {
   init: function() {
     var self = this;
 
-    self.initMap();
-    self.getPrecinctShapes();
     self.getResults();
     self.initAddressLookup();
   },
@@ -70,6 +68,8 @@ var map = {
     $.getJSON('test-results.json', function(data) {
       self.results = data;
       self.initTable();
+      self.initMap();
+      self.getPrecinctShapes();
     });
   },
 
@@ -94,11 +94,20 @@ var map = {
   stylePrecinct: function(d, self) {
     var self = self;
 
-    var values = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 3, 4, 5, 6];
+    var precinct = self.results.precincts[d.properties.VTD];
+    console.log(precinct);
 
-    var rand = Math.floor(Math.random() * values.length);
+    var max_votes = 0;
+    var max_candidate_id = -1;
+    _.each(precinct.candidates, function(d) {
+      if (d.first_choice > max_votes) {
+        max_votes = d.first_choice;
+        max_candidate_id = d.id;
+      };
+    });
+
     return {
-      fillColor: self.colorScheme[values[rand]],
+      fillColor: self.colorScheme[max_candidate_id],
       fillOpacity: 0.7,
       weight: 1,
       color: '#fff'

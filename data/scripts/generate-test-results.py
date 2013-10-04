@@ -71,7 +71,7 @@ results['total'] = {
     'total_votes_third': 0
 }
 
-results['precincts'] = []
+results['precincts'] = {}
 
 data = open('data/workspace/precincts-minneapolis.csv', 'r')
 reader = csv.DictReader(data)
@@ -108,7 +108,7 @@ for row in reader:
 
     p['candidates'] = sorted(p['candidates'], key=lambda x: -x['first_choice'])
 
-    results['precincts'].append(p)
+    results['precincts'][row['vtd']] = p
 
 for c in candidates:
     results['total']['total_votes_first'] += c['total_first_choice']
