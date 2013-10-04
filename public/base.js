@@ -176,12 +176,15 @@ var map = {
   formatAddress: function(address) {
     var self = this;
 
+    console.log(address);
     if (address && typeof(address === "string")) {
-        var pattern = /minneapolis\s*/gi;
+        var pattern = /^\d{5}$|minneapolis\s*/i;
         var match = address.match(pattern);
         if (!match) {
             address = address + " Minneapolis, MN";
         }
+
+    console.log(address);
         self.$addressInput.val(address);
         return address;
     }
