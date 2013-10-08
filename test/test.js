@@ -15,7 +15,7 @@ describe('map', function() {
       done: function(error, window) {
         if (error) console.log(error);
         window.document.addEventListener('DOMContentLoaded', function() {
-          // `map` is the map code
+          // `window.map` is the map code
           map = window.map;
           done();
         });
@@ -23,7 +23,12 @@ describe('map', function() {
     });
   });
 
-  describe('stylePrecinct()', function() {
+  describe('_findFillColorPrecinct()', function() {
+    it('Returns the tie color if there are no candidates', function() {
+      var candidates = [];
+
+      assert.equal(map._findFillColorPrecinct(candidates), map.tieColor);
+    });
   });
 
   describe('formatPercent()', function() {

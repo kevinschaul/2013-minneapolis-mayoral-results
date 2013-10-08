@@ -97,11 +97,22 @@ var map = {
     var self = self;
 
     var precinct = self.results.precincts[d.properties.VTD];
+    return {
+      fillColor: self._findFillColorPrecinct(precinct.candidates),
+      fillOpacity: 0.7,
+      weight: 1,
+      color: '#fff'
+    };
+  },
+
+  _findFillColorPrecinct: function(candidates) {
+    var self = this;
 
     var max_votes = 0;
     var max_candidate_id = -1;
     var tie = false;
-    _.each(precinct.candidates, function(d) {
+
+    _.each(candidates, function(d) {
       if (d.first_choice === max_votes) {
         tie = true;
         max_candidate_id = -1;
@@ -118,12 +129,7 @@ var map = {
       fillColor = self.colorScheme[max_candidate_id];
     }
 
-    return {
-      fillColor: fillColor,
-      fillOpacity: 0.7,
-      weight: 1,
-      color: '#fff'
-    };
+    return fillColor;
   },
 
   formatPercent: function(s) {
