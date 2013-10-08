@@ -29,6 +29,112 @@ describe('map', function() {
 
       assert.equal(map._findFillColorPrecinct(candidates), map.tieColor);
     });
+
+    it('Returns the candidate\'s color if there is only one', function() {
+      var candidates = [
+        {
+          'first_choice': 2,
+          'id': 0
+        }
+      ];
+
+      assert.equal(
+        map._findFillColorPrecinct(candidates),
+        map.colorScheme[0]
+      );
+    });
+
+    it('Returns the winning candidate\'s color', function() {
+      var candidates = [
+        {
+          'first_choice': 1,
+          'id': 1
+        }, {
+          'first_choice': 2,
+          'id': 2
+        }
+      ];
+
+      assert.equal(
+        map._findFillColorPrecinct(candidates),
+        map.colorScheme[2]
+      );
+    });
+
+    it('Returns the winning candidate\'s color', function() {
+      var candidates = [
+        {
+          'first_choice': 2,
+          'id': 1
+        }, {
+          'first_choice': 1,
+          'id': 2
+        }
+      ];
+
+      assert.equal(
+        map._findFillColorPrecinct(candidates),
+        map.colorScheme[1]
+      );
+    });
+
+    it('Returns the tie color in a tie', function() {
+      var candidates = [
+        {
+          'first_choice': 2,
+          'id': 1
+        }, {
+          'first_choice': 2,
+          'id': 2
+        }
+      ];
+
+      assert.equal(
+        map._findFillColorPrecinct(candidates),
+        map.tieColor
+      );
+    });
+
+    it('Returns the winning candidate\'s color', function() {
+      var candidates = [
+        {
+          'first_choice': 2,
+          'id': 1
+        }, {
+          'first_choice': 2,
+          'id': 2
+        }, {
+          'first_choice': 3,
+          'id': 3
+        }
+      ];
+
+      assert.equal(
+        map._findFillColorPrecinct(candidates),
+        map.colorScheme[3]
+      );
+    });
+
+    it('Returns the winning candidate\'s color', function() {
+      var candidates = [
+        {
+          'first_choice': 2,
+          'id': 1
+        }, {
+          'first_choice': 2,
+          'id': 2
+        }, {
+          'first_choice': 1,
+          'id': 3
+        }
+      ];
+
+      assert.equal(
+        map._findFillColorPrecinct(candidates),
+        map.tieColor
+      );
+    });
+
   });
 
   describe('formatPercent()', function() {
