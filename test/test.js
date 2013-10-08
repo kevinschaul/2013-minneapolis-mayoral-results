@@ -23,11 +23,32 @@ describe('map', function() {
     });
   });
 
-  describe('test', function() {
-    it('tests things', function() {
-      assert.equal(map.tieColor, '#999');
-    });
+  describe('stylePrecinct()', function() {
   });
+
+  describe('formatPercent()', function() {
+    it('Multiplies by 100 and rounds to two decimal places', function() {
+      assert.equal(map.formatPercent(1), 100);
+    });
+    it('Multiplies by 100 and rounds to two decimal places', function() {
+      assert.equal(map.formatPercent(0), 0);
+    });
+    it('Multiplies by 100 and rounds to two decimal places', function() {
+      assert.equal(map.formatPercent(0.001), 0);
+    });
+    it('Multiplies by 100 and rounds to two decimal places', function() {
+      assert.equal(map.formatPercent(0.005), 1);
+    });
+    it('Multiplies by 100 and rounds to two decimal places', function() {
+      assert.equal(map.formatPercent(0.01), 1);
+    });
+    it('Multiplies by 100 and rounds to two decimal places', function() {
+      assert.equal(map.formatPercent(0.9949), 99);
+    });
+    it('Multiplies by 100 and rounds to two decimal places', function() {
+      assert.equal(map.formatPercent(0.995), 100);
+    });
+  })
 
 });
 
