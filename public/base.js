@@ -1,5 +1,3 @@
-var TIE_COLOR = '#999';
-
 var map = {
   $addressForm: $('form#address-form'),
   $addressInput: $('input#address'),
@@ -10,6 +8,7 @@ var map = {
   $resultsTarget: $('#results-target'),
 
   colorScheme: ['#1b9e77', '#d95f02', '#7570b3', '#e7298a', '#66a61e', '#e6ab02', '#a6761d', '#666666'],
+  tieColor: '#999',
 
   precinctLookup: {},
 
@@ -114,7 +113,7 @@ var map = {
       };
     });
 
-    var fillColor = TIE_COLOR;
+    var fillColor = self.tieColor;
     if (max_candidate_id >= 0 ) {
       fillColor = self.colorScheme[max_candidate_id];
     }
@@ -386,7 +385,7 @@ var map = {
         break;
     }
   }
-}
+};
 
-m = map.init();
+var m = map.init();
 
