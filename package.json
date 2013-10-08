@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "grunt-contrib-connect": "~0.5.0",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-mocha-test": "~0.7.0"
   }
 }
