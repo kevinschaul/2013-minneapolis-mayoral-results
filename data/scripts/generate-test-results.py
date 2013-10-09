@@ -80,20 +80,30 @@ for row in reader:
     p = {
         'id': row['vtd'],
         'total_votes_first': 0,
+        'total_votes_second': 0,
+        'total_votes_third': 0,
         'candidates': []
     }
 
     for c in candidates:
         first_choice = random.randint(0, 40)
+        second_choice = random.randint(0, 40)
+        third_choice = random.randint(0, 40)
 
         p['total_votes_first'] += first_choice
+        p['total_votes_second'] += second_choice
+        p['total_votes_third'] += third_choice
         c['total_first_choice'] += first_choice
+        c['total_second_choice'] += second_choice
+        c['total_third_choice'] += third_choice
 
         p['candidates'].append({
             'first_name': c['first_name'],
             'last_name': c['last_name'],
             'id': c['id'],
-            'first_choice': first_choice
+            'first_choice': first_choice,
+            'second_choice': second_choice,
+            'third_choice': third_choice
         })
 
     p['candidates'] = sorted(p['candidates'], key=lambda x: -x['first_choice'])
@@ -102,12 +112,16 @@ for row in reader:
 
 for c in candidates:
     results['total']['total_votes_first'] += c['total_first_choice']
+    results['total']['total_votes_second'] += c['total_second_choice']
+    results['total']['total_votes_third'] += c['total_third_choice']
 
     results['total']['candidates'].append({
         'first_name': c['first_name'],
         'last_name': c['last_name'],
         'id': c['id'],
-        'first_choice': c['total_first_choice']
+        'first_choice': c['total_first_choice'],
+        'second_choice': c['total_second_choice'],
+        'third_choice': c['total_third_choice']
     })
 
     results['total']['candidates'] = sorted(results['total']['candidates'], 
