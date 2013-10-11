@@ -1,4 +1,4 @@
-candidates = {
+candidate_map = {
     '9001': {
         'first_name': 'Alicia',
         'middle_initial': 'K.',
