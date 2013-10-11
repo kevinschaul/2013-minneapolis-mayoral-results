@@ -45,10 +45,13 @@ with open('../workspace/localPrct.txt', 'r') as f:
 
             if row[C_OFFICE] == 'Mayor First Choice (Minneapolis)':
                 candidate['first_choice'] = row[C_VOTES]
+                precinct['total_votes_first'] = row[C_VOTES_TOTAL]
             elif row[C_OFFICE] == 'Mayor Second Choice (Minneapolis)':
                 candidate['second_choice'] = row[C_VOTES]
+                precinct['total_votes_second'] = row[C_VOTES_TOTAL]
             elif row[C_OFFICE] == 'Mayor Third Choice (Minneapolis)':
                 candidate['third_choice'] = row[C_VOTES]
+                precinct['total_votes_third'] = row[C_VOTES_TOTAL]
 
 print json.dumps(results, indent=4 * ' ')
 
