@@ -17,6 +17,10 @@ build/vtd2012general.shp: build/vtd2012general.zip
 	unzip $< -d build
 	touch $@
 
+build/precincts-minneapolis.shp: build/vtd2012general.shp
+	rm -f $@
+	ogr2ogr -t_srs 'EPSG:4326' -where 'PCTNAME like "MINNEAPOLIS%"' $@ $<
+
 build/hennepin.json: build/vtd2012general.shp
 	rm -f $@
 	ogr2ogr -t_srs 'EPSG:4326' -where 'PCTNAME like "MINNEAPOLIS%"' -f GeoJSON $@ $<
