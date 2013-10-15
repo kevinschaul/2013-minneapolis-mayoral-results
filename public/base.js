@@ -56,9 +56,9 @@ var map = {
       self.addPrecinctLayer(self.geoJson);
 
       _.each(self.geoJson.features, function(d) {
-        self.precinctLookup[d.properties.VTD] = {
-          'precinctId': d.properties.VTD,
-          'feature': d,
+        self.precinctLookup[d.properties.PCTCODE] = {
+          'precinctId': d.properties.PCTCODE,
+          'feature': d
         };
       });
     });
@@ -67,7 +67,7 @@ var map = {
   getResults: function() {
     var self = this;
 
-    $.getJSON('test-results.json', function(data) {
+    $.getJSON('results.json', function(data) {
       self.results = data;
       self.initTable();
       self.initMap();
@@ -84,7 +84,7 @@ var map = {
         layer.on({
           click: function(d) {
             var properties = layer.feature.properties;
-            self.activatePrecinct(properties.VTD);
+            self.activatePrecinct(properties.PCTCODE);
           }
         })
       }
@@ -96,7 +96,7 @@ var map = {
   stylePrecinct: function(d, self) {
     var self = self;
 
-    var precinct = self.results.precincts[d.properties.VTD];
+    var precinct = self.results.precincts[d.properties.PCTCODE];
     return {
       fillColor: self._findFillColorPrecinct(precinct.candidates),
       fillOpacity: 0.7,
@@ -136,34 +136,96 @@ var map = {
     return Math.round(s * 100, 2);
   },
 
+  sortCandidates: function(_candidates) {
+    var candidates = _candidates;
+    candidates = _.sortBy(candidates, function(d) { return d.last_name; });
+    candidates = _.sortBy(candidates, function(d) { return d.third_choice; });
+    candidates = _.sortBy(candidates, function(d) { return d.second_choice; });
+    candidates = _.sortBy(candidates, function(d) { return d.first_choice; });
+
+    return candidates;
+  },
+
+  pctcodeToVtd: function(pctcode) {
+    // VTD is just PCTCODE with state and county codes prepended to it.
+    // `27` is the code for Minneapolis
+    // `053` is the code for Hennepin County
+
+    return '27053' + pctcode;
+  },
+
+  vtdToPctcode: function(vtd) {
+    // VTD is just PCTCODE with state and county codes prepended to it.
+    // `27` is the code for Minneapolis
+    // `053` is the code for Hennepin County
+
+    return vtd.slice('27053'.length);
+  },
+
   initTable: function() {
     var self  = this;
 
     self.tableTemplate = _.template($('script#table-template').html());
 
     _.each(self.results.total.candidates, function(c, i) {
-      self.results.total.candidates[i]['first_choice_percent'] =
-          self.formatPercent(c.first_choice / self.results.total.total_votes_first);
-      self.results.total.candidates[i]['second_choice_percent'] =
-          self.formatPercent(c.second_choice / self.results.total.total_votes_second);
-      self.results.total.candidates[i]['third_choice_percent'] =
-          self.formatPercent(c.third_choice / self.results.total.total_votes_third);
+      if (self.results.total.total_votes_first > 0) {
+        self.results.total.candidates[i]['first_choice_percent'] =
+            self.formatPercent(c.first_choice / self.results.total.total_votes_first);
+      } else {
+        self.results.total.candidates[i]['first_choice_percent'] = self.formatPercent(0);
+      }
+
+      if (self.results.total.total_votes_second > 0) {
+        self.results.total.candidates[i]['second_choice_percent'] =
+            self.formatPercent(c.second_choice / self.results.total.total_votes_second);
+      } else {
+        self.results.total.candidates[i]['second_choice_percent'] = self.formatPercent(0);
+      }
+
+      if (self.results.total.total_votes_third > 0) {
+        self.results.total.candidates[i]['third_choice_percent'] =
+            self.formatPercent(c.third_choice / self.results.total.total_votes_third);
+      } else {
+        self.results.total.candidates[i]['third_choice_percent'] = self.formatPercent(0);
+      }
     });
 
     _.each(self.results.precincts, function(p) {
       _.each(p.candidates, function(c, i) {
-        p.candidates[i]['first_choice_percent'] =
-            self.formatPercent(c.first_choice / p.total_votes_first);
-        p.candidates[i]['second_choice_percent'] =
-            self.formatPercent(c.second_choice / p.total_votes_second);
-        p.candidates[i]['third_choice_percent'] =
-            self.formatPercent(c.third_choice / p.total_votes_third);
+        if (p.total_votes_first > 0) {
+          p.candidates[i]['first_choice_percent'] =
+              self.formatPercent(c.first_choice / p.total_votes_first);
+        } else {
+          p.candidates[i]['first_choice_percent'] = 0
+        }
+
+        if (p.total_votes_second > 0) {
+          p.candidates[i]['second_choice_percent'] =
+              self.formatPercent(c.second_choice / p.total_votes_second);
+        } else {
+          p.candidates[i]['second_choice_percent'] = 0
+        }
+
+        if (p.total_votes_third > 0) {
+          p.candidates[i]['third_choice_percent'] =
+              self.formatPercent(c.third_choice / p.total_votes_third);
+        } else {
+          p.candidates[i]['third_choice_percent'] = 0
+        }
       });
     });
 
+    var totalCandidates = self.sortCandidates(self.results.total.candidates);
+    var precinctsCandidates = []
+    _.each(self.results.precincts, function(precinct, key) {
+      precinct.candidates = self.sortCandidates(precinct.candidates);
+      precinct.id = key;
+      precinctsCandidates.push(precinct);
+    });
+
     self.$resultsTarget.append(self.tableTemplate({
-      total: self.results.total,
-      precincts: self.results.precincts
+      totalCandidates: totalCandidates,
+      precinctsCandidates: precinctsCandidates
     }));
 
     $('.show-on-map').click(function() {
@@ -247,8 +309,6 @@ var map = {
     }, 2000);
 
     var url = 'http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd%7Cluub2h0tng%2Crx%3Do5-9utggu&inFormat=kvp&outFormat=json';
-    // TODO
-    // url += '&boundingBox=44.87290,-93.42911,45.06722,-93.10089';
     url += '&location=' + address;
     url += '&callback=?';
     $.getJSON(url, function(data) {
@@ -298,7 +358,10 @@ var map = {
           && data.objects
           && data.objects.length > 0
           && data.objects[0].external_id) {
-        var precinctId = data.objects[0].external_id;
+        var vtd = data.objects[0].external_id;
+        var precinctId = self.vtdToPctcode(vtd);
+        console.log(vtd);
+        console.log(precinctId);
         self.activatePrecinct(precinctId);
         self.indicateWaitingFinished();
       } else {

@@ -18,8 +18,20 @@ C_VOTES_PERCENTAGE = 14
 C_VOTES_TOTAL = 15
 
 results = {
+    'total': {
+        'candidates': {},
+        'total_votes_first': 0,
+        'total_votes_second': 0,
+        'total_votes_third': 0
+    },
     'precincts': {}
 }
+
+for i in candidate_map:
+    c = candidate_map[i]
+    c['first_choice'] = 0
+    c['second_choice'] = 0
+    c['third_choice'] = 0
 
 with open('../workspace/localPrct.txt', 'r') as f:
     c = csv.reader(f, delimiter=';')
@@ -30,6 +42,7 @@ with open('../workspace/localPrct.txt', 'r') as f:
 
             candidate_id = row[C_CANDIDATE_ID]
             candidate_info = candidate_map[candidate_id]
+            candidate_info['candidate_id'] = candidate_id
 
             try:
                 precinct = results['precincts'][row[C_PRECINCT]]
@@ -43,15 +56,31 @@ with open('../workspace/localPrct.txt', 'r') as f:
             candidates[candidate_id] = candidate_info
             candidate = candidates[candidate_id]
 
+            total = results['total']
+            try:
+                totalCandidate = total['candidates'][candidate_id]
+            except KeyError:
+                total['candidates'][candidate_id] = candidate_info
+                totalCandidate = total['candidates'][candidate_id]
+
+
+            votes = int(row[C_VOTES])
+            votes_total = int(row[C_VOTES_TOTAL])
             if row[C_OFFICE] == 'Mayor First Choice (Minneapolis)':
-                candidate['first_choice'] = row[C_VOTES]
-                precinct['total_votes_first'] = row[C_VOTES_TOTAL]
+                candidate['first_choice'] = votes
+                totalCandidate['first_choice'] += votes
+                precinct['total_votes_first'] = votes_total
+                total['total_votes_first'] += votes
             elif row[C_OFFICE] == 'Mayor Second Choice (Minneapolis)':
-                candidate['second_choice'] = row[C_VOTES]
-                precinct['total_votes_second'] = row[C_VOTES_TOTAL]
+                candidate['second_choice'] = votes
+                totalCandidate['second_choice'] += votes
+                precinct['total_votes_second'] =  votes_total
+                total['total_votes_second'] += votes
             elif row[C_OFFICE] == 'Mayor Third Choice (Minneapolis)':
-                candidate['third_choice'] = row[C_VOTES]
-                precinct['total_votes_third'] = row[C_VOTES_TOTAL]
+                candidate['third_choice'] = votes
+                totalCandidate['third_choice'] += votes
+                precinct['total_votes_third'] =  votes_total
+                total['total_votes_third'] += votes
 
 print json.dumps(results, indent=4 * ' ')
 

@@ -21,12 +21,9 @@ build/hennepin.json: build/vtd2012general.shp
 	rm -f $@
 	ogr2ogr -t_srs 'EPSG:4326' -where 'PCTNAME like "MINNEAPOLIS%"' -f GeoJSON $@ $<
 
-build/hennepin-topo.json: build/hennepin.json
-	topojson -o $@ -q 1e4 -p pctcode=PCTCODE,id=VTD $<
-
 build/hennepin-geo.json: build/hennepin.json
 	rm -f $@
-	ogr2ogr -select VTD -simplify 0.0001 -lco WRITE_BBOX=YES -f GeoJSON $@ $<
+	ogr2ogr -select VTD,PCTCODE -simplify 0.0001 -lco WRITE_BBOX=YES -f GeoJSON $@ $<
 
 public/precincts-hennepin.json: build/hennepin-geo.json
 	cp $< $@

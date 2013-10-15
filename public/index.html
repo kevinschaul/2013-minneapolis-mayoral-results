@@ -54,11 +54,11 @@
   </div>
 
   <div class="candidates">
-    <% _.each(total.candidates, function(c, i, l) { %>
+    <% _.each(totalCandidates, function(c, i, l) { %>
       <% if (i === 5) { %>
         <div class="show-all">Show all</div>
       <% } %>
-        <div class="candidate candidate-<%= c.id %> <% if (i >= 5) { %>hide<% } %>">
+        <div class="candidate candidate-<%= c.candidate_id %> <% if (i >= 5) { %>hide<% } %>">
           <div class="color"></div>
           <span class="name"><%= c.first_name %> <%= c.last_name %></span>
           <span class="percents">
@@ -72,7 +72,7 @@
   </div>
 </div>
 
-<% _.each(precincts, function(d) { %>
+<% _.each(precinctsCandidates, function(d) { %>
   <div class="wrapper precinct precinct-id-<%= d.id %>" data-id="<%= d.id %>">
     <div class="header">
       <span class="precinct-title">Precinct <%= d.id %></span>
@@ -90,7 +90,7 @@
         <% if (i === 5) { %>
           <div class="show-all">Show all</div>
         <% } %>
-          <div class="candidate candidate-<%= c.id %> <% if (i >= 5) { %>hide<% } %>">
+          <div class="candidate candidate-<%= c.candidate_id %> <% if (i >= 5) { %>hide<% } %>">
             <div class="color"></div>
             <span class="name"><%= c.first_name %> <%= c.last_name %></span>
             <span class="percents">
