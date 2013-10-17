@@ -123,13 +123,12 @@ h1 {
 }
 
 .col .color { background-color: #ccc; }
-.col .candidate-0 .color { background-color: #1b9e77; }
-.col .candidate-1 .color { background-color: #d95f02; }
-.col .candidate-2 .color { background-color: #7570b3; }
-.col .candidate-3 .color { background-color: #e7298a; }
-.col .candidate-4 .color { background-color: #66a61e; }
-.col .candidate-5 .color { background-color: #e6ab02; }
-.col .candidate-6 .color { background-color: #a6761d; }
+.col .candidate-9017 .color { background-color: #1b9e77; }
+.col .candidate-9031 .color { background-color: #d95f02; }
+.col .candidate-9021 .color { background-color: #7570b3; }
+.col .candidate-9032 .color { background-color: #e7298a; }
+.col .candidate-9025 .color { background-color: #66a61e; }
+.col .candidate-9034 .color { background-color: #e6ab02; }
 
 .col1 .candidate .name {
   margin-left: 10px;
