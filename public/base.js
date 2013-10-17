@@ -159,6 +159,9 @@ var map = {
     // `27` is the code for Minneapolis
     // `053` is the code for Hennepin County
 
+    if (!typeof(vtd) === 'string')
+      throw new Error('vtdToPctcode(): `vtd` must be a string');
+
     return vtd.slice('27053'.length);
   },
 

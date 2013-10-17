@@ -195,5 +195,40 @@ describe('map', function() {
 
   });
 
+  describe('pctcodeToVtd()', function() {
+
+    it('Prepends the Mineapolis state/county code', function() {
+      assert.equal(
+        map.pctcodeToVtd('1360'),
+        '270531360'
+      );
+    });
+
+    it('Prepends the Mineapolis state/county code', function() {
+      assert.equal(
+        map.pctcodeToVtd(1360),
+        '270531360'
+      );
+    });
+
+  });
+
+  describe('vtdToPctcode()', function() {
+
+    it('Removes the Mineapolis state/county code', function() {
+      assert.equal(
+        map.vtdToPctcode('270531360'),
+        '1360'
+      );
+    });
+
+    it('Does not accept integers', function() {
+      assert.throws(
+        function() { map.vtdToPctcode(270531360); }
+      );
+    });
+
+  });
+
 });
 
