@@ -15,8 +15,10 @@ install:
 	mkdir -p results/raw
 	mkdir -p results/processed
 	touch results.log
+	cp data/scripts/settings.py.example data/scripts/settings.py
+	echo 'Please enter your AWS keys into data/scripts/settings.py'
 
-results-run:
+results-start:
 	export RESULTS_LOCATION=$(RESULTS_LOCATION)
 	echo 'RESULTS_LOCATION=$(RESULTS_LOCATION)' > cron.txt
 	echo '* * * * * $(RESULTS_LOCATION)/data/scripts/run_results.py' >> cron.txt

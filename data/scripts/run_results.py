@@ -6,6 +6,7 @@ import os
 import find_latest_results
 import get_results
 import update_results
+import upload_results
 
 def main():
     try:
@@ -20,6 +21,11 @@ def main():
 
     try:
         update_results.update_results()
+    except Exception as e:
+        logging.error(e)
+
+    try:
+        upload_results.upload_results()
     except Exception as e:
         logging.error(e)
 

@@ -4,4 +4,5 @@ cron.txt
 results.log
 results/processed/*
 results/raw/*
+data/scripts/settings.py
 
