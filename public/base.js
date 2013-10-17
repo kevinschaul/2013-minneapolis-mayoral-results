@@ -303,7 +303,20 @@ var map = {
   _getPrecinctsReporting: function(reporting, total) {
     var self = this;
 
-    return '0.0%';
+    if (total === 0) {
+      return '0%';
+    }
+    if (total < 0 || reporting > total || reporting < 0) {
+      return 'Unknown';
+    }
+
+    var percentage = reporting / total;
+
+    if (percentage >= 0.995 && percentage < 1.00) {
+      return '99%';
+    }
+
+    return self.formatPercent(percentage) + '%';
   },
 
   formatAddress: function(address) {
