@@ -261,6 +261,15 @@ describe('map', function() {
         last_name: 'Giraffe',
         first_choice: 10
     }
+    var c5 = {
+        last_name: 'Sloth',
+        first_choice: 10,
+        rank: 1
+    }
+    var c6 = {
+        last_name: 'Write-in',
+        rank: -1
+    }
 
     it('Sorts first by first_choice', function() {
       var candidates = [
@@ -286,7 +295,32 @@ describe('map', function() {
       );
     });
 
-    it('Sorts secondly by last_name', function() {
+    it('Sorts second by rank', function() {
+      var candidates = [
+        c4,
+        c5
+      ];
+
+      var sorted = map.sortCandidates(candidates);
+      assert.equal(
+        sorted[0],
+        c5
+      );
+
+      var candidates = [
+        c5,
+        c4
+      ];
+
+      var sorted = map.sortCandidates(candidates);
+      assert.equal(
+        sorted[0],
+        c5
+      );
+
+    });
+
+    it('Sorts third by last_name', function() {
       var candidates = [
         c1,
         c2
@@ -310,7 +344,7 @@ describe('map', function() {
       );
     });
 
-    it('Sorts first by first_choice and second by last_name', function() {
+    it('Sorts first by first_choice and third by last_name', function() {
       var candidates = [
         c1,
         c2,

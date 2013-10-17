@@ -75,6 +75,7 @@ candidate_map = {
         'first_name': 'Mark',
         'middle_initial': 'V',
         'last_name': 'Anderson',
+        'rank': 1,
     },
     '9018': {
         'first_name': 'Gregg',
@@ -94,6 +95,7 @@ candidate_map = {
     '9021': {
         'first_name': 'Jackie',
         'last_name': 'Cherryhomes',
+        'rank': 1,
     },
     '9022': {
         'first_name': 'Christopher',
@@ -139,10 +141,12 @@ candidate_map = {
     '9031': {
         'first_name': 'Mark',
         'last_name': 'Andrew',
+        'rank': 1,
     },
     '9032': {
         'first_name': 'Cam',
         'last_name': 'Winton',
+        'rank': 1,
     },
     '9033': {
         'first_name': 'John',
@@ -159,6 +163,7 @@ candidate_map = {
     },
     '9901': {
         'last_name': 'Write-in',
+        'rank': -1
     },
 }
 

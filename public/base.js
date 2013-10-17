@@ -139,6 +139,11 @@ var map = {
   sortCandidates: function(_candidates) {
     var candidates = _candidates;
     candidates = _.sortBy(candidates, function(d) { return d.last_name; });
+    candidates = _.sortBy(candidates, function(d) {
+      if (d.rank)
+        return -d.rank;
+      return 0
+    });
     candidates = _.sortBy(candidates, function(d) { return -d.first_choice; });
 
     return candidates;
