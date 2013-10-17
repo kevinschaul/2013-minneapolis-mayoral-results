@@ -8,6 +8,12 @@ clean:
 	rm -rf build
 	rm -rf $(GENERATED_FILES)
 
+cron: cron.txt
+	crontab cron.txt
+
+log:
+	tail -f results.log
+
 build/vtd2012general.zip:
 	mkdir -p build
 	curl -o $@ ftp://ftp.commissions.leg.state.mn.us/pub/gis/shape/vtd2012general.zip

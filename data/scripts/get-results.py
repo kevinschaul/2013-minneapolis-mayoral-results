@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import ftplib
+import logging
+import os
 import sys
 import time
 
@@ -8,7 +10,6 @@ ATTEMPTS = 5
 
 USERNAME = 'media'
 PASSWORD = 'results'
-FILENAME = 'localPrct.txt'
 
 attempted = 0
 
@@ -21,20 +22,34 @@ def getResults():
             ftp = ftplib.FTP('ftp.sos.state.mn.us')
             ftp.login(USERNAME, PASSWORD)
 
-            with open(FILENAME, 'w') as f:
+            filename = os.path.join(
+                os.getcwd(),
+                'results',
+                'raw',
+                str(int(time.time())) + '-' + 'localPrct.txt'
+            )
+            with open(filename, 'w') as f:
                 ftp.retrlines('RETR 20131105_MG/localPrct.txt', f.write)
                 ftp.quit()
 
-            print 'File written successfully'
+            logging.info('File written successfully')
 
         except ftplib.all_errors, error:
-            sys.stderr.write('ERROR: %s\n' % error)
-            sys.stderr.write('Attempt %d of %d\n' % (attempted, ATTEMPTS))
+            logging.warning('Attempt %d of %d', attempted, ATTEMPTS)
             time.sleep(2)
             getResults()
     else:
-        print 'Maximum attempts reached.'
+        logging.error('Maximum attempts reached.')
 
 if __name__ == '__main__':
+    logfile = os.path.join(
+        os.getcwd(),
+        'results.log'
+    )
+    logging.basicConfig(
+        format='[%(filename)s %(asctime)s] %(levelname)s: %(message)s',
+        level=logging.INFO,
+        filename=logfile
+    )
     getResults()
 
