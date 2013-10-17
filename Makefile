@@ -10,6 +10,12 @@ clean:
 	rm -rf build
 	rm -rf $(GENERATED_FILES)
 
+install:
+	mkdir -p results
+	mkdir -p results/raw
+	mkdir -p results/processed
+	touch results.log
+
 results-run:
 	export RESULTS_LOCATION=$(RESULTS_LOCATION)
 	echo 'RESULTS_LOCATION=$(RESULTS_LOCATION)' > cron.txt
@@ -23,7 +29,6 @@ results-stop:
 	crontab -r
 
 results-log:
-	touch results.log
 	tail -f results.log
 
 build/vtd2012general.zip:
