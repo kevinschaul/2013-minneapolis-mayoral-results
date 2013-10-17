@@ -1,3 +1,8 @@
+# Enter your AWS keys here
 AWS_ACCESS_KEY = 'access key here'
 AWS_SECRET_KEY = 'secret key here'
+
+# Enter the Minnesota SOS's keys here
+SOS_USERNAME = 'username'
+SOS_PASSWORD = 'password'
 

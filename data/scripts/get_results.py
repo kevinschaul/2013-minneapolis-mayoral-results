@@ -6,10 +6,9 @@ import os
 import sys
 import time
 
-ATTEMPTS = 5
+import settings
 
-USERNAME = 'media'
-PASSWORD = 'results'
+ATTEMPTS = 5
 
 attempted = 0
 
@@ -20,7 +19,7 @@ def get_results():
             attempted += 1
 
             ftp = ftplib.FTP('ftp.sos.state.mn.us')
-            ftp.login(USERNAME, PASSWORD)
+            ftp.login(settings.SOS_USERNAME, settings.SOS_PASSWORD)
 
             filename = os.path.join(
                 os.environ['RESULTS_LOCATION'],

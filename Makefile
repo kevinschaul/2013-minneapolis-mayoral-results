@@ -11,12 +11,15 @@ clean:
 	rm -rf $(GENERATED_FILES)
 
 install:
+	sudo easy_install pip
+	sudo pip install boto
 	mkdir -p results
 	mkdir -p results/raw
 	mkdir -p results/processed
 	touch results.log
 	cp data/scripts/settings.py.example data/scripts/settings.py
-	echo 'Please enter your AWS keys into data/scripts/settings.py'
+	echo 'Please enter secrets into data/scripts/settings.py'
+	vi data/scripts/settings.py
 
 results-start:
 	export RESULTS_LOCATION=$(RESULTS_LOCATION)
