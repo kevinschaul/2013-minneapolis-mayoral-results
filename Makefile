@@ -1,3 +1,5 @@
+RESULTS_LOCATION = $(shell pwd)
+
 GENERATED_FILES = \
 	public/precincts-hennepin.json \
 	public/test-results.json
@@ -8,10 +10,20 @@ clean:
 	rm -rf build
 	rm -rf $(GENERATED_FILES)
 
-cron: cron.txt
+results-run:
+	export RESULTS_LOCATION=$(RESULTS_LOCATION)
+	echo 'RESULTS_LOCATION=$(RESULTS_LOCATION)' > cron.txt
+	echo '* * * * * $(RESULTS_LOCATION)/data/scripts/run_results.py' >> cron.txt
 	crontab cron.txt
 
-log:
+results-status:
+	crontab -l
+
+results-stop:
+	crontab -r
+
+results-log:
+	touch results.log
 	tail -f results.log
 
 build/vtd2012general.zip:

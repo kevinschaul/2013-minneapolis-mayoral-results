@@ -13,7 +13,7 @@ PASSWORD = 'results'
 
 attempted = 0
 
-def getResults():
+def get_results():
     global attempted
     if attempted < ATTEMPTS:
         try:
@@ -23,7 +23,7 @@ def getResults():
             ftp.login(USERNAME, PASSWORD)
 
             filename = os.path.join(
-                os.getcwd(),
+                os.environ['RESULTS_LOCATION'],
                 'results',
                 'raw',
                 str(int(time.time())) + '-' + 'localPrct.txt'
@@ -43,7 +43,7 @@ def getResults():
 
 if __name__ == '__main__':
     logfile = os.path.join(
-        os.getcwd(),
+        os.environ['RESULTS_LOCATION'],
         'results.log'
     )
     logging.basicConfig(
@@ -51,5 +51,5 @@ if __name__ == '__main__':
         level=logging.INFO,
         filename=logfile
     )
-    getResults()
+    get_results()
 
