@@ -67,7 +67,7 @@ var map = {
   getResults: function() {
     var self = this;
 
-    $.getJSON('results.json', function(data) {
+    $.getJSON('https://s3.amazonaws.com/startribune/2013/results.json', function(data) {
       self.results = data;
       self.initTable();
       self.initMap();
