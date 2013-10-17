@@ -28,7 +28,7 @@ def get_results():
                 str(int(time.time())) + '-' + 'localPrct.txt'
             )
             with open(filename, 'w') as f:
-                ftp.retrlines('RETR 20131105_MG/localPrct.txt', f.write)
+                ftp.retrbinary('RETR 20131105_MG/localPrct.txt', f.write)
                 ftp.quit()
 
             logging.info('File written successfully')
