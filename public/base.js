@@ -139,9 +139,7 @@ var map = {
   sortCandidates: function(_candidates) {
     var candidates = _candidates;
     candidates = _.sortBy(candidates, function(d) { return d.last_name; });
-    candidates = _.sortBy(candidates, function(d) { return d.third_choice; });
-    candidates = _.sortBy(candidates, function(d) { return d.second_choice; });
-    candidates = _.sortBy(candidates, function(d) { return d.first_choice; });
+    candidates = _.sortBy(candidates, function(d) { return -d.first_choice; });
 
     return candidates;
   },

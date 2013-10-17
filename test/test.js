@@ -243,5 +243,93 @@ describe('map', function() {
 
   });
 
+  describe('sortCandidates()', function() {
+
+    var c1 = {
+        last_name: 'Zebra',
+        first_choice: 0
+    }
+    var c2 = {
+        last_name: 'Aardvark',
+        first_choice: 0
+    }
+    var c3 = {
+        last_name: 'Panda',
+        first_choice: 10
+    }
+    var c4 = {
+        last_name: 'Giraffe',
+        first_choice: 10
+    }
+
+    it('Sorts first by first_choice', function() {
+      var candidates = [
+        c3,
+        c2
+      ];
+
+      var sorted = map.sortCandidates(candidates);
+      assert.equal(
+        sorted[0],
+        c3
+      );
+
+      var candidates = [
+        c2,
+        c3
+      ];
+
+      var sorted = map.sortCandidates(candidates);
+      assert.equal(
+        sorted[0],
+        c3
+      );
+    });
+
+    it('Sorts secondly by last_name', function() {
+      var candidates = [
+        c1,
+        c2
+      ];
+
+      var sorted = map.sortCandidates(candidates);
+      assert.equal(
+        sorted[0],
+        c2
+      );
+
+      var candidates = [
+        c2,
+        c1
+      ];
+
+      var sorted = map.sortCandidates(candidates);
+      assert.equal(
+        sorted[0],
+        c2
+      );
+    });
+
+    it('Sorts first by first_choice and second by last_name', function() {
+      var candidates = [
+        c1,
+        c2,
+        c3,
+        c4
+      ];
+
+      var sorted = map.sortCandidates(candidates);
+      assert.equal(
+        sorted[0],
+        c4
+      );
+      assert.equal(
+        sorted[1],
+        c3
+      );
+    });
+
+  });
+
 });
 
