@@ -25,7 +25,9 @@ def update_results():
             'candidates': {},
             'total_votes_first': 0,
             'total_votes_second': 0,
-            'total_votes_third': 0
+            'total_votes_third': 0,
+            'precincts_reporting': 0,
+            'precincts_total': 0,
         },
         'precincts': {}
     }
@@ -90,6 +92,9 @@ def update_results():
                         totalCandidate['third_choice'] += votes
                         precinct['total_votes_third'] =  votes_total
                         total['total_votes_third'] += votes
+
+                    total['precincts_reporting'] = row[C_PRECINCTS_REPORTING]
+                    total['precincts_total'] = row[C_PRECINCTS_TOTAL]
 
         results_json_filename = os.path.join(
             os.environ['RESULTS_LOCATION'],

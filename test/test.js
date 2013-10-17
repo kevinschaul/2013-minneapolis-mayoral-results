@@ -365,5 +365,93 @@ describe('map', function() {
 
   });
 
+  describe('_getPrecinctsReporting()', function() {
+
+    it('Returns 0.0% if total is zero', function() {
+      assert.equal(
+        map._getPrecinctsReporting(0, 0),
+        '0.0%'
+      );
+    });
+
+    it('Returns 0.0% if total is less than zero', function() {
+      assert.equal(
+        map._getPrecinctsReporting(0, -1),
+        'unknown'
+      );
+    });
+
+    it('Returns 0.0% if reporting is zero', function() {
+      assert.equal(
+        map._getPrecinctsReporting(0, 1),
+        '0.0%'
+      );
+    });
+
+    it('Returns 0.0% if reporting is less than zero', function() {
+      assert.equal(
+        map._getPrecinctsReporting(-1, 1),
+        'unknown'
+      );
+    });
+
+    it('Returns correct percentage value', function() {
+      assert.equal(
+        map._getPrecinctsReporting(5, 10000),
+        '0.1%'
+      );
+    });
+
+    it('Returns correct percentage value', function() {
+      assert.equal(
+        map._getPrecinctsReporting(10, 10000),
+        '0.1%'
+      );
+    });
+
+    it('Returns correct percentage value', function() {
+      assert.equal(
+        map._getPrecinctsReporting(14, 10000),
+        '0.1%'
+      );
+    });
+
+    it('Returns correct percentage value', function() {
+      assert.equal(
+        map._getPrecinctsReporting(15, 10000),
+        '0.2%'
+      );
+    });
+
+    it('Returns correct percentage value', function() {
+      assert.equal(
+        map._getPrecinctsReporting(20, 10000),
+        '0.2%'
+      );
+    });
+
+    it('Returns 99.9% until all precincts have reported', function() {
+      assert.equal(
+        map._getPrecinctsReporting(9999, 10000),
+        '99.9%'
+      );
+    });
+
+    it('Returns 100.0% when all precincts have reported', function() {
+      assert.equal(
+        map._getPrecinctsReporting(10000, 10000),
+        '100.0%'
+      );
+    });
+
+    it('Returns 100.0% if reporting is greater than total', function() {
+      assert.equal(
+        map._getPrecinctsReporting(10001, 10000),
+        'unknown'
+      );
+    });
+
+  });
+
 });
 

@@ -221,6 +221,7 @@ var map = {
       });
     });
 
+    var precinctsReporting = self.getPrecinctsReporting();
     var totalCandidates = self.sortCandidates(self.results.total.candidates);
     var precinctsCandidates = []
     _.each(self.results.precincts, function(precinct, key) {
@@ -230,6 +231,7 @@ var map = {
     });
 
     self.$resultsTarget.append(self.tableTemplate({
+      precinctsReporting: precinctsReporting,
       totalCandidates: totalCandidates,
       precinctsCandidates: precinctsCandidates
     }));
@@ -287,6 +289,21 @@ var map = {
         }
       });
     }
+  },
+
+  getPrecinctsReporting: function() {
+    var self = this;
+
+    return self._getPrecinctsReporting(
+      self.results.total.precincts_reporting,
+      self.results.total.precincts_total
+    );
+  },
+
+  _getPrecinctsReporting: function(reporting, total) {
+    var self = this;
+
+    return '0.0%';
   },
 
   formatAddress: function(address) {
