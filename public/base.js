@@ -145,7 +145,7 @@ var map = {
   },
 
   formatPercent: function(s) {
-    return Math.round(s * 100, 2);
+    return Math.round(s * 1000, 3) / 10;
   },
 
   sortCandidates: function(_candidates) {
