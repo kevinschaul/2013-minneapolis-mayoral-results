@@ -276,8 +276,12 @@ var map = {
 
     self.$addressButton.click(function() {
       if (!self.isWaiting) {
-        self.searchAddress(self.$addressInput.val());
-        self.indicateWaiting(this);
+        if (self.$addressInput.val()) {
+          self.searchAddress(self.$addressInput.val());
+          self.indicateWaiting(this);
+        } else {
+          self.displayGeocodeError('Please enter your address.');
+        }
       }
     });
 
