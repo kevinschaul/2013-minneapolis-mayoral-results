@@ -320,7 +320,7 @@ var map = {
     var self = this;
 
     if (total === 0) {
-      return '0%';
+      return '0.0%';
     }
     if (total < 0 || reporting > total || reporting < 0) {
       return 'Unknown';
@@ -328,11 +328,11 @@ var map = {
 
     var percentage = reporting / total;
 
-    if (percentage >= 0.995 && percentage < 1.00) {
-      return '99%';
+    if (percentage >= 0.9995 && percentage < 1.0000) {
+      return '99.9%';
     }
 
-    return self.formatPercent(percentage) + '%';
+    return (100 * percentage).toFixed(1) + '%';
   },
 
   formatAddress: function(address) {

@@ -437,28 +437,28 @@ describe('map', function() {
     it('Returns correct percentage value', function() {
       assert.equal(
         map._getPrecinctsReporting(9994, 10000),
-        '99%'
+        '99.9%'
       );
     });
 
     it('Returns correct percentage value', function() {
       assert.equal(
         map._getPrecinctsReporting(9995, 10000),
-        '99%'
+        '99.9%'
       );
     });
 
     it('Returns 99% until all precincts have reported', function() {
       assert.equal(
         map._getPrecinctsReporting(9999, 10000),
-        '99%'
+        '99.9%'
       );
     });
 
     it('Returns 100% when all precincts have reported', function() {
       assert.equal(
         map._getPrecinctsReporting(10000, 10000),
-        '100%'
+        '100.0%'
       );
     });
 
