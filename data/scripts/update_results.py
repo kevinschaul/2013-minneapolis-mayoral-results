@@ -7,11 +7,16 @@ import os
 
 from candidate_map import candidate_map
 
+C_STATE = 0
+C_COUNTY = 1
 C_PRECINCT = 2
 C_OFFICE_ID = 3
 C_OFFICE = 4
+C_FIPS = 5
 C_CANDIDATE_ID = 6
 C_CANDIDATE = 7
+C_SUFFIX = 8
+C_INCUMBENT = 9
 C_PARTY_ID = 10
 C_PRECINCTS_REPORTING = 11
 C_PRECINCTS_TOTAL = 12
@@ -52,10 +57,6 @@ def update_results():
                         or row[C_OFFICE] == 'Mayor Second Choice (Minneapolis)' \
                         or row[C_OFFICE] == 'Mayor Third Choice (Minneapolis)':
 
-                    candidate_id = row[C_CANDIDATE_ID]
-                    candidate_info = candidate_map[candidate_id]
-                    candidate_info['candidate_id'] = candidate_id
-
                     try:
                         precinct = results['precincts'][row[C_PRECINCT]]
                     except KeyError:
@@ -65,14 +66,18 @@ def update_results():
                         precinct = results['precincts'][row[C_PRECINCT]]
 
                     candidates = precinct['candidates']
-                    candidates[candidate_id] = candidate_info
-                    candidate = candidates[candidate_id]
+                    candidate_id = row[C_CANDIDATE_ID]
+                    try:
+                        candidate = candidates[candidate_id]
+                    except KeyError:
+                        candidates[candidate_id] = candidate_map[candidate_id].copy()
+                        candidate = candidates[candidate_id]
 
                     total = results['total']
                     try:
                         totalCandidate = total['candidates'][candidate_id]
                     except KeyError:
-                        total['candidates'][candidate_id] = candidate_info
+                        total['candidates'][candidate_id] = candidate_map[candidate_id].copy()
                         totalCandidate = total['candidates'][candidate_id]
 
                     votes = int(row[C_VOTES])
@@ -103,7 +108,7 @@ def update_results():
             'results.json'
         )
         with open(results_json_filename, 'w') as f:
-            f.write(json.dumps(results))
+            f.write(json.dumps(results, indent=4))
             logging.info('JSON file processed successfully')
 
         # Write file to be joined with shapefile for print

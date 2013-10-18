@@ -7,8 +7,16 @@ var map = {
   $results: $('.col.col1'),
   $resultsTarget: $('#results-target'),
 
-  colorScheme: ['#1b9e77', '#d95f02', '#7570b3', '#e7298a', '#66a61e', '#e6ab02', '#a6761d', '#666666'],
-  tieColor: '#999',
+  colorScheme: {
+    '9031': '#1b9e77',
+    '9021': '#d95f02;',
+    '9010': '#7570b3;',
+    '9014': '#e7298a;',
+    '9013': '#66a61e;',
+    '9032': '#e6ab02;'
+  },
+  otherColor: '#999',
+  tieColor: '#ccc',
 
   precinctLookup: {},
 
@@ -68,6 +76,7 @@ var map = {
     var self = this;
 
     $.getJSON('https://s3.amazonaws.com/startribune/2013/results.json', function(data) {
+      console.log(data);
       self.results = data;
       self.initTable();
       self.initMap();
@@ -127,6 +136,9 @@ var map = {
     var fillColor = self.tieColor;
     if (max_candidate_id >= 0 ) {
       fillColor = self.colorScheme[max_candidate_id];
+      if (!fillColor) {
+        fillColor = self.otherColor;
+      }
     }
 
     return fillColor;

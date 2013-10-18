@@ -58,7 +58,7 @@
       <% if (i === 6) { %>
         <div class="show-all">Show all</div>
       <% } %>
-        <div class="candidate candidate-<%= c.candidate_id %> <% if (i >= 6) { %>hide<% } %>">
+        <div class="candidate candidate-<%= c.id %> <% if (i >= 6) { %>hide<% } %>">
           <div class="color"></div>
           <span class="name"><%= c.first_name %> <%= c.last_name %></span>
           <span class="percents">
@@ -90,7 +90,7 @@
         <% if (i === 6) { %>
           <div class="show-all">Show all</div>
         <% } %>
-          <div class="candidate candidate-<%= c.candidate_id %> <% if (i >= 6) { %>hide<% } %>">
+          <div class="candidate candidate-<%= c.id %> <% if (i >= 6) { %>hide<% } %>">
             <div class="color"></div>
             <span class="name"><%= c.first_name %> <%= c.last_name %></span>
             <span class="percents">
