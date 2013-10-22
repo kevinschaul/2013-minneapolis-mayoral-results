@@ -1,8 +1,7 @@
 RESULTS_LOCATION = $(shell pwd)
 
 GENERATED_FILES = \
-	public/precincts-hennepin.json \
-	public/test-results.json
+	public/precincts-hennepin.json
 
 all: $(GENERATED_FILES)
 
@@ -59,10 +58,4 @@ build/hennepin-geo.json: build/hennepin.json
 
 public/precincts-hennepin.json: build/hennepin-geo.json
 	cp $< $@
-
-public/test-results.json: build/test-results.json
-	cp $< $@
-
-build/test-results.json: data/scripts/generate-test-results.py
-	python $< > $@
 
