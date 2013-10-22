@@ -139,14 +139,16 @@ def update_results():
                 winner_votes = 0
                 for candidate_id in precinct['candidates']:
                     candidate = precinct['candidates'][candidate_id]
-                    if int(candidate['first_choice']) >= winner_votes:
+                    first_choice = int(candidate['first_choice'])
+                    if first_choice >= winner_votes:
                         winner_id = candidate_id
-                winner = precinct['candidates'][winner_id]
+                        winner_votes = first_choice
 
-                try:
-                    winner_percent = winner_votes / precinct['total_votes_first']
-                except ZeroDivisionError:
-                    winner_percent = 0
+                winner = precinct['candidates'][winner_id]
+                if (precinct['total_votes_first'] > 0):
+                    winner_percent = float(winner['first_choice']) / precinct['total_votes_first']
+                else:
+                    winner_precent = 0.0
 
                 row.append('27053' + precinct_id)
                 row.append(winner['first_name'])
@@ -157,6 +159,10 @@ def update_results():
 
                 w.writerow(row)
             logging.info('CSV file processed successfully')
+
+        # Write accompanying .csvt file for easy import into QGIS
+        with open(results_csv_filename + 't', 'w') as f:
+            f.write('"String","String","String","Integer","Integer","Real"');
 
     except IOError as e:
         logging.error(e)

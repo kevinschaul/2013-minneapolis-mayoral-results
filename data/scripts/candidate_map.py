@@ -200,6 +200,7 @@ candidate_map = {
     },
     '9901': {
         'id': 9901,
+        'first_name': '',
         'last_name': 'Write-in',
         'rank': -1
     },

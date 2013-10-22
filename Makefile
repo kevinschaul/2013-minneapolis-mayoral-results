@@ -1,7 +1,8 @@
 RESULTS_LOCATION = $(shell pwd)
 
 GENERATED_FILES = \
-	public/precincts-hennepin.json
+	public/precincts-hennepin.json \
+	build/precincts-minneapolis.shp
 
 all: $(GENERATED_FILES)
 
