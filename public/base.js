@@ -332,7 +332,9 @@ var map = {
       return '99.9%';
     }
 
-    return (100 * percentage).toFixed(1) + '%';
+    // toFixed(1) rounds incorrectly, so we round ourselves before the
+    // call to toFixed(1) is made.
+    return (Math.round(percentage * 1000, 3) / 10).toFixed(1) + '%';
   },
 
   formatAddress: function(address) {
