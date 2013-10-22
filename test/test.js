@@ -148,11 +148,19 @@ describe('map', function() {
     });
 
     it('Multiplies by 100 and rounds to two decimal places', function() {
-      assert.equal(map.formatPercent(0.004), 0.0);
+      assert.equal(map.formatPercent(0.004), 0.4);
     });
 
     it('Multiplies by 100 and rounds to two decimal places', function() {
-      assert.equal(map.formatPercent(0.005), 0.1);
+      assert.equal(map.formatPercent(0.0044), 0.4);
+    });
+
+    it('Multiplies by 100 and rounds to two decimal places', function() {
+      assert.equal(map.formatPercent(0.0045), 0.5);
+    });
+
+    it('Multiplies by 100 and rounds to two decimal places', function() {
+      assert.equal(map.formatPercent(0.005), 0.5);
     });
 
     it('Multiplies by 100 and rounds to two decimal places', function() {
