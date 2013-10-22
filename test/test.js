@@ -34,13 +34,13 @@ describe('map', function() {
       var candidates = [
         {
           'first_choice': 2,
-          'id': 0
+          'id': 9031
         }
       ];
 
       assert.equal(
         map._findFillColorPrecinct(candidates),
-        map.colorScheme[0]
+        map.colorScheme['9031']
       );
     });
 
@@ -51,13 +51,13 @@ describe('map', function() {
           'id': 1
         }, {
           'first_choice': 2,
-          'id': 2
+          'id': 9031
         }
       ];
 
       assert.equal(
         map._findFillColorPrecinct(candidates),
-        map.colorScheme[2]
+        map.colorScheme['9031']
       );
     });
 
@@ -74,7 +74,7 @@ describe('map', function() {
 
       assert.equal(
         map._findFillColorPrecinct(candidates),
-        map.colorScheme[1]
+        map.otherColor
       );
     });
 
@@ -105,13 +105,13 @@ describe('map', function() {
           'id': 2
         }, {
           'first_choice': 3,
-          'id': 3
+          'id': 9031
         }
       ];
 
       assert.equal(
         map._findFillColorPrecinct(candidates),
-        map.colorScheme[3]
+        map.colorScheme['9031']
       );
     });
 
