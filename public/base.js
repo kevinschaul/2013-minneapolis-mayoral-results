@@ -401,7 +401,7 @@ var map = {
         self.displayGeocodeError("We are having trouble locating your precinct.");
     }, 2000);
 
-    var url = 'http://boundaries.minnpost.com/1.0/boundary/?sets=voting-precincts-2012';
+    var url = 'http://ec2-54-200-220-1.us-west-2.compute.amazonaws.com/1.0/boundary/?sets=voting-precincts-2012';
     url += '&contains=' + lat + ',' + lng;
     url += '&callback=?'
     $.getJSON(url, function(data) {
