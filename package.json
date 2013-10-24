@@ -5,6 +5,7 @@
     "grunt-contrib-connect": "~0.5.0",
     "grunt": "~0.4.1",
     "grunt-mocha-test": "~0.7.0",
-    "jsdom": "~0.8.6"
+    "jsdom": "~0.8.6",
+    "grunt-php": "~0.2.0"
   }
 }

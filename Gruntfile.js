@@ -16,14 +16,26 @@ module.exports = function(grunt) {
       test: {
         src: ['test/**/*.js']
       }
+    },
+    php: {
+      dist: {
+        options: {
+          hostname: '0.0.0.0',
+          port: 4000,
+          base: 'public/',
+          keepalive: true,
+          bin: '/usr/local/bin/php' // This is bad
+        }
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-php');
   grunt.loadNpmTasks('grunt-mocha-test');
 
   grunt.registerTask('default', ['connect']);
-  grunt.registerTask('server', ['connect']);
+  grunt.registerTask('strib', ['php']);
   grunt.registerTask('test', ['mochaTest']);
 
 };
