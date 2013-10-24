@@ -29,40 +29,6 @@ module.exports = function(grunt) {
           open: true
         }
       }
-    },
-    copy: {
-      htmlToPhp: {
-        src: 'public/index.html',
-        dest: 'public/index.php'
-      },
-      phpToHtml: {
-        src: 'public/index.php',
-        dest: 'public/index.html'
-      }
-    },
-    watch: {
-      local: {
-        files: 'public/index.html',
-        tasks: 'copy:htmlToPhp'
-      },
-      strib: {
-        files: 'public/index.php',
-        tasks: 'copy:phpToHtml'
-      }
-    },
-    concurrent: {
-      local: {
-        tasks: ['watch:local', 'connect'],
-        options: {
-          logConcurrentOutput: true
-        }
-      },
-      strib: {
-        tasks: ['watch:strib', 'php'],
-        options: {
-          logConcurrentOutput: true
-        }
-      }
     }
   });
 
@@ -74,10 +40,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-php');
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  grunt.registerTask('local', ['concurrent:local']);
-  grunt.registerTask('strib', ['concurrent:strib']);
+  grunt.registerTask('default', ['connect']);
+  grunt.registerTask('strib', ['php']);
   grunt.registerTask('test', ['mochaTest']);
-  grunt.registerTask('default', ['local']);
 
 };
 
