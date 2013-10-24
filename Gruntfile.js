@@ -8,7 +8,8 @@ module.exports = function(grunt) {
         options: {
           port: 8000,
           base: 'public/',
-          keepalive: true
+          keepalive: true,
+          open: true
         },
       }
     },
@@ -24,7 +25,8 @@ module.exports = function(grunt) {
           port: 4000,
           base: 'public/',
           keepalive: true,
-          bin: '/usr/local/bin/php' // This is bad
+          bin: '/usr/local/bin/php', // This is bad
+          open: true
         }
       }
     }
