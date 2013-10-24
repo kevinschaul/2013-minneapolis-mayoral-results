@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       dist: {
         options: {
           hostname: '0.0.0.0',
-          port: 4000,
+          port: 8000,
           base: 'public/',
           keepalive: true,
           bin: '/usr/local/bin/php', // This is bad
