@@ -7,6 +7,9 @@ var map = {
   $results: $('.col.col1'),
   $resultsTarget: $('#results-target'),
 
+  boundariesTimeout: 6000,
+  mapquestTimeout: 2000,
+
   colorScheme: {
     '9031': '#1b9e77',
     '9021': '#d95f02',
@@ -360,7 +363,7 @@ var map = {
     // http://stackoverflow.com/questions/309953/how-do-i-catch-jquery-getjson-or-ajax-with-datatype-set-to-jsonp-error-w
     var errorTimeout = setTimeout(function() {
       self.displayGeocodeError("We are having trouble locating your precinct.");
-    }, 2000);
+    }, self.mapquestTimeout);
 
     var url = 'http://www.mapquestapi.com/geocoding/v1/address?key=Fmjtd%7Cluub2h0tng%2Crx%3Do5-9utggu&inFormat=kvp&outFormat=json';
     url += '&location=' + address;
@@ -399,7 +402,7 @@ var map = {
     // http://stackoverflow.com/questions/309953/how-do-i-catch-jquery-getjson-or-ajax-with-datatype-set-to-jsonp-error-w
     var errorTimeout = setTimeout(function() {
         self.displayGeocodeError("We are having trouble locating your precinct.");
-    }, 2000);
+    }, self.boundariesTimeout);
 
     var url = 'http://ec2-54-200-220-1.us-west-2.compute.amazonaws.com/1.0/boundary/?sets=voting-precincts-2012';
     url += '&contains=' + lat + ',' + lng;
