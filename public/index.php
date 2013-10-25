@@ -27,7 +27,7 @@
     </div>
     <div class="clear"></div>
     <div class="results-footer">
-      <span class="sources">Geocoding provided by <a target="_blank" href="http://developer.mapquest.com/web/products/open/geocoding-service">MapQuest</a>. Map tiles by <a target="_blank" href="http://stamen.com">Stamen Design</a>, under <a target="_blank" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.</span>
+      <span class="sources">Source: <a href="www.sos.state.mn.us" target="_blank">Minnesota Secretary of State</a>. Geocoding provided by <a target="_blank" href="http://developer.mapquest.com/web/products/open/geocoding-service">MapQuest</a>. Map tiles by <a target="_blank" href="http://stamen.com">Stamen Design</a>, under <a target="_blank" href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a>, under <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.</span>
       <div class="clear"></div>
     </div>
   </div>
