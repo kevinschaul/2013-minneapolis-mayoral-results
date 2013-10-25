@@ -79,7 +79,6 @@ var map = {
     var self = this;
 
     $.getJSON('https://s3.amazonaws.com/startribune/2013/results.json', function(data) {
-      console.log(data);
       self.results = data;
       self.initTable();
       self.initMap();
@@ -370,7 +369,6 @@ var map = {
     url += '&callback=?';
     $.getJSON(url, function(data) {
       clearTimeout(errorTimeout);
-      console.log(data);
 
       // Ensure result was sent
       if (data
@@ -397,8 +395,6 @@ var map = {
   searchPrecinct: function(lat, lng) {
     var self = this;
 
-    console.log(lat, lng);
-
     // http://stackoverflow.com/questions/309953/how-do-i-catch-jquery-getjson-or-ajax-with-datatype-set-to-jsonp-error-w
     var errorTimeout = setTimeout(function() {
         self.displayGeocodeError("We are having trouble locating your precinct.");
@@ -409,7 +405,6 @@ var map = {
     url += '&callback=?'
     $.getJSON(url, function(data) {
       clearTimeout(errorTimeout);
-      console.log(data);
 
       if (data
           && data.objects
@@ -417,8 +412,6 @@ var map = {
           && data.objects[0].external_id) {
         var vtd = data.objects[0].external_id;
         var precinctId = self.vtdToPctcode(vtd);
-        console.log(vtd);
-        console.log(precinctId);
         self.activatePrecinct(precinctId);
         self.indicateWaitingFinished();
       } else {
