@@ -31,11 +31,11 @@ var map = {
     var self = this;
 
     self.map = L.map('map-target', {
-      minZoom: 11,
+      minZoom: 12,
       maxZoom: 16,
       scrollWheelZoom: false
     })
-    self.map.setView([44.97, -93.265], 11);
+    self.map.setView([44.97, -93.265], 12);
     self.map.setMaxBounds(self.map.getBounds());
     self.addTonerLayer();
     self.addPrecinctLayer();

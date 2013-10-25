@@ -4,17 +4,17 @@
   <link rel="stylesheet" href="css/fonts.css" />
 <link rel="stylesheet" href="css/base.css" />
 
-<h1>2013-9-26-election-results</h1>
+<!-- <h1>2013-9-26-election-results</h1>-->
 
 <div class="graphic">
 
   <div class="results">
     <div class="results-header">
-      <span class="title">Mayoral election results</span>
+      <!-- <span class="title">Mayoral election results</span>-->
       <form action="" id="address-form">
         <input class="input" id="address" placeholder="Your address" />
-        <button type="submit" class="button" id="address-button">Find precinct</button>
-        <button class="button" id="locate-button">Locate me</button>
+        <button type="submit" class="formButton medium" id="address-button">Find precinct</button>
+        <button class="formButton medium" id="locate-button">Locate me</button>
       </form>
       <span id="feedback"></span>
       <div class="clear"></div>
