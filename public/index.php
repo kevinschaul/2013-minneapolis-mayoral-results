@@ -13,7 +13,6 @@
       <form action="" id="address-form">
         <input class="input" id="address" placeholder="Your address" />
         <button type="submit" class="formButton large" id="address-button">Find precinct</button>
-        <button class="formButton large" id="locate-button">Locate me</button>
       </form>
       <span id="feedback"></span>
       <div class="clear"></div>

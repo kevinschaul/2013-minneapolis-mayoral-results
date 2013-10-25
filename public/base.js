@@ -2,7 +2,6 @@ var map = {
   $addressForm: $('form#address-form'),
   $addressInput: $('input#address'),
   $addressButton: $('#address-button'),
-  $locateButton: $('#locate-button'),
   $feedback: $('#feedback'),
   $results: $('.col.col1'),
   $resultsTarget: $('#results-target'),
@@ -286,27 +285,6 @@ var map = {
         }
       }
     });
-
-    if (navigator && navigator.geolocation) {
-      self.$locateButton.show();
-
-      self.$locateButton.click(function() {
-      if (!self.isWaiting) {
-        self.indicateWaiting(this);
-        navigator.geolocation.getCurrentPosition(
-          function(position) {
-            // Success
-            self.searchPrecinct(
-              position.coords.latitude,
-              position.coords.longitude
-            );
-          }, function() {
-            // Error
-            self.displayGeocodeError("We are having trouble locating you.");
-          });
-        }
-      });
-    }
   },
 
   getPrecinctsReporting: function() {
@@ -475,8 +453,6 @@ var map = {
     }
     self.$addressButton.html('Find precinct');
     self.$addressButton.removeClass('loading');
-    self.$locateButton.html('Locate me');
-    self.$locateButton.removeClass('loading');
     self.isWaiting = false;
   },
 
@@ -487,7 +463,6 @@ var map = {
 
     self.isWaiting = true;
     self.$addressButton.addClass('loading');
-    self.$locateButton.addClass('loading');
     self._indicateWaiting(button, i++);
     self.waiting = window.setInterval(function() {
       self._indicateWaiting(button, i++);
