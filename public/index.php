@@ -8,7 +8,10 @@
 
 <div class="graphic">
   <div class="results">
-  <p class="howto"><b>Get precinct results:</b> Enter your address to see results from your precinct. Also, if your browser supports using your device's location, you can use the &ldquo;Locate me&rdquo; button to find your precinct.</p>
+    <div class="col col1">
+      <div id="results-target"></div>
+    </div>
+    <div class="col col2">
     <div class="results-header">
       <form action="" id="address-form">
         <input class="input" id="address" placeholder="Your address" />
@@ -18,10 +21,6 @@
       <span id="feedback"></span>
       <div class="clear"></div>
     </div>
-    <div class="col col1">
-      <div id="results-target"></div>
-    </div>
-    <div class="col col2">
       <div id="map-target"></div>
     </div>
     <div class="clear"></div>
