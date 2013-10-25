@@ -7,14 +7,13 @@
 <!-- <h1>2013-9-26-election-results</h1>-->
 
 <div class="graphic">
-
   <div class="results">
+  <p class="howto"><b>Get precinct results:</b> Enter your address to see results from your precinct. Also, if your browser supports using your device's location, you can use the &ldquo;Locate me&rdquo; button to find your precinct.</p>
     <div class="results-header">
-      <!-- <span class="title">Mayoral election results</span>-->
       <form action="" id="address-form">
         <input class="input" id="address" placeholder="Your address" />
-        <button type="submit" class="formButton medium" id="address-button">Find precinct</button>
-        <button class="formButton medium" id="locate-button">Locate me</button>
+        <button type="submit" class="formButton large" id="address-button">Find precinct</button>
+        <button class="formButton large" id="locate-button">Locate me</button>
       </form>
       <span id="feedback"></span>
       <div class="clear"></div>

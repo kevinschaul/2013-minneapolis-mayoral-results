@@ -18,7 +18,13 @@ h1 {
 .hide {
   display: none;
 }
-
+p.howto {
+  margin:0;
+  padding:10px 10px 16px 10px;
+  color: #333132;
+  font-size: 1.2em;
+  line-height: 120%;
+}
 .results {
   border: 1px solid rgb(195, 200, 214);
 }
@@ -36,46 +42,43 @@ h1 {
   font-size: 1.2em;
 }
 .results-header form {
-  float: right;
-  margin: 4px;
+  float: left;
+  padding: 0px 10px;
+  margin-bottom: 16px;
 }
 .results-header .input {
   background-color: #fff;
   border: 1px solid rgb(146, 146, 146);
   color: rgb(102, 115, 114);
   font-size: 1em;
-  margin: 1px 0px;
-  padding: 8px;
-  width: 300px;
-  height: 15px;
+  margin: 0px;
+  padding: 9px;
+  width: 310px;
 }
-.results-header .button {
-  background-color: #2E8B0D;
-  color: #fff;
-  font-size: 0.9em;
-  padding: 8px 7px 7px 7px;
-  border: none;
-  cursor: pointer;
-}
-.results-header .button:hover {
-  background-color: #457534;
+.formButton {
+  margin-top: 0px;
 }
 #address-button {
-  width: 110px;
+  width: 130px;
 }
-#address-button.loading, #address-button.loading:hover {
+#address-button.loading, #locate-button.loading, #address-button.loading:hover {
   cursor: auto;
-  background-color: #2E8B0D;
+  background: -moz-linear-gradient(top, #015e9e, #084a7a);
+    background: -webkit-linear-gradient(#015e9e,#084a7a);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#015e9e', endColorstr='#084a7a');
 }
 .results-header #feedback {
   margin: 0 10px;
   line-height: 50px;
+  color: rgb(153, 51, 12);
+  font-weight: bold;
 }
 
 .col {
   float: left;
   width: 100%;
   background-color: #fff;
+  border-top: 1px solid #ccc;
 }
 
 .col2 {
@@ -86,7 +89,7 @@ h1 {
 .col1 {
   overflow: auto;
   position: relative;
-  height: 220px;
+  height: 226px;
 }
 
 .col1 .wrapper.active {
@@ -97,12 +100,12 @@ h1 {
 }
 .col1 .header .show-on-map {
   margin-left: 10px;
-  color: #999;
-  font-size: 0.7em;
+  font-size: .8em;
+  color: rgb(11, 71, 141);
   cursor: pointer;
 }
 .col1 .header .show-on-map:hover {
-  color: #aaa;
+  text-decoration: underline;
 }
 .col1 .precinct-title {
   font-size: 1.2em;
@@ -161,10 +164,14 @@ h1 {
   text-align: center;
 }
 .col1 .show-all {
-  margin-top: 4px;
-  color: #999;
-  font-size: 0.7em;
+  margin: 6px 0;
+  font-size: .8em;
+  color: rgb(11, 71, 141);
   cursor: pointer;
+}
+
+.col1 .show-all:hover {
+  text-decoration: underline;
 }
 
 #map-target {
