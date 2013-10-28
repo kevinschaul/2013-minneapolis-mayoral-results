@@ -12,14 +12,14 @@
       <div id="results-target"></div>
     </div>
     <div class="col col2">
-    <div class="results-header">
-      <form action="" id="address-form">
-        <input class="input" id="address" placeholder="Your address" />
-        <button type="submit" class="formButton large" id="address-button">Find precinct</button>
-      </form>
-      <span id="feedback"></span>
-      <div class="clear"></div>
-    </div>
+      <div class="results-header">
+        <form action="" id="address-form">
+          <input class="input" id="address" placeholder="Enter your home address" />
+          <button type="submit" class="formButton large" id="address-button">Find precinct</button>
+        </form>
+        <!-- <span id="feedback"></span>-->
+        <div class="clear"></div>
+      </div>
       <div id="map-target"></div>
     </div>
     <div class="clear"></div>
