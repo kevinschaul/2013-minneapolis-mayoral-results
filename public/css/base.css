@@ -105,14 +105,26 @@ h1 {
   color: rgb(11, 71, 141);
   cursor: pointer;
 }
+
+.col .header .return-total {
+  margin-left: 10px;
+  font-size: .7em;
+  color: rgb(11, 71, 141);
+  cursor: pointer;
+}
+
+.col .header .return-total:hover {
+  text-decoration: underline;
+}
+
 .col .header .show-on-map:hover {
   text-decoration: underline;
 }
 .col .precinct-title {
   font-size: 1.2em;
-  font-weight: bold;
   display: block;
   margin-bottom: 8px;
+  font-weight: bold;
 }
 .col .reporting {
   font-size: 0.7em;
