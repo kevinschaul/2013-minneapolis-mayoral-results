@@ -9,8 +9,8 @@
 <div class="graphic">
   <div class="results">
     <div class="col col1">
-      <div id="results-target"></div>
       <div id="precinct-target"></div>
+      <div id="results-target"></div>      
     </div>
     <div class="col col2">
       <div class="results-header">
@@ -37,7 +37,7 @@
 <script type="text/template" id="total-template">
 <div class="wrapper">
   <div class="header">
-    <span class="precinct-title">Total</span>
+    <span class="precinct-title">Citywide total</span>
     <span class="reporting"><%= precinctsReporting %> reporting</span>
     <span class="percents-headers">
       <span class="percent-header">1st choice</span>
