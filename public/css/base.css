@@ -8,7 +8,7 @@
   font-family: arial, sans-serif;
   font-size: 16px;
   color: #333;
-  height: 920px;
+  height: 940px;
   position: relative;
 }
 
@@ -82,14 +82,14 @@ h1 {
 .col2 {
   width: 55%;
   float: left;
-  height: 804px;
+  height: 824px;
 }
 
 .col1 {
   overflow: auto;
   width: 45%;
   position: relative;
-  height: 885px;
+  height: 905px;
   border-right: 1px solid #ccc;
 }
 
@@ -97,7 +97,7 @@ h1 {
   background-color: #eee;
 }
 .col .header {
-  padding: 10px 10px 2px 10px;
+  padding: 10px 10px 2px 20px;
 }
 .col .header .show-on-map {
   margin-left: 10px;
@@ -111,9 +111,10 @@ h1 {
 .col .precinct-title {
   font-size: 1.2em;
   font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
 }
 .col .reporting {
-  margin-left: 10px;
   font-size: 0.7em;
   font-weight: normal;
   color: #999;
