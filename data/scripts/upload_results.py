@@ -2,6 +2,7 @@
 
 import logging
 import os
+import time
 
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
@@ -24,6 +25,20 @@ def upload_results():
         )
         k.set_acl('public-read')
         logging.info(filename + ' uploaded to S3')
+
+    filename = str(int(time.time())) + '-localPrct.txt'
+    k = Key(bucket)
+    k.key = '2013/raw/' + filename
+    k.set_contents_from_filename(
+        os.path.join(
+            os.environ['RESULTS_LOCATION'],
+            'results',
+            'raw',
+            'latest-localPrct.txt'
+        )
+    )
+    logging.info(filename + ' uploaded to S3')
+
 
 if __name__ == '__main__':
     logfile = os.path.join(
