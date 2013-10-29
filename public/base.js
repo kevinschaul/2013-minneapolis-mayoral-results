@@ -44,6 +44,7 @@ var map = {
     //self.map.setMaxBounds(self.map.getBounds());
     self.addTonerLayer();
     self.addPrecinctLayer();
+
   },
 
   addTonerLayer: function() {
@@ -106,8 +107,12 @@ var map = {
             })
           },
           mouseover: function(d) {
+            self.$mapTooltipTarget.show();
             var properties = layer.feature.properties;
             self.activatePrecinctTooltip(properties.PCTCODE);
+          },
+          mouseout: function() {
+            self.$mapTooltipTarget.hide();
           }
         })
       }
