@@ -2,7 +2,6 @@ var map = {
   $addressForm: $('form#address-form'),
   $addressInput: $('input#address'),
   $addressButton: $('#address-button'),
-  $feedback: $('#feedback'),
   $results: $('.col.col1'),
   $resultsTarget: $('#results-target'),
 
@@ -271,10 +270,6 @@ var map = {
       return false;
     });
 
-    self.$addressInput.keydown(function() {
-      self.clearGeocodeError();
-    });
-
     self.$addressButton.click(function() {
       if (!self.isWaiting) {
         if (self.$addressInput.val()) {
@@ -430,12 +425,6 @@ var map = {
     var self = this;
 
     $('.wrapper.active').removeClass('active');
-  },
-
-  clearGeocodeError: function() {
-    var self = this;
-
-    self.$feedback.text('');
   },
 
   displayGeocodeError: function(error) {
