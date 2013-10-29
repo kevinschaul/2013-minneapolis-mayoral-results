@@ -4,6 +4,7 @@ var map = {
   $addressButton: $('#address-button'),
   $results: $('.col.col1'),
   $resultsTarget: $('#results-target'),
+  $precinctTarget: $('#precinct-target'),
 
   boundariesTimeout: 6000,
   mapquestTimeout: 2000,
@@ -183,7 +184,8 @@ var map = {
   initTable: function() {
     var self  = this;
 
-    self.tableTemplate = _.template($('script#table-template').html());
+    self.totalTemplate = _.template($('script#total-template').html());
+    self.precinctTemplate = _.template($('script#precinct-template').html());
 
     _.each(self.results.total.candidates, function(c, i) {
       if (self.results.total.total_votes_first > 0) {
@@ -235,17 +237,10 @@ var map = {
 
     var precinctsReporting = self.getPrecinctsReporting();
     var totalCandidates = self.sortCandidates(self.results.total.candidates);
-    var precinctsCandidates = []
-    _.each(self.results.precincts, function(precinct, key) {
-      precinct.candidates = self.sortCandidates(precinct.candidates);
-      precinct.id = key;
-      precinctsCandidates.push(precinct);
-    });
 
-    self.$resultsTarget.append(self.tableTemplate({
+    self.$resultsTarget.append(self.totalTemplate({
       precinctsReporting: precinctsReporting,
-      totalCandidates: totalCandidates,
-      precinctsCandidates: precinctsCandidates
+      totalCandidates: totalCandidates
     }));
 
     $('.show-on-map').click(function() {
@@ -397,18 +392,20 @@ var map = {
     var self = this;
 
     self.deactivateAllPrecincts();
+
+    var precinctCandidates = {
+      candidates: self.sortCandidates(self.results.precincts[precinctId].candidates),
+      id: precinctId
+    };
+
+    self.$precinctTarget.html(self.precinctTemplate({
+      precinctCandidates: precinctCandidates
+    }));
+
+ 
     var $precinct = $('.precinct-id-' + precinctId);
 
     if ($precinct && $precinct.length > 0) {
-      $precinct.addClass('active');
-
-      // Find offset relative to $resultsTarget
-      var top = $precinct.position().top -  self.$resultsTarget.position().top;
-
-      self.$results.animate({
-        'scrollTop': top
-      });
-
       var feature = self.precinctLookup[precinctId].feature;
       var bounds = feature.bbox;
       var boundsForLeaflet = [
@@ -417,7 +414,8 @@ var map = {
       ];
       self.map.fitBounds(boundsForLeaflet);
     } else {
-      self.displayGeocodeError("That location appears to be outside of Minneapolis.");
+      // TODO
+      //self.displayGeocodeError("That location appears to be outside of Minneapolis.");
     }
   },
 

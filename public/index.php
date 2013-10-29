@@ -10,6 +10,7 @@
   <div class="results">
     <div class="col col1">
       <div id="results-target"></div>
+      <div id="precinct-target"></div>
     </div>
     <div class="col col2">
       <div class="results-header">
@@ -30,7 +31,7 @@
 
 </div>
 
-<script type="text/template" id="table-template">
+<script type="text/template" id="total-template">
 <div class="wrapper">
   <div class="header">
     <span class="precinct-title">Total</span>
@@ -45,10 +46,7 @@
 
   <div class="candidates">
     <% _.each(totalCandidates, function(c, i, l) { %>
-      <% if (i === 6) { %>
-        <div class="show-all">Show all</div>
-      <% } %>
-        <div class="candidate candidate-<%= c.id %> <% if (i >= 6) { %>hide<% } %>">
+        <div class="candidate candidate-<%= c.id %>">
           <div class="color"></div>
           <span class="name"><%= c.first_name %> <%= c.last_name %></span>
           <span class="percents">
@@ -61,39 +59,36 @@
     <% }); %>
   </div>
 </div>
+</script>
 
-<% _.each(precinctsCandidates, function(d) { %>
-  <div class="wrapper precinct precinct-id-<%= d.id %>" data-id="<%= d.id %>">
-    <div class="header">
-      <span class="precinct-title">Precinct <%= d.id %></span>
-      <span class="show-on-map">Show on map</span>
-      <span class="percents-headers">
-        <span class="percent-header">1st choice</span>
-        <span class="percent-header">2nd choice</span>
-        <span class="percent-header">3rd choice</span>
-      </span>
-      <div class="clear"></div>
-    </div>
-
-    <div class="candidates">
-      <% _.each(d.candidates, function(c, i) { %>
-        <% if (i === 6) { %>
-          <div class="show-all">Show all</div>
-        <% } %>
-          <div class="candidate candidate-<%= c.id %> <% if (i >= 6) { %>hide<% } %>">
-            <div class="color"></div>
-            <span class="name"><%= c.first_name %> <%= c.last_name %></span>
-            <span class="percents">
-              <span class="percent percent-1"><%= c.first_choice_percent.toFixed(1) %>%</span>
-              <span class="percent percent-2"><%= c.second_choice_percent.toFixed(1) %>%</span>
-              <span class="percent percent-3"><%= c.third_choice_percent.toFixed(1) %>%</span>
-            </span>
-            <div class="clear"></div>
-          </div>
-      <% }); %>
-    </div>
+<script type="text/template" id="precinct-template">
+<div class="wrapper precinct precinct-id-<%= precinctCandidates.id %>" data-id="<%= precinctCandidates.id %>">
+  <div class="header">
+    <span class="precinct-title">Precinct <%= precinctCandidates.id %></span>
+    <span class="show-on-map">Show on map</span>
+    <span class="percents-headers">
+      <span class="percent-header">1st choice</span>
+      <span class="percent-header">2nd choice</span>
+      <span class="percent-header">3rd choice</span>
+    </span>
+    <div class="clear"></div>
   </div>
-<% }); %>
+
+  <div class="candidates">
+    <% _.each(precinctCandidates.candidates, function(c, i) { %>
+        <div class="candidate candidate-<%= c.id %>">
+          <div class="color"></div>
+          <span class="name"><%= c.first_name %> <%= c.last_name %></span>
+          <span class="percents">
+            <span class="percent percent-1"><%= c.first_choice_percent.toFixed(1) %>%</span>
+            <span class="percent percent-2"><%= c.second_choice_percent.toFixed(1) %>%</span>
+            <span class="percent percent-3"><%= c.third_choice_percent.toFixed(1) %>%</span>
+          </span>
+          <div class="clear"></div>
+        </div>
+    <% }); %>
+  </div>
+</div>
 </script>
 
 <script src="lib/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
