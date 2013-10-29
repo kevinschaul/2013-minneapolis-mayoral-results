@@ -429,10 +429,17 @@ var map = {
         var precinctId = self.vtdToPctcode(vtd);
         self.activatePrecinct(precinctId);
         self.indicateWaitingFinished();
+        self.addMapPin(lat, lng);
       } else {
         self.displayGeocodeError("We are having trouble locating your precinct.");
       }
     });
+  },
+
+  addMapPin: function(lat, lng) {
+    var self = this;
+
+    L.marker([lat, lng]).addTo(self.map);
   },
 
   activatePrecinctTooltip: function(precinctId) {
