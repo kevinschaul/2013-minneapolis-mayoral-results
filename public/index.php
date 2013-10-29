@@ -17,7 +17,6 @@
           <input class="input" id="address" placeholder="Enter your home address" />
           <button type="submit" class="formButton large" id="address-button">Find precinct</button>
         </form>
-        <!-- <span id="feedback"></span>-->
         <div class="clear"></div>
       </div>
       <div id="map-target"></div>
