@@ -113,7 +113,7 @@ var map = {
             self.activatePrecinctTooltip(properties.PCTCODE);
 
             layer.setStyle({
-              weight: 5,
+              weight: 3,
               color: '#333',
               opacity: 1
             });
@@ -127,7 +127,8 @@ var map = {
 
             layer.setStyle({
               weight: 1,
-              color: '#fff'
+              color: '#fff',
+              opacity: 0.7
             });
           }
         })
@@ -144,6 +145,7 @@ var map = {
     return {
       fillColor: self._findFillColorPrecinct(precinct.candidates),
       fillOpacity: 0.7,
+      opacity: 0.7,
       weight: 1,
       color: '#fff'
     };
