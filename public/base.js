@@ -460,25 +460,31 @@ var map = {
 
     self.deactivateAllPrecincts();
 
-    var precinctCandidates = {
-      candidates: self.sortCandidates(self.results.precincts[precinctId].candidates),
-      id: precinctId
-    };
+    var precinct = self.results.precincts[precinctId];
 
-    self.$precinctTarget.html(self.precinctTemplate({
-      precinctCandidates: precinctCandidates
-    }));
+    if (precinct) {
+      var precinctCandidates = {
+        candidates: self.sortCandidates(precinct.candidates),
+        id: precinctId
+      };
 
-    var $precinct = $('.precinct-id-' + precinctId);
+      self.$precinctTarget.html(self.precinctTemplate({
+        precinctCandidates: precinctCandidates
+      }));
 
-    if ($precinct && $precinct.length > 0) {
-      var feature = self.precinctLookup[precinctId].feature;
-      var bounds = feature.bbox;
-      var boundsForLeaflet = [
-        [bounds[1], bounds[0]],
-        [bounds[3], bounds[2]]
-      ];
-      self.map.fitBounds(boundsForLeaflet);
+      var $precinct = $('.precinct-id-' + precinctId);
+
+      if ($precinct && $precinct.length > 0) {
+        var feature = self.precinctLookup[precinctId].feature;
+        var bounds = feature.bbox;
+        var boundsForLeaflet = [
+          [bounds[1], bounds[0]],
+          [bounds[3], bounds[2]]
+        ];
+        self.map.fitBounds(boundsForLeaflet);
+      } else {
+        self.displayGeocodeError("That location appears to be outside of Minneapolis.");
+      }
     } else {
       self.displayGeocodeError("That location appears to be outside of Minneapolis.");
     }
