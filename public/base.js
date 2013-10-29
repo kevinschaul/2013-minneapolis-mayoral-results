@@ -41,7 +41,18 @@ var map = {
       scrollWheelZoom: false
     })
     self.map.setView([44.97, -93.265], 12);
-    //self.map.setMaxBounds(self.map.getBounds());
+
+    // The map's initial bounds are smaller than setMaxBounds allows, probably
+    // because of floating point arithmetic. We'll increase the initial bounds
+    // by a fudge factor to approximate the correct bounds.
+    var bounds = self.map.getBounds();
+    var fudgeFactor = 0.0001;
+    var maxBounds = [
+      [bounds._northEast.lat + fudgeFactor, bounds._northEast.lng + fudgeFactor],
+      [bounds._southWest.lat - fudgeFactor, bounds._southWest.lng - fudgeFactor],
+    ];
+    self.map.setMaxBounds(maxBounds);
+
     self.addTonerLayer();
     self.addPrecinctLayer();
 
