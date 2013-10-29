@@ -414,8 +414,7 @@ var map = {
       ];
       self.map.fitBounds(boundsForLeaflet);
     } else {
-      // TODO
-      //self.displayGeocodeError("That location appears to be outside of Minneapolis.");
+      self.displayGeocodeError("That location appears to be outside of Minneapolis.");
     }
   },
 
