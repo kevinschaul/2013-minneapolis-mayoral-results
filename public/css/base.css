@@ -28,13 +28,10 @@ h1 {
   color: #333;
   line-height: 40px;
 }
-.results-header a, .results-footer a {
-  color: #ddd;
-  text-decoration: none;
-}
+
 .results-footer {
   border-top: 1px solid #ccc;
-  padding: 10px 0;
+  padding: 14px 0;
 }
 
 .results-header {
@@ -196,7 +193,10 @@ h1 {
   margin: 10px;
 }
 .results-footer .sources a {
-  color: #aaa;
+  color: rgb(11, 71, 141);
+}
+.results-footer .sources a:hover {
+  text-decoration: underline;
 }
 
 
