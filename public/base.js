@@ -473,6 +473,13 @@ var map = {
         precinctsReporting: self.getPrecinctsReporting()
       }));
 
+      $('.return-total').click(function() {
+      self.map.setView([44.97, -93.265], 12);
+      self.$resultsTarget.show();
+      self.$precinctTarget.hide();
+      });
+      console.log($('.return-total'));
+
       var $precinct = $('.precinct-id-' + precinctId);
 
       if ($precinct && $precinct.length > 0) {
