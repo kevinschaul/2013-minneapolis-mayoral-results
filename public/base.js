@@ -102,17 +102,33 @@ var map = {
           },
           mousemove: function(d) {
             self.$mapTooltipTarget.css({
-              top: d.containerPoint.y + 20,
+              top: d.containerPoint.y + 30,
               left: d.containerPoint.x - 180 // width of tooltip / 2
             })
           },
           mouseover: function(d) {
             self.$mapTooltipTarget.show();
+
             var properties = layer.feature.properties;
             self.activatePrecinctTooltip(properties.PCTCODE);
+
+            layer.setStyle({
+              weight: 5,
+              color: '#333',
+              opacity: 1
+            });
+
+            if (!L.Browser.ie && !L.Browser.opera) {
+              layer.bringToFront();
+            }
           },
           mouseout: function() {
             self.$mapTooltipTarget.hide();
+
+            layer.setStyle({
+              weight: 1,
+              color: '#fff'
+            });
           }
         })
       }
