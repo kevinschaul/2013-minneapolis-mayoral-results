@@ -469,7 +469,8 @@ var map = {
       };
 
       self.$precinctTarget.html(self.precinctTemplate({
-        precinctCandidates: precinctCandidates
+        precinctCandidates: precinctCandidates,
+        precinctsReporting: self.getPrecinctsReporting()
       }));
 
       var $precinct = $('.precinct-id-' + precinctId);
