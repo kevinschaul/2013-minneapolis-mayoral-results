@@ -441,8 +441,8 @@ var map = {
   displayGeocodeError: function(error) {
     var self = this;
 
-    self.$feedback.text(error);
     self.indicateWaitingFinished();
+    alert(error);
   },
 
   indicateWaitingFinished: function() {
