@@ -51,6 +51,7 @@
     <% _.each(totalCandidates, function(c, i, l) { %>
         <div class="candidate candidate-<%= c.id %>">
           <div class="color"></div>
+          <% if (c.is_winner) { %><span class="winner">✓</span><% } %>
           <span class="name"><%= c.first_name %> <%= c.last_name %></span>
           <span class="percents">
             <span class="percent percent-1"><%= c.first_choice_percent.toFixed(1) %>%</span>
@@ -81,6 +82,7 @@
     <% _.each(precinctCandidates.candidates, function(c, i) { %>
         <div class="candidate candidate-<%= c.id %>">
           <div class="color"></div>
+          <% if (c.is_winner) { %><span class="winner">✓</span><% } %>
           <span class="name"><%= c.first_name %> <%= c.last_name %></span>
           <span class="percents">
             <span class="percent percent-1"><%= c.first_choice_percent.toFixed(1) %>%</span>
@@ -110,6 +112,7 @@
     <% _.each(precinctCandidates.candidates, function(c, i) { %>
         <div class="candidate candidate-<%= c.id %> <% if (i >= 6) { %>hide<% } %>">
           <div class="color"></div>
+          <% if (c.is_winner) { %><span class="winner">✓</span><% } %>
           <span class="name"><%= c.first_name %> <%= c.last_name %></span>
           <span class="percents">
             <span class="percent percent-1"><%= c.first_choice_percent.toFixed(1) %>%</span>
