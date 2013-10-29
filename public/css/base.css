@@ -74,8 +74,8 @@ h1 {
 }
 
 .col {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
   float: left;
-  width: 45%;
   background-color: #fff;
 }
 
@@ -87,8 +87,10 @@ h1 {
 
 .col1 {
   overflow: auto;
+  width: 45%;
   position: relative;
   height: 885px;
+  border-right: 1px solid #ccc;
 }
 
 .col1 .wrapper.active {
@@ -131,6 +133,8 @@ h1 {
   height: 16px;
   width: 16px;
 }
+
+div.candidate:last-child {border-bottom: 0px none;}
 
 .col .color { background-color: #ccc; }
 .col .candidate-9031 .color { background-color: #1b9e77; }
