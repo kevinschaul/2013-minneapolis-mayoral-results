@@ -20,7 +20,10 @@
         </form>
         <div class="clear"></div>
       </div>
-      <div id="map-target"></div>
+      <div class="map-wrapper">
+        <div id="map-tooltip-target"></div>
+        <div id="map-target"></div>
+      </div>
     </div>
     <div class="clear"></div>
     <div class="results-footer">
@@ -77,6 +80,35 @@
   <div class="candidates">
     <% _.each(precinctCandidates.candidates, function(c, i) { %>
         <div class="candidate candidate-<%= c.id %>">
+          <div class="color"></div>
+          <span class="name"><%= c.first_name %> <%= c.last_name %></span>
+          <span class="percents">
+            <span class="percent percent-1"><%= c.first_choice_percent.toFixed(1) %>%</span>
+            <span class="percent percent-2"><%= c.second_choice_percent.toFixed(1) %>%</span>
+            <span class="percent percent-3"><%= c.third_choice_percent.toFixed(1) %>%</span>
+          </span>
+          <div class="clear"></div>
+        </div>
+    <% }); %>
+  </div>
+</div>
+</script>
+
+<script type="text/template" id="map-tooltip-template">
+<div class="wrapper precinct precinct-id-<%= precinctCandidates.id %>" data-id="<%= precinctCandidates.id %>">
+  <div class="header">
+    <span class="precinct-title">Precinct <%= precinctCandidates.id %></span>
+    <span class="percents-headers">
+      <span class="percent-header">1st choice</span>
+      <span class="percent-header">2nd choice</span>
+      <span class="percent-header">3rd choice</span>
+    </span>
+    <div class="clear"></div>
+  </div>
+
+  <div class="candidates">
+    <% _.each(precinctCandidates.candidates, function(c, i) { %>
+        <div class="candidate candidate-<%= c.id %> <% if (i >= 6) { %>hide<% } %>">
           <div class="color"></div>
           <span class="name"><%= c.first_name %> <%= c.last_name %></span>
           <span class="percents">

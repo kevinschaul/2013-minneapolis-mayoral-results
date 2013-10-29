@@ -5,6 +5,7 @@ var map = {
   $results: $('.col.col1'),
   $resultsTarget: $('#results-target'),
   $precinctTarget: $('#precinct-target'),
+  $mapTooltipTarget: $('#map-tooltip-target'),
 
   boundariesTimeout: 6000,
   mapquestTimeout: 2000,
@@ -32,13 +33,15 @@ var map = {
   initMap: function() {
     var self = this;
 
+    self.mapTooltipTemplate = _.template($('script#map-tooltip-template').html());
+
     self.map = L.map('map-target', {
       minZoom: 12,
       maxZoom: 16,
       scrollWheelZoom: false
     })
     self.map.setView([44.97, -93.265], 12);
-    self.map.setMaxBounds(self.map.getBounds());
+    //self.map.setMaxBounds(self.map.getBounds());
     self.addTonerLayer();
     self.addPrecinctLayer();
   },
@@ -95,6 +98,16 @@ var map = {
           click: function(d) {
             var properties = layer.feature.properties;
             self.activatePrecinct(properties.PCTCODE);
+          },
+          mousemove: function(d) {
+            self.$mapTooltipTarget.css({
+              top: d.containerPoint.y + 20,
+              left: d.containerPoint.x - 180 // width of tooltip / 2
+            })
+          },
+          mouseover: function(d) {
+            var properties = layer.feature.properties;
+            self.activatePrecinctTooltip(properties.PCTCODE);
           }
         })
       }
@@ -388,6 +401,19 @@ var map = {
     });
   },
 
+  activatePrecinctTooltip: function(precinctId) {
+    var self = this;
+
+    var precinctCandidates = {
+      candidates: self.sortCandidates(self.results.precincts[precinctId].candidates),
+      id: precinctId
+    };
+
+    self.$mapTooltipTarget.html(self.mapTooltipTemplate({
+      precinctCandidates: precinctCandidates
+    }));
+  },
+
   activatePrecinct: function(precinctId) {
     var self = this;
 
@@ -402,7 +428,6 @@ var map = {
       precinctCandidates: precinctCandidates
     }));
 
- 
     var $precinct = $('.precinct-id-' + precinctId);
 
     if ($precinct && $precinct.length > 0) {

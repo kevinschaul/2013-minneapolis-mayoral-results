@@ -91,41 +91,41 @@ h1 {
   height: 885px;
 }
 
-.col1 .wrapper.active {
+.col .wrapper.active {
   background-color: #eee;
 }
-.col1 .header {
+.col .header {
   padding: 10px 10px 2px 10px;
 }
-.col1 .header .show-on-map {
+.col .header .show-on-map {
   margin-left: 10px;
   font-size: .8em;
   color: rgb(11, 71, 141);
   cursor: pointer;
 }
-.col1 .header .show-on-map:hover {
+.col .header .show-on-map:hover {
   text-decoration: underline;
 }
-.col1 .precinct-title {
+.col .precinct-title {
   font-size: 1.2em;
   font-weight: bold;
 }
-.col1 .reporting {
+.col .reporting {
   margin-left: 10px;
   font-size: 0.7em;
   font-weight: normal;
   color: #999;
 }
 
-.col1 .candidates {
+.col .candidates {
   padding: 0 20px;
   font-size: 14px;
 }
-.col1 .candidate {
+.col .candidate {
   line-height: 1.6em;
   border-bottom: 1px solid #ccc;
 }
-.col1 .candidate .color {
+.col .candidate .color {
   float: left;
   margin-top: 4px;
   height: 16px;
@@ -140,38 +140,52 @@ h1 {
 .col .candidate-9013 .color { background-color: #66a61e; }
 .col .candidate-9032 .color { background-color: #e6ab02; }
 
-.col1 .candidate .name {
+.col .candidate .name {
   margin-left: 10px;
 }
-.col1 .candidate .percents, .col1 .percents-headers {
+.col .candidate .percents, .col .percents-headers {
   font-weight: bold;
   float: right;
 }
-.col1 .percents-headers {
+.col .percents-headers {
   font-size: 0.7em;
   font-weight: normal;
   color: #999;
   margin-right: 10px;
   margin-top: -5px; // TODO hack
 }
-.col1 .candidate .percent, .col1 .percent-header {
+.col .candidate .percent, .col .percent-header {
   width: 40px;
   display: inline-block;
   text-align: right;
   margin-left: 4px;
 }
-.col1 .percent-header {
+.col .percent-header {
   text-align: center;
 }
-.col1 .show-all {
+.col .show-all {
   margin: 6px 0;
   font-size: .8em;
   color: rgb(11, 71, 141);
   cursor: pointer;
 }
 
-.col1 .show-all:hover {
+.col .show-all:hover {
   text-decoration: underline;
+}
+
+.map-wrapper {
+  position: relative;
+}
+
+#map-tooltip-target {
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  width: 360px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  pointer-events: none;
 }
 
 #map-target {
