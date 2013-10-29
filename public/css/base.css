@@ -180,6 +180,7 @@ div.candidate:last-child {border-bottom: 0px none;}
 
 .map-wrapper {
   position: relative;
+  height: 100%;
 }
 
 #map-tooltip-target {
