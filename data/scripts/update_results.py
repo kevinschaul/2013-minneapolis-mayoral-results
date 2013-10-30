@@ -148,7 +148,7 @@ def update_results():
                 if (precinct['total_votes_first'] > 0):
                     winner_percent = float(winner['first_choice']) / precinct['total_votes_first']
                 else:
-                    winner_precent = 0.0
+                    winner_percent = 0.0
 
                 row.append('27053' + precinct_id)
                 row.append(winner['first_name'])
