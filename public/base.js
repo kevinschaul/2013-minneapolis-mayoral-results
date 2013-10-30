@@ -290,19 +290,6 @@ var map = {
       totalCandidates: totalCandidates
     }));
 
-    $('.show-on-map').click(function() {
-      var $this = $(this);
-      var $precinct = $this.parents('.precinct');
-      var precinctId = $precinct.attr('data-id');
-      self.activatePrecinct(precinctId);
-    });
-
-    $('.show-all').click(function() {
-      var $this = $(this);
-      var candidates = $this.parent('.candidates').children('.hide');
-      candidates.removeClass('hide');
-      $this.addClass('hide');
-    });
   },
 
   initAddressLookup: function() {
