@@ -12,19 +12,20 @@ import settings
 def upload_results():
     conn = S3Connection(settings.AWS_ACCESS_KEY, settings.AWS_SECRET_KEY)
     bucket = conn.create_bucket('startribune')
-    for filename in ['results.json', 'results.csv']:
-        k = Key(bucket)
-        k.key = '2013/' + filename
-        k.set_contents_from_filename(
-            os.path.join(
-                os.environ['RESULTS_LOCATION'],
-                'results',
-                'processed',
-                filename
-            )
+
+    filename = 'results.json'
+    k = Key(bucket)
+    k.key = '2013/' + filename
+    k.set_contents_from_filename(
+        os.path.join(
+            os.environ['RESULTS_LOCATION'],
+            'results',
+            'processed',
+            filename
         )
-        k.set_acl('public-read')
-        logging.info(filename + ' uploaded to S3')
+    )
+    k.set_acl('public-read')
+    logging.info(filename + ' uploaded to S3')
 
     filename = str(int(time.time())) + '-localPrct.txt'
     k = Key(bucket)

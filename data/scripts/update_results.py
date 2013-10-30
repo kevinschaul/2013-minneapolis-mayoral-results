@@ -111,59 +111,6 @@ def update_results():
             f.write(json.dumps(results, indent=4))
             logging.info('JSON file processed successfully')
 
-        # Write file to be joined with shapefile for print
-        results_csv_filename = os.path.join(
-            os.environ['RESULTS_LOCATION'],
-            'results',
-            'processed',
-            'results.csv'
-        )
-        with open(results_csv_filename, 'w') as f:
-            w = csv.writer(f)
-
-            w.writerow([
-                'vtd',
-                'winner_first_name',
-                'winner_last_name',
-                'winner_votes',
-                'total_votes',
-                'winner_percent'
-            ])
-
-            for precinct_id in results['precincts']:
-                precinct = results['precincts'][precinct_id]
-
-                row = []
-
-                winner_id = -1
-                winner_votes = 0
-                for candidate_id in precinct['candidates']:
-                    candidate = precinct['candidates'][candidate_id]
-                    first_choice = int(candidate['first_choice'])
-                    if first_choice >= winner_votes:
-                        winner_id = candidate_id
-                        winner_votes = first_choice
-
-                winner = precinct['candidates'][winner_id]
-                if (precinct['total_votes_first'] > 0):
-                    winner_percent = float(winner['first_choice']) / precinct['total_votes_first']
-                else:
-                    winner_percent = 0.0
-
-                row.append('27053' + precinct_id)
-                row.append(winner['first_name'])
-                row.append(winner['last_name'])
-                row.append(winner_votes)
-                row.append(precinct['total_votes_first'])
-                row.append(winner_percent)
-
-                w.writerow(row)
-            logging.info('CSV file processed successfully')
-
-        # Write accompanying .csvt file for easy import into QGIS
-        with open(results_csv_filename + 't', 'w') as f:
-            f.write('"String","String","String","Integer","Integer","Real"');
-
     except IOError as e:
         logging.error(e)
 
