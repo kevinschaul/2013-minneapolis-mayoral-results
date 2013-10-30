@@ -460,12 +460,14 @@ var map = {
         precinctsReporting: self.getPrecinctsReporting()
       }));
 
+      self.$resultsTarget.hide();
+      self.$precinctTarget.show();
+
       $('.return-total').click(function() {
-      self.map.setView([44.97, -93.265], 12);
-      self.$resultsTarget.show();
-      self.$precinctTarget.hide();
+        self.map.setView([44.97, -93.265], 12);
+        self.$resultsTarget.show();
+        self.$precinctTarget.hide();
       });
-      console.log($('.return-total'));
 
       var $precinct = $('.precinct-id-' + precinctId);
 
