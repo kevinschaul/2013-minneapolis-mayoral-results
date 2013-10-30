@@ -46,7 +46,7 @@ if __name__ == '__main__':
         'results.log'
     )
     logging.basicConfig(
-        format='[%(filename)s %(asctime)s] %(levelname)s: %(message)s',
+        format='[%(filename)s:%(lineno)d %(asctime)s] %(levelname)s: %(message)s',
         level=logging.INFO,
         filename=logfile
     )
