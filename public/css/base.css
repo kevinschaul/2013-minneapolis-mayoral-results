@@ -145,6 +145,7 @@ h1 {
   margin-top: 4px;
   height: 16px;
   width: 16px;
+  opacity: 0.7;
 }
 
 div.candidate:last-child {border-bottom: 0px none;}
