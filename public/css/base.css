@@ -197,6 +197,7 @@ div.candidate:last-child {border-bottom: 0px none;}
 }
 
 #map-tooltip-target {
+  display: none;
   position: absolute;
   z-index: 500;
   background-color: #fff;
