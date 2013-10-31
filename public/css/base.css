@@ -214,6 +214,21 @@ div.candidate:last-child {border-bottom: 0px none;}
   border-top: 1px solid #ccc;
 }
 
+#map-key {
+  position: absolute;
+  z-index: 500;
+  top: 15px;
+  right: 15px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  color: rgb(51, 51, 51);
+  padding: 10px;
+  -moz-box-shadow: 3px 3px 7px #ccc;
+  -webkit-box-shadow: 3px 3px 7px #ccc;
+  box-shadow: 3px 3px 7px #ccc;
+}
+
 .leaflet-control-attribution {
   display: none;
 }
