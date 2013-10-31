@@ -60,7 +60,7 @@ candidate_map = {
         'first_name': 'Bob',
         'middle_nickname': '"Again"',
         'last_name': 'Carney',
-        'suffix_nickname': 'Jr',
+        'suffix': 'Jr.',
     },
     '9012': {
         'id': 9012,
