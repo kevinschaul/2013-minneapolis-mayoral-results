@@ -30,20 +30,6 @@ describe('map', function() {
       assert.equal(map._findFillColorPrecinct(candidates), map.tieColor);
     });
 
-    it('Returns the no data color if all votes are 0', function() {
-      var candidates = [
-        {
-          'first_choice': 0,
-          'id': 1
-        }, {
-          'first_choice': 0,
-          'id': 9031
-        }
-      ];
-
-      assert.equal(map._findFillColorPrecinct(candidates), map.noDataColor);
-    });
-
     it('Returns the candidate\'s color if there is only one', function() {
       var candidates = [
         {

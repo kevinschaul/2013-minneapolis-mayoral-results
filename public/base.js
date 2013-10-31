@@ -190,10 +190,6 @@ var map = {
       }
     }
 
-    if (max_votes === 0) {
-      fillColor = self.noDataColor;
-    }
-
     return fillColor;
   },
 
