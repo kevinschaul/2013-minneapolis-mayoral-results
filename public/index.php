@@ -114,17 +114,19 @@
 
   <div class="candidates">
     <% _.each(precinctCandidates.candidates, function(c, i) { %>
-        <div class="candidate candidate-<%= c.id %> <% if (i >= 6) { %>hide<% } %>">
-          <div class="color"></div>
-          <% if (c.is_winner) { %><span class="winner">✓</span><% } %>
-          <span class="name"><%= c.first_name %> <%= c.last_name %></span>
-          <span class="percents">
-            <span class="percent percent-1"><%= c.first_choice_percent.toFixed(1) %>%</span>
-            <span class="percent percent-2"><%= c.second_choice_percent.toFixed(1) %>%</span>
-            <span class="percent percent-3"><%= c.third_choice_percent.toFixed(1) %>%</span>
-          </span>
-          <div class="clear"></div>
-        </div>
+        <% if (i < 6) { %>
+          <div class="candidate candidate-<%= c.id %>">
+            <div class="color"></div>
+            <% if (c.is_winner) { %><span class="winner">✓</span><% } %>
+            <span class="name"><%= c.first_name %> <%= c.last_name %></span>
+            <span class="percents">
+              <span class="percent percent-1"><%= c.first_choice_percent.toFixed(1) %>%</span>
+              <span class="percent percent-2"><%= c.second_choice_percent.toFixed(1) %>%</span>
+              <span class="percent percent-3"><%= c.third_choice_percent.toFixed(1) %>%</span>
+            </span>
+            <div class="clear"></div>
+          </div>
+        <% } %>
     <% }); %>
   </div>
 </div>
