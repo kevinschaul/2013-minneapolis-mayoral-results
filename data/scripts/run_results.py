@@ -43,7 +43,7 @@ def main():
         logging.error(e)
         exitStatus = 5
 
-    sys.exit(exisStatus)
+    sys.exit(exitStatus)
 
 
 if __name__ == '__main__':
