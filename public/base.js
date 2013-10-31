@@ -18,8 +18,8 @@ var map = {
     '9013': '#6fc1d2',
     '9032': '#dd6bae'
   },
-  otherColor: '#999',
-  tieColor: '#ccc',
+  otherColor: '#c1c1c1',
+  tieColor: '#999',
 
   precinctLookup: {},
 
