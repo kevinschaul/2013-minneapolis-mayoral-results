@@ -112,10 +112,11 @@ var map = {
             self.activatePrecinct(properties.PCTCODE);
           },
           mousemove: function(d) {
-            var top = d.containerPoint.y + 30;
+            // TODO measurements
+            var top = d.containerPoint.y + 50;
             var left = d.containerPoint.x - 180; // (width of tooltip) / 2
             if (top > 412) { // (height of col2) / 2
-              top = d.containerPoint.y - (30 + 211); // height of tooltip
+              top = d.containerPoint.y - (50 + 211); // height of tooltip
             }
             self.$mapTooltipTarget.css({
               top: top,
