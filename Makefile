@@ -23,7 +23,8 @@ install:
 
 results-start:
 	export RESULTS_LOCATION=$(RESULTS_LOCATION)
-	echo 'RESULTS_LOCATION=$(RESULTS_LOCATION)' > cron.txt
+	echo 'MAILTO=kevin.schaul@gmail.com' > cron.txt
+	echo 'RESULTS_LOCATION=$(RESULTS_LOCATION)' >> cron.txt
 	echo '*/5 * * * * $(RESULTS_LOCATION)/data/scripts/run_results.py' >> cron.txt
 	crontab cron.txt
 
