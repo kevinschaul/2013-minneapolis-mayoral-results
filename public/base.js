@@ -11,16 +11,16 @@ var map = {
   mapquestTimeout: 2000,
 
   colorScheme: {
-    '9031': '#e65d5d',
-    '9021': '#d98e64',
-    '9010': '#dfbc42',
-    '9014': '#7dc692',
-    '9013': '#6fc1d2',
-    '9032': '#dd6bae'
+    '9031': '#c43434',
+    '9021': '#a06849',
+    '9010': '#9d8222',
+    '9014': '#508b61',
+    '9013': '#428e9e',
+    '9032': '#a0497c'
   },
-  noDataColor: '#cfbfad',
-  otherColor: '#999',
-  tieColor: '#5e5e5e',
+  noDataColor: '#d3d3d3',
+  otherColor: '#909090',
+  tieColor: '#585858',
 
   precinctLookup: {},
 

@@ -150,13 +150,13 @@ h1 {
 
 div.candidate:last-child {border-bottom: 0px none;}
 
-.col .color { background-color: #999; }
-.col .candidate-9031 .color { background-color: #e65d5d; }
-.col .candidate-9021 .color { background-color: #d98e64; }
-.col .candidate-9010 .color { background-color: #dfbc42; }
-.col .candidate-9014 .color { background-color: #7dc692; }
-.col .candidate-9013 .color { background-color: #6fc1d2; }
-.col .candidate-9032 .color { background-color: #dd6bae; }
+.col .color { background-color: #909090; }
+.col .candidate-9031 .color { background-color: #c43434; }
+.col .candidate-9021 .color { background-color: #a06849; }
+.col .candidate-9010 .color { background-color: #9d8222; }
+.col .candidate-9014 .color { background-color: #508b61; }
+.col .candidate-9013 .color { background-color: #428e9e; }
+.col .candidate-9032 .color { background-color: #a0497c; }
 
 .col .candidate .name {
   margin-left: 10px;
