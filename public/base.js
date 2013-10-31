@@ -21,6 +21,11 @@ var map = {
   otherColor: '#aaaaaa',
   tieColor: '#d0d0d0',
 
+  tooltipMargin: 50,
+  tooltipWidth: 375,
+  tooltipHeight: 212,
+  mapHeight: 824,
+
   precinctLookup: {},
 
   init: function() {
@@ -103,7 +108,7 @@ var map = {
   addPrecinctLayer: function(geoJson) {
     var self = this;
 
-   self.precinctLayer = new L.geoJson(geoJson, {
+    self.precinctLayer = new L.geoJson(geoJson, {
       'style': function(d) { return self.stylePrecinct(d, self); },
       'onEachFeature': function(d, layer) {
         layer.on({
@@ -112,11 +117,10 @@ var map = {
             self.activatePrecinct(properties.PCTCODE);
           },
           mousemove: function(d) {
-            // TODO measurements
-            var top = d.containerPoint.y + 50;
-            var left = d.containerPoint.x - 180; // (width of tooltip) / 2
-            if (top > 412) { // (height of col2) / 2
-              top = d.containerPoint.y - (50 + 211); // height of tooltip
+            var top = d.containerPoint.y + self.tooltipMargin;
+            var left = d.containerPoint.x - (self.tooltipWidth / 2);
+            if (top > (self.mapHeight / 2)) {
+              top = d.containerPoint.y - (self.tooltipMargin + self.tooltipHeight);
             }
             self.$mapTooltipTarget.css({
               top: top,
