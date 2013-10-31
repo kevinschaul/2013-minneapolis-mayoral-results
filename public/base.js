@@ -426,7 +426,11 @@ var map = {
   addMapPin: function(lat, lng) {
     var self = this;
 
-    L.marker([lat, lng]).addTo(self.map);
+    if (self.mapPin) {
+      self.mapPin.setLatLng([lat, lng]);
+    } else {
+      self.mapPin = L.marker([lat, lng]).addTo(self.map);
+    }
   },
 
   activatePrecinctTooltip: function(precinctId) {
