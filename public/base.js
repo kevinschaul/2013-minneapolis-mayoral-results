@@ -18,6 +18,7 @@ var map = {
     '9013': '#6fc1d2',
     '9032': '#dd6bae'
   },
+  noDataColor: 'green',
   otherColor: '#c1c1c1',
   tieColor: '#999',
 
@@ -92,7 +93,7 @@ var map = {
   getResults: function() {
     var self = this;
 
-    $.getJSON('https://s3.amazonaws.com/startribune/2013/results.json', function(data) {
+    $.getJSON('https://s3.amazonaws.com/startribune/2013/test/results.json', function(data) {
       self.results = data;
       self.initTable();
       self.initMap();
@@ -182,11 +183,16 @@ var map = {
     });
 
     var fillColor = self.tieColor;
+
     if (max_candidate_id >= 0 ) {
       fillColor = self.colorScheme[max_candidate_id];
       if (!fillColor) {
         fillColor = self.otherColor;
       }
+    }
+
+    if (max_votes === 0) {
+      fillColor = self.noDataColor;
     }
 
     return fillColor;
