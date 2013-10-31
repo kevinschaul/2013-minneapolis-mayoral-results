@@ -24,7 +24,7 @@
         <div id="map-key">
             <div class="candidate">
               <div class="color" style="background-color: #aaaaaa;"></div>
-              <span class="name">Other label</span>
+              <span class="name">Other candidates</span>
             </div> 
             <div class="clear"></div>
             <div class="candidate">
