@@ -22,8 +22,15 @@
       </div>
       <div class="map-wrapper">
         <div id="map-key">
-          <div class="candidate">
-          <div class="color" style="background-color: #d0d0d0;"></div><span class="name">Color indicates a tie</span></div>
+            <div class="candidate">
+              <div class="color" style="background-color: #aaaaaa;"></div>
+              <span class="name">Other label</span>
+            </div> 
+            <div class="clear"></div>
+            <div class="candidate">
+              <div class="color" style="background-color: #d0d0d0;"></div>
+              <span class="name">Tie</span>
+            </div>
         </div>
         <div id="map-tooltip-target"></div>
         <div id="map-target"></div>
