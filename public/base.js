@@ -290,19 +290,6 @@ var map = {
       totalCandidates: totalCandidates
     }));
 
-    $('.show-on-map').click(function() {
-      var $this = $(this);
-      var $precinct = $this.parents('.precinct');
-      var precinctId = $precinct.attr('data-id');
-      self.activatePrecinct(precinctId);
-    });
-
-    $('.show-all').click(function() {
-      var $this = $(this);
-      var candidates = $this.parent('.candidates').children('.hide');
-      candidates.removeClass('hide');
-      $this.addClass('hide');
-    });
   },
 
   initAddressLookup: function() {
@@ -439,7 +426,11 @@ var map = {
   addMapPin: function(lat, lng) {
     var self = this;
 
-    L.marker([lat, lng]).addTo(self.map);
+    if (self.mapPin) {
+      self.mapPin.setLatLng([lat, lng]);
+    } else {
+      self.mapPin = L.marker([lat, lng]).addTo(self.map);
+    }
   },
 
   activatePrecinctTooltip: function(precinctId) {
@@ -473,12 +464,14 @@ var map = {
         precinctsReporting: self.getPrecinctsReporting()
       }));
 
+      self.$resultsTarget.hide();
+      self.$precinctTarget.show();
+
       $('.return-total').click(function() {
-      self.map.setView([44.97, -93.265], 12);
-      self.$resultsTarget.show();
-      self.$precinctTarget.hide();
+        self.map.setView([44.97, -93.265], 12);
+        self.$resultsTarget.show();
+        self.$precinctTarget.hide();
       });
-      console.log($('.return-total'));
 
       var $precinct = $('.precinct-id-' + precinctId);
 
