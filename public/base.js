@@ -1,5 +1,7 @@
 (function($) {
 
+$.support.cors = true;
+
 var map = {
   $addressForm: $('form#address-form'),
   $addressInput: $('input#address'),
