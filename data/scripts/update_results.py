@@ -5,8 +5,6 @@ import json
 import logging
 import os
 
-from stat import ST_MTIME
-
 from candidate_map import candidate_map
 
 C_STATE = 0
