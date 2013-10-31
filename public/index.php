@@ -1,7 +1,11 @@
 <?php readfile('http://www.startribune.com/templates/vh?vid=229128501&sosp=/politics'); ?>
 
 <link rel="stylesheet" href="lib/leaflet.css" />
-  <link rel="stylesheet" href="css/fonts.css" />
+<!--[if lte IE 8]>
+     <link rel="stylesheet" href="lib/leaflet.ie.css" />
+ <![endif]-->
+
+<link rel="stylesheet" href="css/fonts.css" />
 <link rel="stylesheet" href="css/base.css" />
 
 <!-- <h1>2013-9-26-election-results</h1>-->
@@ -9,8 +13,8 @@
 <div class="graphic">
   <div class="results">
     <div class="col col1">
-      <div id="precinct-target"></div>
       <div id="results-target"></div>      
+      <div id="precinct-target"></div>
     </div>
     <div class="col col2">
       <div class="results-header">
