@@ -18,7 +18,7 @@ var map = {
     '9013': '#6fc1d2',
     '9032': '#dd6bae'
   },
-  noDataColor: '#ececec',
+  noDataColor: '#cfbfad',
   otherColor: '#999',
   tieColor: '#5e5e5e',
 
