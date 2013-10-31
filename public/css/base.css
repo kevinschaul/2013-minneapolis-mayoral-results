@@ -150,12 +150,12 @@ h1 {
 div.candidate:last-child {border-bottom: 0px none;}
 
 .col .color { background-color: #ccc; }
-.col .candidate-9031 .color { background-color: #1b9e77; }
-.col .candidate-9021 .color { background-color: #d95f02; }
-.col .candidate-9010 .color { background-color: #7570b3; }
-.col .candidate-9014 .color { background-color: #e7298a; }
-.col .candidate-9013 .color { background-color: #66a61e; }
-.col .candidate-9032 .color { background-color: #e6ab02; }
+.col .candidate-9031 .color { background-color: #e65d5d; }
+.col .candidate-9021 .color { background-color: #d98e64; }
+.col .candidate-9010 .color { background-color: #dfbc42; }
+.col .candidate-9014 .color { background-color: #7dc692; }
+.col .candidate-9013 .color { background-color: #6fc1d2; }
+.col .candidate-9032 .color { background-color: #dd6bae; }
 
 .col .candidate .name {
   margin-left: 10px;

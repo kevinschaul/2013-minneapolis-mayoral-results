@@ -11,12 +11,12 @@ var map = {
   mapquestTimeout: 2000,
 
   colorScheme: {
-    '9031': '#1b9e77',
-    '9021': '#d95f02',
-    '9010': '#7570b3',
-    '9014': '#e7298a',
-    '9013': '#66a61e',
-    '9032': '#e6ab02'
+    '9031': '#e65d5d',
+    '9021': '#d98e64',
+    '9010': '#dfbc42',
+    '9014': '#7dc692',
+    '9013': '#6fc1d2',
+    '9032': '#dd6bae'
   },
   otherColor: '#999',
   tieColor: '#ccc',
@@ -124,7 +124,7 @@ var map = {
             self.activatePrecinctTooltip(properties.PCTCODE);
 
             layer.setStyle({
-              weight: 3,
+              weight: 1,
               color: '#333',
               opacity: 1
             });
