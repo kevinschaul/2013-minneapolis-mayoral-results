@@ -150,7 +150,7 @@ h1 {
 
 div.candidate:last-child {border-bottom: 0px none;}
 
-.col .color { background-color: #c1c1c1; }
+.col .color { background-color: #999; }
 .col .candidate-9031 .color { background-color: #e65d5d; }
 .col .candidate-9021 .color { background-color: #d98e64; }
 .col .candidate-9010 .color { background-color: #dfbc42; }
