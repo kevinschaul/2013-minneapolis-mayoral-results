@@ -25,6 +25,7 @@ var map = {
   tooltipWidth: 375,
   tooltipHeight: 212,
   mapHeight: 824,
+  mapWidth: 526,
 
   precinctLookup: {},
 
@@ -121,6 +122,9 @@ var map = {
             var left = d.containerPoint.x - (self.tooltipWidth / 2);
             if (top > (self.mapHeight / 2)) {
               top = d.containerPoint.y - (self.tooltipMargin + self.tooltipHeight);
+            }
+            if ((left + self.tooltipWidth) > self.mapWidth) {
+              left =  self.mapWidth - self.tooltipWidth;
             }
             self.$mapTooltipTarget.css({
               top: top,
