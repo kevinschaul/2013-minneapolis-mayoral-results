@@ -484,8 +484,9 @@ var map = {
 
       $('.return-total').click(function() {
         self.map.setView([44.97, -93.265], 12);
-        self.$resultsTarget.show();
+
         self.$precinctTarget.hide();
+        self.$resultsTarget.show();
       });
 
       var $precinct = $('.precinct-id-' + precinctId);
