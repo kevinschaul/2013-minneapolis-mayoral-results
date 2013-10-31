@@ -73,7 +73,6 @@
 <div class="wrapper precinct precinct-id-<%= precinctCandidates.id %>" data-id="<%= precinctCandidates.id %>">
   <div class="header">
     <span class="precinct-title">Precinct <%= precinctCandidates.id %></span>
-    <span class="reporting"><%= precinctsReporting %> reporting</span>
     <span class="return-total">Return to total results</span>
     <span class="percents-headers">
       <span class="percent-header">1st choice</span>
