@@ -112,10 +112,16 @@ var map = {
             self.activatePrecinct(properties.PCTCODE);
           },
           mousemove: function(d) {
+            // TODO measurements
+            var top = d.containerPoint.y + 50;
+            var left = d.containerPoint.x - 180; // (width of tooltip) / 2
+            if (top > 412) { // (height of col2) / 2
+              top = d.containerPoint.y - (50 + 211); // height of tooltip
+            }
             self.$mapTooltipTarget.css({
-              top: d.containerPoint.y + 30,
-              left: d.containerPoint.x - 180 // width of tooltip / 2
-            })
+              top: top,
+              left: left
+            });
           },
           mouseover: function(d) {
             self.$mapTooltipTarget.show();
