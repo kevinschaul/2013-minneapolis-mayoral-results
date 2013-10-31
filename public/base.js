@@ -86,7 +86,9 @@ var map = {
   getPrecinctShapes: function() {
     var self = this;
 
+		console.log('getting shape data');
     $.getJSON('precincts-hennepin.json', function(data) {
+		console.log(data);
       self.geoJson = data;
       self.addPrecinctLayer(self.geoJson);
 
@@ -102,12 +104,21 @@ var map = {
   getResults: function() {
     var self = this;
 
-    $.getJSON('https://s3.amazonaws.com/startribune/2013/results.json', function(data) {
-      self.results = data;
-      self.initTable();
-      self.initMap();
-      self.getPrecinctShapes();
-    });
+		$.ajax('http://s3.amazonaws.com/startribune/2013/results.json', {
+			dataType: 'json',
+			cache: 'false',
+			success: function(data) {
+				  self.results = data;
+				  self.initTable();
+				  self.initMap();
+				  self.getPrecinctShapes();
+			},
+			error: function(d, e, f) {
+				console.log(d);
+				console.log(e);
+				console.log(f);
+			}
+		});
   },
 
   addPrecinctLayer: function(geoJson) {
@@ -570,5 +581,5 @@ var map = {
 
 var m = map.init();
 
-})(jQuery);
+})($);
 
