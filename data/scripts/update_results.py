@@ -5,6 +5,8 @@ import json
 import logging
 import os
 
+from stat import ST_MTIME
+
 from candidate_map import candidate_map
 
 C_STATE = 0
@@ -34,7 +36,8 @@ def update_results():
             'precincts_reporting': 0,
             'precincts_total': 0,
         },
-        'precincts': {}
+        'precincts': {},
+        'last_updated': False,
     }
 
     for i in candidate_map:
@@ -100,6 +103,10 @@ def update_results():
 
                     total['precincts_reporting'] = row[C_PRECINCTS_REPORTING]
                     total['precincts_total'] = row[C_PRECINCTS_TOTAL]
+
+        stat = os.stat(raw_results_filename)
+        mtime = stat.st_mtime
+        results['last_updated'] = mtime
 
         results_json_filename = os.path.join(
             os.environ['RESULTS_LOCATION'],
