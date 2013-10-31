@@ -217,7 +217,7 @@ div.candidate:last-child {border-bottom: 0px none;}
 #map-key {
   position: absolute;
   z-index: 500;
-  top: 15px;
+  bottom: 15px;
   right: 15px;
   background-color: #fff;
   border: 1px solid #ccc;
