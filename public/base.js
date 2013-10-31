@@ -22,8 +22,8 @@ var map = {
   tieColor: '#d0d0d0',
 
   tooltipMargin: 50,
-  tooltipWidth: 375,
-  tooltipHeight: 212,
+  tooltipWidth: 387,
+  tooltipHeight: 188,
   mapHeight: 824,
   mapWidth: 526,
 
@@ -123,8 +123,8 @@ var map = {
             if (top > (self.mapHeight / 2)) {
               top = d.containerPoint.y - (self.tooltipMargin + self.tooltipHeight);
             }
-            if ((left + self.tooltipWidth) > self.mapWidth) {
-              left =  self.mapWidth - self.tooltipWidth;
+            if ((left + self.tooltipWidth) > self.mapWidth + 10) {
+              left =  self.mapWidth - self.tooltipWidth + 10;
             }
             self.$mapTooltipTarget.css({
               top: top,
