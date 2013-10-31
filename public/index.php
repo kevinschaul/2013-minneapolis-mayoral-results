@@ -143,7 +143,7 @@
 </div>
 </script>
 
-<script src="lib/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="lib/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>-->
 <script src="lib/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="lib/leaflet.js" type="text/javascript" charset="utf-8"></script>
 <script src="base.js" type="text/javascript" charset="utf-8"></script>

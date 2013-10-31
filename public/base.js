@@ -1,3 +1,5 @@
+(function($) {
+
 var map = {
   $addressForm: $('form#address-form'),
   $addressInput: $('input#address'),
@@ -565,4 +567,6 @@ var map = {
 };
 
 var m = map.init();
+
+})(jQuery);
 
