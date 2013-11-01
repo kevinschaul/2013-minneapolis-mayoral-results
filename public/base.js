@@ -3,6 +3,7 @@
 $.support.cors = true;
 
 var map = {
+  $loading: $('.loading-indicator'),
   $addressForm: $('form#address-form'),
   $addressInput: $('input#address'),
   $addressButton: $('#address-button'),
@@ -100,10 +101,11 @@ var map = {
 			dataType: 'json',
 			cache: 'false',
 			success: function(data) {
-				  self.results = data;
-				  self.initTable();
-				  self.initMap();
-				  self.getPrecinctShapes();
+        self.$loading.hide();
+        self.results = data;
+        self.initTable();
+        self.initMap();
+        self.getPrecinctShapes();
 			},
 			error: function(d, e, f) {
         self.displayGeocodeError('We are having trouble getting the latest results.');

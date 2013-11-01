@@ -13,7 +13,8 @@
 <div class="graphic">
   <div class="results">
     <div class="col col1">
-      <div id="results-target"></div>      
+      <div class="loading-indicator">Loading ...</div>
+      <div id="results-target"></div>
       <div id="precinct-target"></div>
     </div>
     <div class="col col2">
