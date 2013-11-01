@@ -112,9 +112,7 @@ var map = {
 				  self.getPrecinctShapes();
 			},
 			error: function(d, e, f) {
-				console.log(d);
-				console.log(e);
-				console.log(f);
+        self.displayGeocodeError('We are having trouble getting the latest results.');
 			}
 		});
   },
