@@ -502,13 +502,13 @@ var map = {
       }));
 
       self.$resultsTarget.hide();
-      self.$precinctTarget.show();
+      self.$precinctTarget.show('slow');
 
       $('.return-total').click(function() {
         self.map.setView([44.97, -93.265], 12);
 
         self.$precinctTarget.hide();
-        self.$resultsTarget.show();
+        self.$resultsTarget.show('slow');
       });
 
       var $precinct = $('.precinct-id-' + precinctId);

@@ -196,6 +196,10 @@ div.candidate:last-child {border-bottom: 0px none;}
   text-decoration: underline;
 }
 
+#precinct-target {
+  display: none;
+}
+
 .map-wrapper {
   position: relative;
   height: 100%;
