@@ -15,7 +15,7 @@ def upload_results():
 
     filename = 'results.json'
     k = Key(bucket)
-    k.key = '2013/test/' + filename
+    k.key = '2013/' + filename
     k.set_contents_from_filename(
         os.path.join(
             os.environ['RESULTS_LOCATION'],
@@ -29,7 +29,7 @@ def upload_results():
 
     filename = str(int(time.time())) + '-localPrct.txt'
     k = Key(bucket)
-    k.key = '2013/test/raw/' + filename
+    k.key = '2013/raw/' + filename
     k.set_contents_from_filename(
         os.path.join(
             os.environ['RESULTS_LOCATION'],
