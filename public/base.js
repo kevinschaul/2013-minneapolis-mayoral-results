@@ -502,6 +502,7 @@ var map = {
       }));
 
       self.$resultsTarget.hide();
+      self.$precinctTarget.hide();
       self.$precinctTarget.show('slow');
 
       $('.return-total').click(function() {
