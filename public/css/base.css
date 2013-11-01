@@ -216,6 +216,9 @@ div.candidate:last-child {border-bottom: 0px none;}
   border: 1px solid #ccc;
   padding: 5px;
   pointer-events: none;
+  -moz-box-shadow: 3px 3px 7px #999;
+  -webkit-box-shadow: 3px 3px 7px #999;
+  box-shadow: 3px 3px 7px #999;
 }
 
 #tooltip-precinct-title {
@@ -239,9 +242,9 @@ div.candidate:last-child {border-bottom: 0px none;}
   font-size: 14px;
   color: rgb(51, 51, 51);
   padding: 6px 10px;
-  -moz-box-shadow: 3px 3px 7px #ccc;
-  -webkit-box-shadow: 3px 3px 7px #ccc;
-  box-shadow: 3px 3px 7px #ccc;
+  -moz-box-shadow: 3px 3px 7px #999;
+  -webkit-box-shadow: 3px 3px 7px #999;
+  box-shadow: 3px 3px 7px #999;
 }
 #map-key .candidate {
   border-bottom: none;
