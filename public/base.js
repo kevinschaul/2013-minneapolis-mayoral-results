@@ -343,7 +343,7 @@ var map = {
   getLastUpdated: function() {
     var self = this;
 
-    var lastUpdated = moment(self.results.last_updated);
+    var lastUpdated = moment.unix(self.results.last_updated);
     return lastUpdated.fromNow();
   },
 
