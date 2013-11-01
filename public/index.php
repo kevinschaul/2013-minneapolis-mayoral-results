@@ -33,7 +33,7 @@
             <div class="clear"></div>
             <div class="candidate">
               <div class="color" style="background-color: #d0d0d0;"></div>
-              <span class="name">Tie</span>
+              <span class="name">No data or tie</span>
             </div>
         </div>
         <div id="map-tooltip-target"></div>

@@ -243,6 +243,9 @@ div.candidate:last-child {border-bottom: 0px none;}
   -webkit-box-shadow: 3px 3px 7px #ccc;
   box-shadow: 3px 3px 7px #ccc;
 }
+#map-key .candidate {
+  border-bottom: none;
+}
 
 .leaflet-control-attribution {
   display: none;
