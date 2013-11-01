@@ -53,6 +53,7 @@
 <div class="wrapper">
   <div class="header">
     <span class="precinct-title">Citywide total</span>
+    <span class="last-updated">Last updated <%= lastUpdated %></span>
     <span class="reporting"><%= precinctsReporting %> reporting</span>
     <span class="percents-headers">
       <span class="percent-header">1st choice</span>
@@ -83,6 +84,7 @@
 <div class="wrapper precinct precinct-id-<%= precinctCandidates.id %>" data-id="<%= precinctCandidates.id %>">
   <div class="header">
     <span class="precinct-title">Precinct <%= precinctCandidates.id %></span>
+    <span class="last-updated">Last updated <%= lastUpdated %></span>
     <span class="return-total">Return to citywide results</span>
     <span class="percents-headers">
       <span class="percent-header">1st choice</span>

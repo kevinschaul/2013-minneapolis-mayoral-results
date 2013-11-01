@@ -316,6 +316,7 @@ var map = {
     var totalCandidates = self.sortCandidates(self.results.total.candidates);
 
     self.$resultsTarget.append(self.totalTemplate({
+      lastUpdated: self.getLastUpdated(),
       precinctsReporting: precinctsReporting,
       totalCandidates: totalCandidates
     }));
@@ -339,6 +340,11 @@ var map = {
         }
       }
     });
+  },
+
+  getLastUpdated: function() {
+
+    return 'five minutes ago';
   },
 
   getPrecinctsReporting: function() {
@@ -490,6 +496,7 @@ var map = {
       };
 
       self.$precinctTarget.html(self.precinctTemplate({
+        lastUpdated: self.getLastUpdated(),
         precinctCandidates: precinctCandidates,
         precinctsReporting: self.getPrecinctsReporting()
       }));
