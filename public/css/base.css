@@ -89,7 +89,7 @@ h1 {
   overflow: auto;
   width: 45%;
   position: relative;
-  height: 905px;
+  height: 906px;
   border-right: 1px solid #ccc;
 }
 
@@ -124,6 +124,11 @@ h1 {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
+}
+.col .last-updated {
+  display: block;
+  font-size: 0.7em;
+  font-weight: normal;
 }
 .col .reporting {
   font-size: 0.7em;
