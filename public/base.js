@@ -86,9 +86,7 @@ var map = {
   getPrecinctShapes: function() {
     var self = this;
 
-		console.log('getting shape data');
     $.getJSON('precincts-hennepin.json', function(data) {
-		console.log(data);
       self.geoJson = data;
       self.addPrecinctLayer(self.geoJson);
 
