@@ -32,6 +32,7 @@ var map = {
   mapWidth: 526,
 
   precinctLookup: {},
+  activePrecinct: null,
 
   init: function() {
     var self = this;
@@ -89,13 +90,6 @@ var map = {
     $.getJSON('precincts-hennepin.json', function(data) {
       self.geoJson = data;
       self.addPrecinctLayer(self.geoJson);
-
-      _.each(self.geoJson.features, function(d) {
-        self.precinctLookup[d.properties.PCTCODE] = {
-          'precinctId': d.properties.PCTCODE,
-          'feature': d
-        };
-      });
     });
   },
 
@@ -123,6 +117,13 @@ var map = {
     self.precinctLayer = new L.geoJson(geoJson, {
       'style': function(d) { return self.stylePrecinct(d, self); },
       'onEachFeature': function(d, layer) {
+
+        self.precinctLookup[d.properties.PCTCODE] = {
+          'precinctId': d.properties.PCTCODE,
+          'feature': d,
+          'layer': layer
+        };
+
         layer.on({
           click: function(d) {
             var properties = layer.feature.properties;
@@ -148,24 +149,33 @@ var map = {
             var properties = layer.feature.properties;
             self.activatePrecinctTooltip(properties.PCTCODE);
 
-            layer.setStyle({
-              weight: 1,
-              color: '#333',
-              opacity: 1
-            });
+            if (self.activePrecinct !== properties.PCTCODE) {
+              layer.setStyle({
+                weight: 1,
+                color: '#333',
+                opacity: 1
+              });
+            }
 
             if (!L.Browser.ie && !L.Browser.opera) {
               layer.bringToFront();
+              if (self.activePrecinct) {
+                self.precinctLookup[self.activePrecinct].layer.bringToFront();
+              }
             }
+
           },
           mouseout: function() {
             self.$mapTooltipTarget.hide();
 
-            layer.setStyle({
-              weight: 1,
-              color: '#fff',
-              opacity: 0.7
-            });
+            var properties = layer.feature.properties;
+            if (self.activePrecinct !== properties.PCTCODE) {
+              layer.setStyle({
+                weight: 1,
+                color: '#fff',
+                opacity: 0.7
+              });
+            }
           }
         })
       }
@@ -485,6 +495,20 @@ var map = {
 
     self.deactivateAllPrecincts();
 
+    self.activePrecinct = precinctId;
+    if (self.activePrecinct) {
+      var layer = self.precinctLookup[self.activePrecinct].layer;
+
+      layer.setStyle({
+        weight: 4,
+        color: 'rgb(11, 71, 141)',
+        opacity: 1
+      });
+      if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+      }
+    }
+
     var precinct = self.results.precincts[precinctId];
 
     if (precinct) {
@@ -506,6 +530,7 @@ var map = {
       $('.return-total').click(function() {
         self.map.setView([44.97, -93.265], 12);
 
+        self.deactivateAllPrecincts();
         self.$precinctTarget.hide();
         self.$resultsTarget.show('slow');
       });
@@ -531,6 +556,14 @@ var map = {
   deactivateAllPrecincts: function() {
     var self = this;
 
+    if (self.activePrecinct) {
+      self.precinctLookup[self.activePrecinct].layer.setStyle({
+        weight: 1,
+        color: '#fff',
+        opacity: 0.7
+      });
+      self.activePrecinct = null;
+    }
     $('.wrapper.active').removeClass('active');
   },
 
