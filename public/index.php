@@ -5,8 +5,8 @@
      <link rel="stylesheet" href="lib/leaflet.ie.css" />
  <![endif]-->
 
-<link rel="stylesheet" href="css/fonts.css" />
-<link rel="stylesheet" href="css/base.css" />
+ <link rel="stylesheet" href="css/fonts.css?hash=<?= hash_file('md5', 'css/fonts.css') ?>" />
+<link rel="stylesheet" href="css/base.css?hash=<?= hash_file('md5', 'css/base.css') ?>" />
 
 <!-- <h1>2013-9-26-election-results</h1>-->
 
@@ -146,7 +146,7 @@
 <script src="lib/underscore-min.js" type="text/javascript" charset="utf-8"></script>
 <script src="lib/leaflet.js" type="text/javascript" charset="utf-8"></script>
 <script src="lib/moment.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="base.js" type="text/javascript" charset="utf-8"></script>
+<script src="base.js?hash=<?= hash_file('md5', 'base.js') ?>" type="text/javascript" charset="utf-8"></script>
 
 <?php readfile('http://www.startribune.com/templates/vf?vid=229128501&sosp=/politics'); ?>
 
