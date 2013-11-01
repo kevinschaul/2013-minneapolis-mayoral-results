@@ -343,8 +343,10 @@ var map = {
   },
 
   getLastUpdated: function() {
+    var self = this;
 
-    return 'five minutes ago';
+    var lastUpdated = moment(self.results.last_updated);
+    return lastUpdated.fromNow();
   },
 
   getPrecinctsReporting: function() {
