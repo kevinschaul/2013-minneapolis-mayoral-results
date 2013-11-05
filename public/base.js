@@ -97,7 +97,7 @@ var map = {
   getResults: function() {
     var self = this;
 
-		$.ajax('http://s3.amazonaws.com/startribune/2013/results.json', {
+		$.ajax('http://s3.amazonaws.com/startribune/20131105-minneapolis-mayor-election-results/results.json', {
 			dataType: 'json',
 			success: function(data) {
         self.$loading.hide();
