@@ -99,7 +99,6 @@ var map = {
 
 		$.ajax('http://s3.amazonaws.com/startribune/2013/results.json', {
 			dataType: 'json',
-			cache: 'false',
 			success: function(data) {
         self.$loading.hide();
         self.results = data;
@@ -161,7 +160,7 @@ var map = {
 
             if (!L.Browser.ie && !L.Browser.opera) {
               layer.bringToFront();
-              if (self.activePrecinct) {
+              if (self.activePrecinct && self.precinctLookup[self.activePrecinct]) {
                 self.precinctLookup[self.activePrecinct].layer.bringToFront();
               }
             }
@@ -498,7 +497,7 @@ var map = {
     self.deactivateAllPrecincts();
 
     self.activePrecinct = precinctId;
-    if (self.activePrecinct) {
+    if (self.activePrecinct && self.precinctLookup[self.activePrecinct]) {
       var layer = self.precinctLookup[self.activePrecinct].layer;
 
       layer.setStyle({
