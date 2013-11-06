@@ -172,6 +172,7 @@ div.candidate:last-child {border-bottom: 0px none;}
 #map-key .candidate .color {
   margin-top: 2px;
 }
+
 .col .candidate .name {
   margin-left: 10px;
 }
@@ -247,6 +248,7 @@ div.candidate:last-child {border-bottom: 0px none;}
   left: 15px;
   background-color: #fff;
   border: 1px solid #ccc;
+  width: 174px;
   font-size: 14px;
   color: rgb(51, 51, 51);
   padding: 6px 10px;
