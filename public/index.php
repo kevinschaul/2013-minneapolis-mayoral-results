@@ -59,7 +59,7 @@
   <div class="header">
     <span class="precinct-title">Citywide total</span>
     <span class="last-updated">Last updated <%= lastUpdated %></span>
-    <span class="reporting">119/119 precincts reporting</span>
+    <span class="reporting">119 of 119 precincts reporting</span>
     <span class="percents-headers">
       <span class="percent-header">1st choice</span>
       <span class="percent-header">2nd choice</span>
