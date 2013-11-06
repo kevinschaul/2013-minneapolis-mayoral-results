@@ -25,6 +25,7 @@ var map = {
   },
   otherColor: '#aaaaaa',
   tieColor: '#d0d0d0',
+  noVotersColor: '#fff',
 
   tooltipMargin: 50,
   tooltipWidth: 387,
@@ -190,7 +191,7 @@ var map = {
 
     var precinct = self.results.precincts[d.properties.PCTCODE];
     return {
-      fillColor: self._findFillColorPrecinct(precinct.candidates),
+      fillColor: self._findFillColorPrecinct(precinct.candidates, d.properties.PCTCODE),
       fillOpacity: 0.7,
       opacity: 0.7,
       weight: 1,
@@ -198,8 +199,12 @@ var map = {
     };
   },
 
-  _findFillColorPrecinct: function(candidates) {
+  _findFillColorPrecinct: function(candidates, pctcode) {
     var self = this;
+
+    if (pctcode && (pctcode === '1817' || pctcode === '1827')) {
+      return self.noVotersColor;
+    }
 
     var max_votes = 0;
     var max_candidate_id = -1;

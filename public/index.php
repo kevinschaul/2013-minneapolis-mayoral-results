@@ -28,13 +28,17 @@
       <div class="map-wrapper">
         <div id="map-key">
             <div class="candidate">
-              <div class="color" style="background-color: #aaaaaa;"></div>
+              <div class="color" style="background-color: #aaaaaa; border: 1px solid #fff;"></div>
               <span class="name">Other candidates</span>
             </div> 
             <div class="clear"></div>
             <div class="candidate">
-              <div class="color" style="background-color: #d0d0d0;"></div>
+              <div class="color" style="background-color: #d0d0d0; border: 1px solid #fff;"></div>
               <span class="name">No data or tie</span>
+            </div>
+            <div class="candidate">
+              <div class="color" style="background-color: #fff; border: 1px solid #666;"></div>
+              <span class="name">No voters in precinct</span>
             </div>
         </div>
         <div id="map-tooltip-target"></div>
@@ -55,7 +59,7 @@
   <div class="header">
     <span class="precinct-title">Citywide total</span>
     <span class="last-updated">Last updated <%= lastUpdated %></span>
-    <span class="reporting"><%= precinctsReporting %> reporting</span>
+    <span class="reporting">119/119 precincts reporting</span>
     <span class="percents-headers">
       <span class="percent-header">1st choice</span>
       <span class="percent-header">2nd choice</span>

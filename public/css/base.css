@@ -141,7 +141,6 @@ h1 {
   font-size: 0.7em;
   font-weight: normal;
   color: #99330c;
-  display: none;
 }
 
 .col .candidates {
@@ -170,6 +169,9 @@ div.candidate:last-child {border-bottom: 0px none;}
 .col .candidate-9013 .color { background-color: #65a6de; }
 .col .candidate-9032 .color { background-color: #b16cb0; }
 
+#map-key .candidate .color {
+  margin-top: 2px;
+}
 .col .candidate .name {
   margin-left: 10px;
 }
