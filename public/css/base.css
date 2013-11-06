@@ -141,6 +141,7 @@ h1 {
   font-size: 0.7em;
   font-weight: normal;
   color: #99330c;
+  display: none;
 }
 
 .col .candidates {
