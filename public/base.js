@@ -359,9 +359,19 @@ var map = {
   getPrecinctsReporting: function() {
     var self = this;
 
+    var precincts_reporting = 0;
+    var precincts_total = 0;
+    _.each(self.results.precincts, function(d, v) {
+      precincts_total += 1;
+      if (d.total_votes_first > 0 || d.total_votes_second > 0 ||
+          d.total_votes_third > 0) {
+        precincts_reporting += 1;
+      }
+    });
+
     return self._getPrecinctsReporting(
-      self.results.total.precincts_reporting,
-      self.results.total.precincts_total
+      precincts_reporting,
+      precincts_total
     );
   },
 
